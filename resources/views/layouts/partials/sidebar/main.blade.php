@@ -29,54 +29,82 @@
         <!-- Side navigation links -->
         <li>
             <ul class="collapsible collapsible-accordion">
-                <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-chevron-right"></i> Submit blog<i class="fa fa-angle-down rotate-icon"></i></a>
+                <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-user"></i> Academic Staff<i class="fa fa-angle-down rotate-icon"></i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="#" class="waves-effect">Submit listing</a>
+                            <li><a href="#" class="waves-effect">Teachers List</a>
                             </li>
-                            <li><a href="#" class="waves-effect">Registration form</a>
+                            <li><a href="#" class="waves-effect">Create Teacher</a>
+                            </li>
+                            <li><a href="#" class="waves-effect">Staff Full Report</a>
+                            </li>
+                            <li><a href="#" class="waves-effect">Customized Teacher List</a>
+                            </li>
+                            <li><a href="#" class="waves-effect">Approve Teacher</a>
+                            </li>
+                            <li><a href="#" class="waves-effect">View Salary Sheet Requests</a>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-hand-pointer-o"></i> Instruction<i class="fa fa-angle-down rotate-icon"></i></a>
+                <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-hand-pointer-o"></i> Leaves<i class="fa fa-angle-down rotate-icon"></i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="#" class="waves-effect">For bloggers</a>
+                            <li><a href="#" class="waves-effect">Pending Leaves</a>
                             </li>
-                            <li><a href="#" class="waves-effect">For authors</a>
+                            <li><a href="#" class="waves-effect">Apply Leave</a>
+                            </li>
+                            <li><a href="#" class="waves-effect">All Leaves</a>
+                            </li>
+                            <li><a href="#" class="waves-effect">Leaves Report</a>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-eye"></i> About<i class="fa fa-angle-down rotate-icon"></i></a>
+                <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-eye"></i> Attendance<i class="fa fa-angle-down rotate-icon"></i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="#" class="waves-effect">Introduction</a>
+                            <li><a href="#" class="waves-effect">Teacher Attendance</a>
                             </li>
-                            <li><a href="#" class="waves-effect">Monthly meetings</a>
+                            <li><a href="#" class="waves-effect">Student Attendance</a>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-envelope-o"></i> Contact me<i class="fa fa-angle-down rotate-icon"></i></a>
+                <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-envelope-o"></i> Timetable Management<i class="fa fa-angle-down rotate-icon"></i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="#" class="waves-effect">FAQ</a>
+                            <li><a href="#" class="waves-effect">All Timetables</a>
                             </li>
-                            <li><a href="#" class="waves-effect">Write a message</a>
+                            <li><a href="#" class="waves-effect">Create Timetable</a>
                             </li>
-                            <li><a href="#" class="waves-effect">FAQ</a>
+                        </ul>
+                    </div>
+                </li>
+                <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-envelope-o"></i> Student Management<i class="fa fa-angle-down rotate-icon"></i></a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="#" class="waves-effect">Student List</a>
                             </li>
-                            <li><a href="#" class="waves-effect">Write a message</a>
+                            <li><a href="#" class="waves-effect">Create Student</a>
                             </li>
-                            <li><a href="#" class="waves-effect">FAQ</a>
+                            <li><a href="#" class="waves-effect">Student Report</a>
                             </li>
-                            <li><a href="#" class="waves-effect">Write a message</a>
+                            <li><a href="#" class="waves-effect">Approve Students</a>
                             </li>
-                            <li><a href="#" class="waves-effect">FAQ</a>
+                        </ul>
+                    </div>
+                </li>
+                <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-envelope-o"></i> Event Management<i class="fa fa-angle-down rotate-icon"></i></a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="#" class="waves-effect">View All events</a>
                             </li>
-                            <li><a href="#" class="waves-effect">Write a message</a>
+                            <li><a href="#" class="waves-effect">Check events</a>
+                            </li>
+                            <li><a href="#" class="waves-effect">Add Event Type</a>
+                            </li>
+                            <li><a href="#" class="waves-effect">Event Calendar</a>
                             </li>
                         </ul>
                     </div>
