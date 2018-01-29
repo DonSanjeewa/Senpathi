@@ -13,11 +13,15 @@
     @include("layouts.includes.styles")
 
 </head>
-<body class="fixed-sn light-blue-skin">
+<body class="fixed-sn navy-blue-skin">
+
+
 
     @yield("pre-content")
+    <div class="container">
+        @yield("content")
+    </div>
 
-    @yield("content")
 
     @yield("post-content")
 
