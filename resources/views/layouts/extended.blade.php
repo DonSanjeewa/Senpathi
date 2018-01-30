@@ -5,7 +5,7 @@
 @endsection
 
 @section("base-content")
-<main>
+<main class="base-content">
     <div class="main-wrapper">
         @yield("content")
     </div>

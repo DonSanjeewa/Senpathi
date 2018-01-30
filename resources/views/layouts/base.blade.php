@@ -26,6 +26,7 @@
 
     @include("layouts.includes.scripts")
 
+    @yield("custom-scripts")
     <script>
         $(".button-collapse").sideNav();
     </script>
