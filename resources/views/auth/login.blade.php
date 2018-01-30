@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('content')
+@section('base-content')
 
 <div class="row login-form-container">
     <div class="col-md-12 mb-12">
