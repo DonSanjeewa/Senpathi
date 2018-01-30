@@ -18,10 +18,9 @@
 
 
     @yield("pre-content")
-    <div class="container">
-        @yield("content")
+    <div class="container-fluid">
+        @yield("base-content")
     </div>
-
 
     @yield("post-content")
 
