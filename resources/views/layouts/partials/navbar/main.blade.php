@@ -23,9 +23,9 @@
                 <i class="fa fa-user"></i> <span class="clearfix d-none d-sm-inline-block">Account</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-account-dropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item">{{ \Illuminate\Support\Facades\Auth::user()->fname . " " . \Illuminate\Support\Facades\Auth::user()->lname  }}</a>
+                <hr>
+                <a class="dropdown-item" href="{{ route("logout") }}">Logout</a>
             </div>
         </li>
     </ul>
