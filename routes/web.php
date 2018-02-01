@@ -19,12 +19,18 @@ Route::post('/login', 'Auth\LoginController@login')->name('login.login');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 
-Route::middleware(["auth"])->group(function () {
+//Event routes
+Route::get('/events', 'EventController@index')->name('events.index');
+Route::get('/events/create', 'EventController@create')->name('events.create');
+
+    //Teachers routes
+    Route::get('/teachers', 'Academic\Teachers\TeachersController@index')->name('academic.teachers.index');
+
+    //TODO super-user middleware
+    Route::middleware(["auth"])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
 
-    //Event routes
-    Route::get('/events', 'EventController@index')->name('events.index');
 
     Route::get('/events/create', 'EventController@create')->name('events.create');
 
