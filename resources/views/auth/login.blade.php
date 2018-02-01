@@ -27,42 +27,48 @@
                                     <i class="fa fa-lock"></i> Login </h3>
                             </div>
                             <br>
+
+                            <form method="post" action="{{ route("login.login") }}">
                             <!--Body-->
                             {{ csrf_field() }}
 
                             <div class="md-form{{ $errors->has('username') ? ' has-error' : '' }}">
                                 <i class="fa fa-user prefix grey-text"></i>
-                                <input type="text" id="form-name" class="form-control"  value="{{ old('username') }}" required>
+                                <input type="text" id="form-name" class="form-control" name="username"  value="{{ old('username') }}" required>
                                 <label for="form-name">Username</label>
-
-                                @if ($errors->has('username'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
-                                @endif
                             </div>
 
                             <div class="md-form{{ $errors->has('password') ? ' has-error' : '' }}">
                                 <i class="fa fa-lock prefix grey-text"></i>
-                                <input type="password" id="form-password" class="form-control" required>
+                                <input type="password" id="form-password" name="password" class="form-control" required>
                                 <label for="form-password">Password</label>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
 
                             </div>
 
                             <div class="md-form" style="margin-top: -25px">
-                                <input type="checkbox" id="form-remember-me" class="form-control">
+                                <input type="checkbox" id="form-remember-me" name="remember" class="form-control" {{ old('remember') ? 'checked' : '' }}>
                                 <label for="form-remember-me" style="padding-left: 50px">Remember Me</label>
                             </div>
 
+
+                                {{--//TODO Remove the following and spereate into a partial--}}
+
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+
                             <div class="text-center">
-                                <button class="btn btn-light-blue">Login</button>
+                                <button class="btn btn-light-blue" type="submit">Login</button>
                             </div>
+
+                            </form>
 
                         </div>
 
