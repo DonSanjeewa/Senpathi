@@ -46,7 +46,6 @@
                                 <i class="fa fa-lock prefix grey-text"></i>
                                 <input type="password" id="form-password" class="form-control" required>
                                 <label for="form-password">Password</label>
-                                <p style="display: block; float: right" class="font-small grey-text d-flex justify-content-end">Forgot <a href="#" class="dark-grey-text font-bold ml-1"> Password?</a></p>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">

@@ -1,38 +1,35 @@
 @extends('layouts.extended')
 
 @section('content')
-    <table id="all-events" class="table table-bordered data-table-custom" cellspacing="0" width="100%">
+    <table id="permissions" class="table table-bordered data-table-custom" cellspacing="0" width="100%">
         <thead>
         <tr>
+            <th>Id</th>
             <th>Name</th>
-            <th>Location</th>
             <th>Description</th>
-            <th>Start Date</th>
-            <th>End Date</th>
+            <th>Permissions</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tfoot>
         <tr>
+            <th>Id</th>
             <th>Name</th>
-            <th>Location</th>
             <th>Description</th>
-            <th>Start Date</th>
-            <th>End Date</th>
+            <th>Permissions</th>
             <th>Actions</th>
         </tr>
         </tfoot>
         <tbody>
-        @foreach($events as $event)
+        @foreach($permissions as $permission)
             <tr>
-                <td>{{$event->name}}</td>
-                <td>{{$event->location}}</td>
-                <td>{{$event->description}}</td>
-                <td>{{$event->starts_at}}</td>
-                <td>{{$event->ends_at}}</td>
+                <td>{{$permission->id}}</td>
+                <td>{{$permission->name}}</td>
+                <td>{{$permission->description}}</td>
+                <td>{{$permission->permissions}}</td>
                 {{--TODO add action mapping for buttons--}}
                 <td>
-                    <a href="{{route('home')}}" class="btn btn-primary btn-custom">
+                    <a href="" class="btn btn-primary btn-custom">
                         <i class="fa fa-list-alt" aria-hidden="true"></i>
                     </a>
                     <a class="btn btn-warning btn-custom">
