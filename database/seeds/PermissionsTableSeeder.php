@@ -14,9 +14,10 @@ class PermissionsTableSeeder extends Seeder
     public function run()
     {
        DB::table("permissions")->insert([
-           "name" => "All Privileges",
-           "permissions" => json_encode("*"),
-           "description" => "Access for all the application routes have been granted.",
+           "name" => "All Routes",
+           "slug" => "all_routes",
+           "route_name" => "*",
+           "description" => "All routes.",
            "created_at" => Carbon::now(),
            "updated_at" => Carbon::now()
        ]);
