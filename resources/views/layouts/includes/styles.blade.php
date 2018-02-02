@@ -9,5 +9,5 @@
 
 {{--custom styles--}}
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
 <link rel="stylesheet" href="{{ asset('css/media.styles.css') }}">
+

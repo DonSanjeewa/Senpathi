@@ -14,13 +14,35 @@
 .data-table-custom tbody tr td:last-child {
     text-align: center;
 }
-/*data-table*/
 
-.data-table-custom tbody tr:hover{
-    cursor: pointer;
+/*TODO add pointer cursor to table rows*/
+/*!data-table*/
+
+/*form-errors area*/
+.form-error ul {
+    list-style: none;
+    padding-left: unset;
+    margin-bottom: 0;
 }
 
+.form-error ul li span {
+    font-weight: bold;
+}
 
+.has-error i {
+    color: #ff3547 !important;
+}
 
+.has-error input {
+    border-bottom: 1px solid #F44336 !important;
+}
 
-/*base-content area*/
+.has-error label {
+    color: #ff3547;
+}
+
+.has-error input::placeholder {
+    color: #ff3547;
+}
+
+/*!form-errors area*/

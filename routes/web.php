@@ -19,20 +19,23 @@ Route::post('/login', 'Auth\LoginController@login')->name('login.login');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 
-//Event routes
-Route::get('/events', 'EventController@index')->name('events.index');
-Route::get('/events/create', 'EventController@create')->name('events.create');
+//TODO super-user middleware
+Route::middleware(["auth"])->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+
+
+    //Event routes
+    Route::get('/events', 'EventController@index')->name('events.index');
+    Route::get('/events/create', 'EventController@create')->name('events.create');
+    Route::get('/events/{event}', 'EventController@show')->name('events.show');
+    //TODO might want to change this to post after adding the modal
+    Route::get('/events/{event}/delete', 'EventController@delete')->name('events.delete');
+    Route::post('/events', 'EventController@store')->name('events.store');
+
 
     //Teachers routes
     Route::get('/teachers', 'Academic\Teachers\TeachersController@index')->name('academic.teachers.index');
 
-    //TODO super-user middleware
-    Route::middleware(["auth"])->group(function () {
-    Route::get('/home', 'HomeController@index')->name('home');
-
-
-
-    Route::get('/events/create', 'EventController@create')->name('events.create');
 
     //TODO super-user middleware
 
@@ -70,4 +73,3 @@ Route::get('/events/create', 'EventController@create')->name('events.create');
 
     Route::post("/control-panel/permissions/:permission/delete", 'ControlPanel\PermissionsController@index')->name('control-panel.permissions.delete');
 });
-

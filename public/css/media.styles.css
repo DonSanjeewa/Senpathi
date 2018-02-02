@@ -1,3 +1,4 @@
+/*base-content area*/
 @media only screen and (min-width: 1367px) {
     .base-content {
         padding-left: 145px !important;
@@ -16,4 +17,5 @@
         min-width: 100px;
     }
 }
-/*base-content area*/
+
+/*!base-content area*/
