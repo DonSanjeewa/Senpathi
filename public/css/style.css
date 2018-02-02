@@ -13,6 +13,7 @@
 
 .data-table-custom tbody tr td:last-child {
     text-align: center;
+    width: 150px;
 }
 
 /*TODO add pointer cursor to table rows*/
