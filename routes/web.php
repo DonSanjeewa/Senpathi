@@ -28,6 +28,10 @@ Route::middleware(["auth"])->group(function () {
 
     Route::get('/events/create', 'EventController@create')->name('events.create');
 
+    //leave routes
+    Route::get('/leaves/apply', 'LeaveController@create')->name('leaves.apply');
+    Route::get('/leaves/viewPending', 'LeaveController@viewPending')->name('leaves.viewPending');
+
     //TODO super-user middleware
 
     //Control Panel > Users Routes
