@@ -32,13 +32,13 @@
                 <td>{{$event->ends_at}}</td>
                 {{--TODO add action mapping for buttons--}}
                 <td>
-                    <a href="{{route('home')}}" class="btn btn-primary btn-custom">
+                    <a href="{{route('events.show', ['event' => $event->id])}}" class="btn btn-primary btn-custom">
                         <i class="fa fa-list-alt" aria-hidden="true"></i>
                     </a>
                     <a class="btn btn-warning btn-custom">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>
-                    <a class="btn btn-danger btn-custom">
+                    <a href="{{route('events.delete', ['event' => $event->id])}}" class="btn btn-danger btn-custom">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </a>
                 </td>

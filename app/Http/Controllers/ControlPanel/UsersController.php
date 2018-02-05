@@ -14,4 +14,14 @@ class UsersController extends Controller
 
         return view("control-panel.users.index" , compact("users"));
     }
+
+
+    public function create(){
+        return view("control-panel.users.create");
+    }
+
+
+    public function edit(Request $request , User $user){
+        dd($user);
+    }
 }
