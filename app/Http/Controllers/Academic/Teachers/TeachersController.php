@@ -14,4 +14,15 @@ class TeachersController extends Controller
         return view('academic.teachers.index')->with('teachers', $teachers);
 
     }
+
+    /**
+     * Show single available teacher in dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($teacher)
+    {
+        $teacher = Teacher::where('id', $teacher)->first();
+        return view('academic.teachers.show')->with('teacher', $teacher);
+    }
 }

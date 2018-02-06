@@ -27,15 +27,15 @@
     <tbody>
     @foreach($teachers as $teacher)
     <tr>
-        <td>{{$teacher->nic}}</td>
-        <td>{{$teacher->name}}</td>
+        <td>{{$teacher->nic_no}}</td>
+        <td>{{$teacher->name_with_initials}}</td>
         <td>{{$teacher->gender}}</td>
         <td>{{$teacher->grade}}</td>
         <td>{{$teacher->medium}}</td>
-        <td>{{$teacher->contact}}</td>
+        <td>{{$teacher->contact_mobile}}</td>
         {{--TODO add action mapping for buttons--}}
         <td>
-            <a href="{{route('home')}}" class="btn btn-primary btn-custom">
+            <a href="{{route('academic.teachers.show', ['teacher' => $teacher->id])}}" class="btn btn-primary btn-custom">
                 <i class="fa fa-list-alt" aria-hidden="true"></i>
             </a>
             <a class="btn btn-warning btn-custom">

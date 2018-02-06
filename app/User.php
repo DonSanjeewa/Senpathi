@@ -30,9 +30,27 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function registered(){
+    /**
+     * Get the salaryRequests for the user.
+     */
+
+    public function salaryRequests()
+    {
+        return $this->hasMany('App\SalaryRequest');
+    }
+
+
+    public function registered()
+    {
         return Carbon::parse($this->registered_at)->toDayDateTimeString();
     }
 
+    /**
+     * Get the teacher record associated with the user.
+     */
+    public function teacher()
+    {
+        return $this->hasOne('App\Teacher');
+    }
 
 }
