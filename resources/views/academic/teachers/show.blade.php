@@ -14,7 +14,8 @@
             <div class="col-lg-4 col-md-12">
 
                 <!--Section: Basic Info-->
-                <section class="card card-cascade card-avatar mb-4" style="margin-top: 27%;">
+
+                <section class="card card-cascade card-avatar mb-4 ">
 
                     <img alt="" src="https://secure.gravatar.com/avatar/e71351aca73bc2a9a2039ee806c4367c?s=160&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/e71351aca73bc2a9a2039ee806c4367c?s=320&amp;d=mm&amp;r=g 2x"
                          class="avatar avatar-160 photo" height="160" width="160">
@@ -45,9 +46,10 @@
 
             </div>
 
-            <div class="col-lg-8 col-md-12 text-center">
 
-                <div class="text-center mt-3 mb-5">
+            <div class="col-lg-8 col-md-12 text-left">
+
+                <div class="text-left mt-3 mb-5">
 
                     <div class="card">
                         <div class="card-header black-skin white-text">
@@ -56,7 +58,7 @@
                         <div class="card-body">
 
                             <table id="income" class="table table-light" cellspacing="0" width="90%">
-                                <thead>General</thead>
+                                <thead><b>General</b></thead>
                                 <tr>
                                     <th>NIC NO</th>
                                     <td>{{$teacher->nic_no}}</td>
