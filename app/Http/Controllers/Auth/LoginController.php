@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -43,6 +44,10 @@ class LoginController extends Controller
         return 'username';
     }
 
-
-
+    public function attemptLogin(Request $request)
+    {
+        if (Auth::attempt(['username' => $request->input("username"), 'password' => $request->input("password"), 'active' => 1])) {
+            return redirect()->intended();
+        }
+    }
 }

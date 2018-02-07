@@ -52,6 +52,8 @@
 </div>
 
 @include('common.partials.form-errors')
+
 <div class="text-right">
     <button type="submit" class="btn btn-success">Save</button>
 </div>
+

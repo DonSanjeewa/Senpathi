@@ -53,15 +53,7 @@
 
                                 {{--//TODO Remove the following and spereate into a partial--}}
 
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
+                            @include("common.partials.form-errors")
 
 
                             <div class="text-center">

@@ -5,6 +5,7 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -51,6 +52,33 @@ class User extends Authenticatable
     public function teacher()
     {
         return $this->hasOne('App\Teacher');
+    }
+
+
+    public function role()
+    {
+       $roleRef =  DB::table("user_role")->where("user_id" , $this->id)->first();
+
+       if ($roleRef){
+           return Role::find($roleRef->id)->first();
+       }
+
+       return null;
+    }
+
+    public function permissions()
+    {
+        $role = $this->role();
+
+        if ($role){
+            $permissionsRefs = DB::table("role_permission")->where("role_id" , $role->id)->pluck("permission_id");
+
+            if (!empty($permissionsRefs)){
+                return Permission::whereIn( "id" , $permissionsRefs)->get();
+            }
+        }
+
+        return null;
     }
 
 }
