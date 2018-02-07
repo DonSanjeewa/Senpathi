@@ -70,7 +70,7 @@
                 </table>
             </div>
             <div class="card-footer">
-                <a type="button" class="btn btn-blue" href="{{route('report.academic.salary-requests', ['request' => $request->id])}}">Generate Report</a>
+                <a type="button" class="btn btn-blue" href="{{route('report.salary-requests', ['request' => $request->id])}}">Generate Report</a>
                 <button type="button" class="btn btn-success">Approve</button>
                 <button type="button" class="btn btn-danger">Reject</button>
             </div>
