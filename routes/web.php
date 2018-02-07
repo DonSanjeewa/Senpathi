@@ -50,8 +50,11 @@ Route::middleware(["auth" , "acl"])->group(function () {
     Route::get('/salary-requests', 'Academic\Teachers\SalaryRequestController@index')->name('academic.salary-requests.index');
     Route::get('/salary-requests/{request}', 'Academic\Teachers\SalaryRequestController@show')->name('academic.salary-requests.show');
 
+
     //Salary Report
-    Route::get('/generate-salary-report/{request}', 'Report\Academic\ReportController@salaryRequestPdfView')->name('report.academic.salary-requests');
+    Route::get('/generate-salary-report/{request}', 'Report\ReportController@salaryRequestPdfView')->name('report.salary-requests');
+    //Teacher details Report
+    Route::get('/generate-teacher-report/{teacher}', 'Report\ReportController@teacherDetailsPdfView')->name('report.teacher-details');
 
     //TODO super-user middleware
 

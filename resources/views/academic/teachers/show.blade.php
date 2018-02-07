@@ -17,8 +17,14 @@
 
                 <section class="card card-cascade card-avatar mb-4 ">
 
-                    <img alt="" src="https://secure.gravatar.com/avatar/e71351aca73bc2a9a2039ee806c4367c?s=160&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/e71351aca73bc2a9a2039ee806c4367c?s=320&amp;d=mm&amp;r=g 2x"
-                         class="avatar avatar-160 photo" height="160" width="160">
+                    @if($teacher->gender == 'm')
+                        <img alt="" src="https://image.flaticon.com/icons/svg/180/180644.svg" srcset=""
+                             class="avatar avatar-160 photo" height="160" width="160">
+                    @else
+                        <img alt="" src="https://image.flaticon.com/icons/svg/180/180675.svg" srcset=""
+                             class="avatar avatar-160 photo" height="160" width="160">
+                    @endif
+
                     <!--Card content-->
                     <div class="card-body">
                         <!--Title-->
@@ -37,8 +43,8 @@
                             <i class="fa fa-pencil ml-2"></i>
                         </a>
 
-                        <a class="btn btn-mdb btn-md waves-effect waves-light" href="" role="button">Log out
-                            <i class="fa fa-sign-out ml-2"></i>
+                        <a class="btn btn-mdb btn-md waves-effect waves-light" href="{{route('report.teacher-details',$teacher->id)}}" role="button">Generate Report
+                            <i class="fa fa-file-pdf-o ml-2"></i>
                         </a>
                     </div>
 
