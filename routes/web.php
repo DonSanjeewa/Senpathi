@@ -11,15 +11,18 @@
 |
 */
 
-Route::middleware(["guest"])->group(function (){
-    Route::get('/')->name('welcome');
-    Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
-    Route::post('/login', 'Auth\LoginController@login')->name('login.login');
-    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-});
+Route::redirect('/' , '/home' )->name('welcome');
+
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'Auth\LoginController@login')->name('login.login');
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('/unauthorized' , function (){
+    return "hit";
+})->name("unauthorized");
 
 //TODO super-user middleware
-Route::middleware(["auth"])->group(function () {
+Route::middleware(["auth" , "acl"])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     //Event routes
@@ -33,7 +36,22 @@ Route::middleware(["auth"])->group(function () {
 
     //Teachers routes
     Route::get('/teachers', 'Academic\Teachers\TeachersController@index')->name('academic.teachers.index');
+    Route::get('/teachers/{teacher}', 'Academic\Teachers\TeachersController@show')->name('academic.teachers.show');
 
+
+    //Timetable routes
+    Route::get('/timetables', 'TimetableController@index')->name('timetables.index');
+    Route::get('/timetables/create', 'TimetableController@create')->name('timetables.create');
+
+    Route::post('/timetables', 'TimetableController@store')->name('timetables.store');
+
+
+    //Salary requests
+    Route::get('/salary-requests', 'Academic\Teachers\SalaryRequestController@index')->name('academic.salary-requests.index');
+    Route::get('/salary-requests/{request}', 'Academic\Teachers\SalaryRequestController@show')->name('academic.salary-requests.show');
+
+    //Salary Report
+    Route::get('/generate-salary-report/{request}', 'Report\Academic\ReportController@salaryRequestPdfView')->name('report.academic.salary-requests');
 
     //leave routes
     Route::get('/leaves/apply', 'LeaveController@create')->name('leaves.apply');

@@ -46,4 +46,48 @@
     color: #ff3547;
 }
 
+.file-upload {
+    position: relative;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.file-upload label {
+    display: block;
+    padding: 0.5em 1em;
+    color: #fff;
+    background: cornflowerblue;
+    border-radius: 0em;
+    transition: background .3s;
+}
+
+.file-upload label:hover {
+    cursor: pointer;
+    background: cornflowerblue;
+    opacity: 0.8;
+}
+
+.file-upload input:hover {
+    cursor: pointer;
+}
+
+.file-upload input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 1;
+    width: 0;
+    height: 100%;
+    opacity: 0;
+}
+
 /*!form-errors area*/
+
+/*timetable form*/
+.mdb-select.select-wrapper {
+    margin-left: 50px;
+}
+
+/*!timetable form*/

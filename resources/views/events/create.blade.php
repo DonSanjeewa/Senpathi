@@ -2,17 +2,17 @@
 
 @section('content')
     <!--Panel-->
-    {{--TODO Complete event creation--}}
-    <div class="card">
-        <div class="card-header black-skin lighten-1 white-text">
-            Create an Event
-        </div>
-        <div class="card-body">
-            {{--Event form--}}
-            <form method="POST" action="{{route('events.store')}}">
-                {{ csrf_field() }}
-                @include('events.partials.form')
-            </form>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <h5 class="card-header blue white-text">Create Event</h5>
+                <div class="card-body">
+                    <form method="POST" action="{{route('events.store')}}">
+                        {{ csrf_field() }}
+                        @include('events.partials.form')
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     <!--/.Panel-->

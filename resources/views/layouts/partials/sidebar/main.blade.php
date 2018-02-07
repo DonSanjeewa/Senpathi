@@ -27,11 +27,11 @@
                         <i class="fa fa-angle-down rotate-icon"></i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-user-o"></i>Teachers List</a>
+                            <li><a href="{{route('academic.teachers.index')}}" class="waves-effect"><i class="fa fa-user-o"></i>Teachers List</a>
                             </li>
                             <li><a href="#" class="waves-effect"><i class="fa fa-pencil"></i>Customized Teacher List</a>
                             </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-address-book-o"></i>View Salary Sheet
+                            <li><a href="{{route('academic.salary-requests.index')}}" class="waves-effect"><i class="fa fa-address-book-o"></i>View Salary Sheet
                                     Requests</a>
                             </li>
                             <li><a href="#" class="waves-effect"><i class="fa fa-user-plus"></i>Create Teacher</a>
@@ -76,9 +76,9 @@
                         <i class="fa fa-angle-down rotate-icon"></i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-table"></i>All Timetables</a>
+                            <li><a href="{{route('timetables.index')}}" class="waves-effect"><i class="fa fa-table"></i>All Timetables</a>
                             </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-plus-square"></i>Create Timetable</a>
+                            <li><a href="{{route('timetables.create')}}" class="waves-effect"><i class="fa fa-plus-square"></i>Create Timetable</a>
                             </li>
                         </ul>
                     </div>

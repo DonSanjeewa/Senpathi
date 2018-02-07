@@ -3,7 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\Activated;
-use App\Http\Middleware\CheckPermissions;
+use App\Http\Middleware\AccessControl;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -61,6 +61,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
         'activated' => Activated::class,
-        'acl' => CheckPermissions::class
+        'acl' => AccessControl::class
     ];
 }
