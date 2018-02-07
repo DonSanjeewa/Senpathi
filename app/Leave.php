@@ -10,7 +10,7 @@ class leave extends Model
 
 	
 	protected $fillable = [
-        'teacher_id', 'leave_id', 'days','from','to', 'status'
+        'teacher_id', 'leave_id', 'days','from','to', 'status','next_approval'
     ];
 
 

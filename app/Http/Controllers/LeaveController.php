@@ -13,14 +13,11 @@ class LeaveController extends Controller
 
      public function index()
     {
-        $events = Event::all();
-        return view('events.index')->with('events', $events);
+       
     }
 
      public function create()
     {
-    	//$users = DB::table('users')->where('id', session()->id)->first();
-        //return view('leaves.apply')->with('users', $users);
        	
         return view('leaves.apply');
      
@@ -50,10 +47,11 @@ class LeaveController extends Controller
     	Leave::create([
     		'teacher_id' => $request->user()->id,
             'leave_id' => $request->input('102'),
-            'days' => '$days',
+            'days' => $days,
             'from' => $request->input('from'),
             'to' => $request->input('to'),	
             'status' => 'pending',
+            'next_approval' => 1
             
     	]);
     	return redirect()->route('leaves.viewPending');
