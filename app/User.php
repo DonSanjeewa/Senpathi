@@ -71,11 +71,14 @@ class User extends Authenticatable
         $role = $this->role();
 
         if ($role){
-            $permissionsRefs = DB::table("role_permission")->where("role_id" , $role->id)->pluck("permission_id");
+            $permissions = DB::table("role_permission")
+                                 ->join("roles" , "role_permission.role_id" ,"=" , "roles.id" )
+                                 ->join("permissions" , "role_permission.permission_id" ,"=" , "permissions.id" )
+                                 ->select("roles.slug AS role_slug" , "permissions.slug AS permission_slug" , "permissions.route_name" , "role_permission.is_able")
+                                 ->where("role_permission.role_id" , $role->id)
+                                 ->get();
 
-            if (!empty($permissionsRefs)){
-                return Permission::whereIn( "id" , $permissionsRefs)->get();
-            }
+            return $permissions;
         }
 
         return null;

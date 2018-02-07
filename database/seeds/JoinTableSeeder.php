@@ -26,6 +26,7 @@ class JoinTableSeeder extends Seeder
         DB::table("role_permission")->insert([
             "role_id" => 1,
             "permission_id" => 1,
+            "is_able" => true,
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
         ]);
