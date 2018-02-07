@@ -5,15 +5,15 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <h5 class="card-header blue white-text">Create Event</h5>
+                <h5 class="card-header blue white-text">Create Timetable</h5>
                 <div class="card-body">
-                    <form method="POST" action="{{route('events.store')}}">
+                    <form method="POST" action="{{route('timetables.store')}}">
                         {{ csrf_field() }}
-                        @include('events.partials.form')
+                        @include('timetable.partials.form')
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <!--/.Panel-->
+    <!--Panel-->
 @endsection

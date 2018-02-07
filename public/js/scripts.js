@@ -18,4 +18,6 @@ $(document).ready(function () {
     $('.timepicker').pickatime({
         twelvehour: true
     });
+
+    $('.mdb-select').material_select();
 });

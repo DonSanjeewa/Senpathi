@@ -11,6 +11,6 @@ class ClassRoomsSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\ClassRoom::class, 10)->create();
+
     }
 }

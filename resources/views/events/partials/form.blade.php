@@ -51,6 +51,7 @@
     <label for="event_description">Description</label>
 </div>
 
-@include('common.partial.form-errors')
-
-<button type="submit" class="btn btn-primary">Submit</button>
+@include('common.partials.form-errors')
+<div class="text-right">
+    <button type="submit" class="btn btn-success">Save</button>
+</div>

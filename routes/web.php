@@ -35,6 +35,12 @@ Route::middleware(["auth"])->group(function () {
     Route::get('/teachers', 'Academic\Teachers\TeachersController@index')->name('academic.teachers.index');
     Route::get('/teachers/{teacher}', 'Academic\Teachers\TeachersController@show')->name('academic.teachers.show');
 
+    //Timetable routes
+    Route::get('/timetables', 'TimetableController@index')->name('timetables.index');
+    Route::get('/timetables/create', 'TimetableController@create')->name('timetables.create');
+
+    Route::post('/timetables', 'TimetableController@store')->name('timetables.store');
+
     //Salary requests
     Route::get('/salary-requests', 'Academic\Teachers\SalaryRequestController@index')->name('academic.salary-requests.index');
     Route::get('/salary-requests/{request}', 'Academic\Teachers\SalaryRequestController@show')->name('academic.salary-requests.show');
