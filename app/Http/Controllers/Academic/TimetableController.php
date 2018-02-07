@@ -32,4 +32,14 @@ class TimetableController extends Controller
         }
         return view('timetable.create')->with('grades', $grades)->with('data', json_encode($data));
     }
+
+
+    /**
+     *Store event details.
+     *
+     */
+    public function store(Request $request)
+    {
+        dd($request->all());
+    }
 }

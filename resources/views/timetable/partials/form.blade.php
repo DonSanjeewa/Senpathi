@@ -1,27 +1,27 @@
-<div class="md-form{{ $errors->has('timetable_year') ? ' has-error' : '' }}">
+<div class="md-form{{ $errors->has('year') ? ' has-error' : '' }}">
     <i class="fa fa-calendar prefix grey-text"></i>
-    <select class="mdb-select" id="timetable_year">
+    <select class="mdb-select" id="year" name="year">
         <option>2017</option>
         <option>2018</option>
     </select>
-    <label for="timetable_year">Year</label>
+    <label for="year">Year</label>
 </div>
 
-<div class="md-form{{ $errors->has('timetable_grade') ? ' has-error' : '' }}">
+<div class="md-form{{ $errors->has('grade') ? ' has-error' : '' }}">
     <i class="fa fa-graduation-cap prefix grey-text"></i>
-    <select class="mdb-select" id="timetable_grade">
+    <select class="mdb-select" id="grade" name="grade">
         @foreach($grades as $grade)
-            <option id="{{$grade->id}}">{{$grade->name}}</option>
+            <option value="{{$grade->id}}">{{$grade->name}}</option>
         @endforeach
     </select>
-    <label for="timetable_grade">Grade</label>
+    <label for="grade">Grade</label>
 </div>
 
 <div class="md-form">
     <i class="fa fa-pencil prefix grey-text"></i>
-    <select class="mdb-select" id="timetable_class">
+    <select class="mdb-select" id="class" name="class">
     </select>
-    <label for="timetable_class">Class</label>
+    <label for="class">Class</label>
 </div>
 
 @include('common.partials.form-errors')
@@ -46,9 +46,9 @@
         }
 
         $(document).ready(function () {
-            var class_selector = $('#timetable_class');
+            var class_selector = $('#class');
             disableSelect(class_selector);
-            $('#timetable_grade').on('change', function () {
+            $('#grade').on('change', function () {
                 enableSelect(class_selector)
                 var data = {!! $data !!};
                 class_selector.empty();
