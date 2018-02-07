@@ -28,5 +28,10 @@ class DatabaseSeeder extends Seeder
         $this->call(TimeTableSeeder::class);
         $this->call(GradesTableSeeder::class);
         $this->call(ClassRoomsSeeder::class);
+        $this->call(DesignationsTableSeeder::class);
+        $this->call(NationalitiesTableSeeder::class);
+        $this->call(ReligionsTableSeeder::class);
+        $this->call(SectionTableSeeder::class);
+        $this->call(ServiceGradesTableSeeder::class);
     }
 }
