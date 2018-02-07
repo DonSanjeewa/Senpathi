@@ -39,7 +39,7 @@
                         <!--Text-->
                         <p class="card-text mt-3"></p>
 
-                        <a class="btn btn-primary btn-md waves-effect waves-light" href="" role="button" data-toggle="modal" data-target="#modalEditProfile">Edit profile
+                        <a class="btn btn-primary btn-md blue white-text" href="" role="button" data-toggle="modal" data-target="#modalEditProfile">Edit profile
                             <i class="fa fa-pencil ml-2"></i>
                         </a>
 
@@ -58,7 +58,7 @@
                 <div class="text-left mt-3 mb-5">
 
                     <div class="card">
-                        <div class="card-header black-skin white-text">
+                        <div class="card-header blue white-text">
                             <h4>Personal Details </h4>
                         </div>
                         <div class="card-body">

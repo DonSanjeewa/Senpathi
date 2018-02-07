@@ -8,7 +8,7 @@
         <section class="py-3">
             <!--Section heading-->
             <!-- //TODO school logo? -->
-            <h2 class="font-bold text-center h1 py-5"></h2>
+            <h2 class="font-bold text-center h3 py-3"></h2>
             <!--Section description-->
 
             <div class="row">
@@ -28,6 +28,10 @@
                             </div>
                             <br>
 
+                            <div class="logo-wrapper waves-light">
+                                <a href="#"><img src="{{ asset('img/dslogo2.png') }}"
+                                                 class="img-fluid flex-center logo-main"></a>
+                            </div>
                             <form method="post" action="{{ route("login.login") }}">
                             <!--Body-->
                             {{ csrf_field() }}

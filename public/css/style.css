@@ -26,6 +26,14 @@
     margin-bottom: 0;
 }
 
+
+.logo-main {
+    height: 20%;
+    margin-left: 40%;
+    margin-bottom: 3%;
+    width: 21%;
+}
+
 .form-error ul li span {
     font-weight: bold;
 }

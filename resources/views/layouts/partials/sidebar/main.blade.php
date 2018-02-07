@@ -3,8 +3,8 @@
         <!-- Logo -->
         <li>
             <div class="logo-wrapper waves-light">
-                <a href="#"><img src="https://mdbootstrap.com/img/logo/mdb-transparent.png"
-                                 class="img-fluid flex-center"></a>
+                <a href="#"><img src="{{ asset('img/dslogo.png') }}"
+                                 class="img-fluid flex-center align-content-end "></a>
             </div>
         </li>
         <!--/. Logo -->
