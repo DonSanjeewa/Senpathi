@@ -7,12 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class leave extends Model
 {
     //
+
+	
+	protected $fillable = [
+        'teacher_id', 'leave_id', 'days','from','to', 'status'
+    ];
+
+
     public function index()
     {
 
-	$leaves = DB::table('pendig_leaves')->get();
+	$leaves = DB::table('leaves')->get();
     return view('leave.viewPending', ['leaves' => $leaves]);
-
+    
 	}
 }
 

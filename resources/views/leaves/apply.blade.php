@@ -1,8 +1,6 @@
 @extends('layouts.extended')
 
- <script type="text/javascript">    
-        $('.datepicker').pickadate();
- </script>
+
 @section('content')
     <!--Panel-->
     {{--TODO Complete leave apply--}}
@@ -49,58 +47,80 @@
             {{--<h4 class="card-title">Special title treatment</h4>--}}
             <p class="card-text">
                 <!-- Form contact -->
-                <form>
+                <form method="POST" action="{{route('leaves.store')}}">
 
             {{--<p class="h5 text-center mb-4">Write to us</p>--}}
+            {{ csrf_field() }}
+
+
+               
 
             <div class="md-form">
                 <i class="fa fa-user prefix grey-text"></i>
-                <input type="text" id="form3" class="form-control">
+                <input type="text" value="{{\Illuminate\Support\Facades\Auth::user()->fname}} {{\Illuminate\Support\Facades\Auth::user()->lname}}" id="form3" class="form-control" disabled="true">
                 <label for="form3">Your name</label>
             </div>
 
-             <!--Dropdown primary-->
-            <div class="dropdown">
-                <i class="fa fa-level-down" aria-hidden="true"></i>
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Leave Type</button>
-               <div class="dropdown-menu dropdown-primary">
-                <a class="dropdown-item" href="#">Casual</a>
-                <a class="dropdown-item" href="#">Annual</a>
-                <a class="dropdown-item" href="#">Medical</a>
-                <a class="dropdown-item" href="#">Maternity</a>
-               </div> 
+            <div class="md-form">
+                <i class="fa fa-key prefix grey-text" ></i>
+                <input type="text" id="form3" value="{{\Illuminate\Support\Facades\Auth::user()->id}} " class="form-control" disabled="true">
+                <label for="form3" disabled="true">ID Number:</label>
+            </div>
+
+            <br>
+            <i class="fa fa-pen prefix grey-text"></i>
+            <label id="type">Leave Type</label>
+            <div id="radio">
+                    <div class="md-form">
+                     
+                     <!--Radio group-->
+                        <div class="form-group">
+                            <input name="102" type="radio" value='1' class="with-gap" id="radio106">
+                            <label for="radio106">Casual</label>
+                        </div>
+
+                        <div class="form-group">
+                            <input name="102" type="radio" value='2' class="with-gap" id="radio107" checked>
+                            <label for="radio107">Medical</label>
+                        </div>
+
+                        <div class="form-group">
+                            <input name="102" type="radio" value='3' class="with-gap" id="radio108">
+                            <label for="radio108">Other</label>
+                        </div>
+                        <div class="form-group">
+                            <input name="102" type="radio" value='4' class="with-gap" id="radio109">
+                            <label for="radio109">Maternity</label>
+                        </div>
+                        <!--Radio group-->  
+                     </div>
             </div>
             <br>
-               
+                <script type="text/javascript">    
+                     $('.datepicker').pickadate();
+                </script>
             <div class="md-form">
                 <i class="fa fa-calendar prefix grey-text   "></i>
-                <input placeholder="" type="text" id="date-picker-example" class="form-control datepicker">
+                <input placeholder="" type="text" id="start_date" name="start_date" class="form-control datepicker" value="{{ old('start_date') }}">
                 <label for="date-picker-example">Start Date</label>
+
+
             </div>
             <br>
 
             <div class="md-form">
                 
                 <i class="fa fa-calendar-check-o prefix grey-text" aria-hidden="true"></i>
-                <input placeholder="" type="text" id="date-picker-example" class="form-control datepicker">
+                <input  placeholder="" type="text" id="end_date" name="end_date" value="{{ old('end_date') }}"class="form-control datepicker">
                 <label for="date-picker-example">End Date</label>
             </div>
             <br>
 
-            <div class="md-form">
-                <i class="fa fa-pencil prefix grey-text"></i>
-                <textarea type="text" id="form8" class="md-textarea" style="height: 100px"></textarea>
-                <label for="form8">Your message</label>
-            </div>
-
-            {{--<div class="text-center">--}}
-                {{--<button class="btn btn-unique">Send <i class="fa fa-paper-plane-o ml-1"></i></button>--}}
-            {{--</div>--}}
-
+            <button type="submit" class="btn btn-deep-orange">Apply</button>
             </form>
             <!-- Form contact -->
             </p>
-            <a class="btn btn-deep-orange">Apply</a>
+            
         </div>
     </div>
     <!--/.Panel-->

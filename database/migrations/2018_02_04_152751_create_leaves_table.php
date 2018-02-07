@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePendingLeavesTable extends Migration
+class CreateLeavesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreatePendingLeavesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pending_leaves', function (Blueprint $table) {
+       
+    Schema::create('leaves', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('teacher_id');
             $table->unsignedInteger('leave_id');
             $table->unsignedInteger('days'); 
-            $table->datetime('from');
-            $table->datetime('to');
+            $table->date('from');
+            $table->date('to');
+            $table->string('status');
+            $table->unsignedInteger('next_approval');
             $table->timestamps();
         });
     }
@@ -30,6 +34,6 @@ class CreatePendingLeavesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pending_leaves');
+        Schema::dropIfExists('leaves');
     }
 }

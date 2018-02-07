@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLeaveTable extends Migration
+class CreateLeaveDataTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateLeaveTable extends Migration
      */
     public function up()
     {
-        Schema::create('leave', function (Blueprint $table) {
+        Schema::create('leaveData', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('casual');
-            $table->unsignedInteger('medical');
-            $table->unsignedInteger('maternity');
-            $table->unsignedInteger('other');
-            $table->timestamps();
+            $table->unsignedInteger('leave_id');
+            $table->unsignedInteger('days');
+            $table->string('leave_type');
         });
     }
 
@@ -30,6 +28,6 @@ class CreateLeaveTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leave');
+        Schema::dropIfExists('leaveData');
     }
 }
