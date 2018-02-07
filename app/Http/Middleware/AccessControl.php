@@ -30,16 +30,21 @@ class AccessControl
 
        $permissions = $request->user()->permissions();
 
-       if ($permissions){
+       if (!empty($permissions)){
            foreach ($permissions as $permission){
 
+               $match = false;
+
                if ($permission->route_name === "*"){
-                   return true;
+                    $match = true;
                }
 
                if($curRoute === $permission->route_name){
-                   return true;
+                    $match = true;
+               }
 
+               if ($match && $permission->is_able){
+                   return true;
                }
            }
        }
