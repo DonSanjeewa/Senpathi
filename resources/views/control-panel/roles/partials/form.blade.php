@@ -33,9 +33,14 @@
         <h5>All Available Permissions</h5>
         @foreach($permissions as $permission)
 
-            <div class="form-group">
-                <input type="checkbox" id="checkbox-{{ $permission->id }}" name="permissions">
-                <label for="checkbox-{{ $permission->id }}">{{ $permission->name }}</label>
+            <div class="form-group permission-item" style="width: 25%; display: inline-block; float: left">
+                <input type="checkbox" id="checkbox-{{ $permission->id }}" name="permissions[{{ $permission->id }}]">
+                <label for="checkbox-{{ $permission->id }}">
+                    {{ $permission->name }}
+                    @if($permission->description != "")
+                       ( {{ $permission->description }} )
+                    @endif
+                </label>
             </div>
 
         @endforeach

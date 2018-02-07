@@ -19,6 +19,7 @@ class UsersTableSeeder extends Seeder
            "email" => "super_admin@sms.com",
            "password" => bcrypt("password"),
            "active" => true,
+           "gender" => "m",
            "registered_at" => Carbon\Carbon::now(),
            "updated_at" => Carbon\Carbon::now(),
            "created_at" => Carbon\Carbon::now()

@@ -77,7 +77,6 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
 
-
         DB::table("permissions")->insert([
             "name" => "All Teachers",
             "slug" => "all_teachers",
@@ -321,6 +320,5 @@ class PermissionsTableSeeder extends Seeder
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
         ]);
-
     }
 }

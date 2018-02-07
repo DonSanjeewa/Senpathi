@@ -23,6 +23,7 @@ $factory->define(\App\User::class, function (Faker $faker) {
         'password' => bcrypt("password"), // password
         'remember_token' => str_random(10),
         'active' => $faker->randomElement([false,true]),
+        'gender' => $faker->randomElement(["m" , "f"]),
         'registered_at' => $faker->dateTimeBetween('-2 years' , 'now')
     ];
 });
