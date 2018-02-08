@@ -6,7 +6,7 @@
         <div class="card">
             <h5 class="card-header blue white-text">Teachers</h5>
             <div class="card-body">
-                <table id="all-teachers" class="table table-bordered data-table-custom" cellspacing="0" width="100%">
+                <table id="all-teachers" class="table table-bordered data-table-custom" cellspacing="0" width="100%" title="Teacher">
                     <thead>
                     <tr>
                         <th>NIC</th>

@@ -11,6 +11,44 @@
     width: 30px;
 }
 
+#big_stats .stat .value {
+    font-size: 45px !important;
+    font-weight: bold !important;
+    color: #545454 !important;
+    line-height: 1em !important;
+}
+
+#big_stats i {
+    font-size: 30px;
+    display: block;
+    line-height: 40px;
+    color: #ff6f00;
+}
+
+#big_stats .stat:hover i {
+    color: #ff6f00;
+}
+
+#big_stats {
+    width: 100% !important;
+    display: table !important;
+    margin-top: 1.5em !important;
+}
+.stat {
+    width: 25% !important;
+    height: 90px !important;
+    text-align: center !important;
+    display: table-cell !important;
+    padding: 0 !important;
+    position: relative !important;
+    border-right: 1px solid #CCC !important;
+
+}
+
+#big_stats .stat:last-child {
+    border-right: none !important;
+}
+
 .data-table-custom tbody tr td:last-child {
     text-align: center;
     width: 150px;
@@ -89,6 +127,18 @@
     width: 0;
     height: 100%;
     opacity: 0;
+}
+
+/*Dashboard*/
+
+.content-scroller{
+    overflow-y: scroll !important;
+    display: block !important;
+    height: 28vh !important;
+}
+
+.gold{
+    background-color: #FCB812 !important;
 }
 
 /*!form-errors area*/
