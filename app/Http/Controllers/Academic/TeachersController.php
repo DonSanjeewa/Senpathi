@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Academic\Teachers;
+namespace App\Http\Controllers\Academic;
 
 use App\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class TeachersController extends Controller
 {
@@ -16,6 +17,13 @@ class TeachersController extends Controller
     }
 
     public function create(){
+
+        $nationalities = DB::table("nationalities")->all();
+        $religions = DB::table("religions")->all();
+        $sections = DB::table("sections")->all();
+        $serviceGrades = DB::table("service_grades")->all();
+        $academicRoles = DB::table("academic_roles")->all();
+
         return view('academic.teachers.create');
     }
 
