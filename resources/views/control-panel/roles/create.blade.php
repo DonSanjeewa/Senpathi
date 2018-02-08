@@ -7,6 +7,8 @@
                 <h5 class="card-header blue white-text">Create Role</h5>
                 <div class="card-body">
                     <form method="post" enctype="multipart/form-data" action="{{ route("control-panel.roles.store") }}">
+                        {{ csrf_field() }}
+
 
                         @include("control-panel.roles.partials.form")
 

@@ -15,6 +15,10 @@ class TeachersController extends Controller
 
     }
 
+    public function create(){
+        return view('academic.teachers.create');
+    }
+
     /**
      * Show single available teacher in dashboard.
      *
