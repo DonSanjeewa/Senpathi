@@ -34,7 +34,7 @@
                             <li><a href="{{route('academic.salary-requests.index')}}" class="waves-effect"><i class="fa fa-address-book-o"></i>View Salary Sheet
                                     Requests</a>
                             </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-user-plus"></i>Create Teacher</a>
+                            <li><a href="{{route('academic.teachers.create')}}" class="waves-effect"><i class="fa fa-user-plus"></i>Create Teacher</a>
                             </li>
                             <li><a href="#" class="waves-effect"><i class="fa fa-check"></i>Approve Teacher</a>
                             </li>
