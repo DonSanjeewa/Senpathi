@@ -35,8 +35,12 @@ Route::middleware(["auth" , "acl"])->group(function () {
 
 
     //Teachers routes
-    Route::get('/teachers', 'Academic\Teachers\TeachersController@index')->name('academic.teachers.index');
-    Route::get('/teachers/{teacher}', 'Academic\Teachers\TeachersController@show')->name('academic.teachers.show');
+    Route::get('/academic/teachers', 'Academic\Teachers\TeachersController@index')->name('academic.teachers.index');
+    Route::post('/academic/teachers', 'Academic\Teachers\TeachersController@store')->name('academic.teachers.store');
+
+    Route::get('/academic/teachers/create', 'Academic\Teachers\TeachersController@create')->name('academic.teachers.create');
+
+    Route::get('/academic/teachers/{teacher}', 'Academic\Teachers\TeachersController@show')->name('academic.teachers.show');
 
 
     //Timetable routes

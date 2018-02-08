@@ -15,39 +15,40 @@ class CreateTeachersTable extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->string('signature_no');
-            $table->string('serial_no');
-            $table->string('personal_file_no');
-            $table->string('full_name');
-            $table->string('name_with_initials');
-            $table->string('gender');
-            $table->integer('section');
-            $table->string('nic_no');
-            $table->string('permanent_addr');
-            $table->string('wnop_no');
-            $table->integer('service');
-            $table->integer('grade');
-            $table->integer('main_subject_id');
-            $table->string('medium');
-            $table->string('contact_mobile');
-            $table->string('contact_home');
-            $table->dateTime('dob');
-            $table->string('remarks');
-            $table->string('civil_status');
-            $table->string('photo_file_name');
-            $table->integer("religion_id");
-            $table->string('photo_content_type');
-            $table->string('photo_data');
-            $table->string('nationality_id');
-            $table->string('designation_id');
-            $table->string('educational_qualific');
-            $table->string('professional_qualific');
-            $table->string('promotions');
-            $table->dateTime('increment_date');
-            $table->dateTime('duty_assume_date');
-            $table->dateTime('pension_date');
-            $table->dateTime('joined_date');
+            $table->unsignedInteger('user_id');
+
+            $table->string("name_initials");
+            $table->string("full_name");
+            $table->string("nic");
+            $table->date("dob");
+            $table->text("address");
+            $table->string("contact_mobile");
+            $table->string("contact_home");
+
+            $table->string("civil_status");
+            $table->string("nationality_id");
+            $table->string("religion_id");
+
+            $table->string("widow_and_orphan_no");
+            $table->string("salary_compute_no");
+            $table->string("signature_no");
+            $table->string("gov_reg_no");
+            $table->string("personal_file_no");
+
+            $table->string("designation_id");
+            $table->string("section_id");
+            $table->string("medium");
+            $table->string("main_subject_id");
+            $table->date("joined_at");
+
+            $table->string("service_grade_id");
+            $table->string("nature_of_appointment");
+            $table->string("current_role");
+            $table->string("current_type");
+            $table->string("salary");
+
+            $table->date("first_appointment_at");
+
             $table->timestamps();
         });
     }
