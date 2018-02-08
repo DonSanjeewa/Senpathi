@@ -12,6 +12,8 @@
 
     @include("layouts.includes.styles")
 
+    @yield("custom-styles")
+
 </head>
 <body class="fixed-sn navy-blue-skin">
 

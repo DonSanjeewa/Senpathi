@@ -618,6 +618,18 @@
 </div>
 <!--/.Accordion wrapper-->
 
+@section("custom-styles")
+    <style>
+
+        .delete-item{
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+
+    </style>
+@endsection
+
 
 @section("custom-scripts")
     <script>
@@ -632,35 +644,48 @@
 
         });
 
+        let expCounter = 0;
+        let proffesionalExpCounter = 0;
+        let educationalExpCounter  = 0;
+
+
         $('.add-experience').on("click", function (e) {
 
             e.preventDefault();
 
+            expCounter++;
+
             $('.experience-placeholder').append(
-                `<div class="row">
+                `<div class="row" id="experience-${expCounter}">
                             <div class="col-md-4">
 
                                 <div class="md-form ">
                                     <i class="fa fa-phone prefix grey-text"></i>
-                                    <input type="text" id="experience" class="form-control" name="employer">
-                                    <label for="salary">Employer</label>
+                                    <input type="text" id="employer[${expCounter}]" class="form-control" name="employer[${expCounter}]">
+                                    <label for="employer[${expCounter}]">Employer</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="md-form">
                                     <i class="fa fa-phone prefix grey-text"></i>
-                                    <input type="text" id="experience" class="form-control" name="subject">
-                                    <label for="salary">Subject</label>
+                                    <input type="text" id="subject[${expCounter}]" class="form-control" name="subject[${expCounter}]">
+                                    <label for="subject[${expCounter}]">Subject</label>
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="md-form">
                                     <i class="fa fa-phone prefix grey-text"></i>
-                                    <input type="text" id="experience" class="form-control" name="year">
-                                    <label for="salary">Year</label>
+                                    <input type="text" id="years[${expCounter}]" class="form-control" name="years[${expCounter}]">
+                                    <label for="years[${expCounter}]">No of Years</label>
                                 </div>
                             </div>
+
+                            <div class="col-md-1">
+                                <i class="fa fa-window-close delete-item"  aria-hidden="true" data-target="#experience-${expCounter}"></i>
+                            </div>
+
+
 
                 </div>`
             );
@@ -671,19 +696,26 @@
         $('.add-professional-qualification').on('click', function (e) {
             e.preventDefault();
 
+            proffesionalExpCounter++;
+
             $('.professional-qualifications-placeholder').append(
-                `<div class="row">
-                                <div class="col-md-12">
+                `<div class="row" id="professional-qualification-${proffesionalExpCounter}">
+                                <div class="col-md-11">
 
                                     <div class="md-form">
                                         <i class="fa fa-pencil prefix grey-text"></i>
-                                        <textarea type="text" id="professional-qualification" class="md-textarea"
+                                        <textarea type="text" id="professional-qualification[${proffesionalExpCounter}]" class="md-textarea"
                                                   style="height: 100px"
-                                                  name="professional-qualification"></textarea>
-                                        <label for="professional-qualification">Qualification</label>
+                                                  name="professional-qualification[${proffesionalExpCounter}]"></textarea>
+                                        <label for="professional-qualification[${proffesionalExpCounter}]">Qualification</label>
                                     </div>
 
                                 </div>
+
+                             <div class="col-md-1">
+                                <i class="fa fa-window-close delete-item"  aria-hidden="true" data-target="#professional-qualification-${proffesionalExpCounter}"></i>
+                            </div>
+
                 </div>`
             );
 
@@ -693,23 +725,34 @@
             e.preventDefault();
 
             $('.educational-qualifications-placeholder').append(
-                `<div class="row">
-                                <div class="col-md-12">
+                `<div class="row" id="educational-qualification-${educationalExpCounter}">
+                                <div class="col-md-11">
 
                                     <div class="md-form">
                                         <i class="fa fa-pencil prefix grey-text"></i>
-                                        <textarea type="text" id="educational-qualification" class="md-textarea"
+                                        <textarea type="text" id="educational-qualification[${educationalExpCounter}]" class="md-textarea"
                                                   style="height: 100px"
-                                                  name="educational-qualification"></textarea>
-                                        <label for="educational-qualification">Qualification</label>
+                                                  name="educational-qualification[${educationalExpCounter}]"></textarea>
+                                        <label for="educational-qualification[${educationalExpCounter}]">Qualification</label>
                                     </div>
 
                                 </div>
+
+                            <div class="col-md-1">
+                                <i class="fa fa-window-close delete-item"  aria-hidden="true" data-target="#educational-qualification-${educationalExpCounter}"></i>
+                            </div>
+
+
                  </div>`
             );
 
-        })
+        });
 
+        $(document).on('click' , ".delete-item" ,function (e) {
+            e.preventDefault();
+            console.log(this);
+            $($(this).attr("data-target")).remove();
+        })
 
     </script>
 @endsection

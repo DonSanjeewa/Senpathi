@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTeacherSubjectsTable extends Migration
+class CreateAcademicRoles extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateTeacherSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('teacher_subjects', function (Blueprint $table) {
+        Schema::create('academic_roles', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger("teacher_id");
-            $table->unsignedInteger("subject_id");
-            $table->boolean("default")->default(false);
+            $table->string("name");
+            $table->string("slug");
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateTeacherSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teacher_subjects');
+        Schema::dropIfExists('academic_roles');
     }
 }
