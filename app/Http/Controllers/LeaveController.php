@@ -9,13 +9,7 @@ use Carbon\Carbon;
 
 class LeaveController extends Controller
 {
-    //
-
-     public function index()
-    {
-       
-    }
-
+    
      public function create()
     {
        	
@@ -43,10 +37,10 @@ class LeaveController extends Controller
     	$request['to']   = $this->formatDateTime($request->input('end_date'));
 
     	$days = $request['to']->diffInDays($request['from']);	
-    		
+    	
     	Leave::create([
     		'teacher_id' => $request->user()->id,
-            'leave_id' => $request->input('102'),
+            'leave_id' => $request->input('leave_id'),
             'days' => $days,
             'from' => $request->input('from'),
             'to' => $request->input('to'),	

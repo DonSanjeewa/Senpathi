@@ -75,30 +75,28 @@
                      
                      <!--Radio group-->
                         <div class="form-group">
-                            <input name="102" type="radio" value='1' class="with-gap" id="radio106">
+                            <input name="leave_id" type="radio" value='1' class="with-gap" id="radio106">
                             <label for="radio106">Casual</label>
                         </div>
 
                         <div class="form-group">
-                            <input name="102" type="radio" value='2' class="with-gap" id="radio107" checked>
+                            <input name="leave_id" type="radio" value='2' class="with-gap" id="radio107" checked>
                             <label for="radio107">Medical</label>
                         </div>
 
                         <div class="form-group">
-                            <input name="102" type="radio" value='3' class="with-gap" id="radio108">
+                            <input name="leave_id" type="radio" value='3' class="with-gap" id="radio108">
                             <label for="radio108">Other</label>
                         </div>
                         <div class="form-group">
-                            <input name="102" type="radio" value='4' class="with-gap" id="radio109">
+                            <input name="leave_id" type="radio" value='4' class="with-gap" id="radio109">
                             <label for="radio109">Maternity</label>
                         </div>
                         <!--Radio group-->  
                      </div>
             </div>
             <br>
-                <script type="text/javascript">    
-                     $('.datepicker').pickadate();
-                </script>
+             
             <div class="md-form">
                 <i class="fa fa-calendar prefix grey-text   "></i>
                 <input placeholder="" type="text" id="start_date" name="start_date" class="form-control datepicker" value="{{ old('start_date') }}">
