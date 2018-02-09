@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TimeTableSeeder extends Seeder
+class TimetablesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class TimeTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\TimeTable::class, 10)->create();
+
     }
 }

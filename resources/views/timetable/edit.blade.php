@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <h5 class="card-header blue white-text">Create Timetable</h5>
+                <h5 class="card-header blue white-text">Manage Period</h5>
                 <div class="card-body">
-                    <form method="POST" action="{{route('academic.timetables.store')}}">
+                    <form method="POST" action="{{route('academic.timetables.update')}}">
                         {{ csrf_field() }}
-                        @include('timetable.partials.form')
+                        @include('timetable.partials.period')
                     </form>
                 </div>
             </div>
