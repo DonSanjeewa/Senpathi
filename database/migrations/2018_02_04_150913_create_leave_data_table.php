@@ -13,7 +13,7 @@ class CreateLeaveDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('leaveData', function (Blueprint $table) {
+        Schema::create('leave_data', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('leave_id');
             $table->unsignedInteger('days');
@@ -28,6 +28,6 @@ class CreateLeaveDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leaveData');
+        Schema::dropIfExists('leave_data');
     }
 }

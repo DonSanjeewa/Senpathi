@@ -17,17 +17,17 @@ class LeaveController extends Controller
      
     }
 
-    public function viewPending()
+    public function Pending()
     {
     	$leaves = DB::table('leaves')->get();
-        return view('leaves.viewPending')->with('leaves', $leaves);
+        return view('leaves.Pending')->with('leaves', $leaves);
     	
     }
 
     public function viewAllLeaves(){
 
     	$leaves = DB::table('leaves')->get();
-        return view('leaves.viewPending')->with('leaves', $leaves);
+        return view('leaves.pending')->with('leaves', $leaves);
     }
 
     public function store(Request $request)

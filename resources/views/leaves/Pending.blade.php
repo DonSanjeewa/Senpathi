@@ -1,7 +1,4 @@
 @extends('layouts.extended')
-<script type="text/javascript">
-$('.datepicker').pickadate();
-</script>
 
 @section('content')
     <!--Panel-->

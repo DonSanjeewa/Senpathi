@@ -58,7 +58,7 @@ Route::middleware(["auth" , "acl"])->group(function () {
 
     //leave routes
     Route::get('/leaves/apply', 'LeaveController@create')->name('leaves.apply');
-    Route::get('/leaves/viewPending', 'LeaveController@viewPending')->name('leaves.viewPending');   
+    Route::get('/leaves/pending', 'LeaveController@Pending')->name('leaves.pending');   
     Route::post('/leaves/store', 'LeaveController@store')->name('leaves.store');
     //TODO super-user middleware
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class leave extends Model
 {
-    //
+   
 
 	
 	protected $fillable = [
@@ -17,8 +17,8 @@ class leave extends Model
     public function index()
     {
 
-	$leaves = DB::table('leaves')->get();
-    return view('leave.viewPending', ['leaves' => $leaves]);
+		$leaves = DB::table('leaves')->get();
+    	return view('leave.pending', ['leaves' => $leaves]);
     
 	}
 }
