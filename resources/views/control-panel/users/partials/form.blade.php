@@ -21,12 +21,6 @@
             <label for="username">Username</label>
         </div>
 
-        <div class="md-form{{ $errors->has('email') ? ' has-error' : '' }}">
-            <i class="fa fa-envelope prefix grey-text"></i>
-            <input type="email" id="email" class="form-control" value="{{ old("fname") }}" name="email">
-            <label for="email">Email</label>
-        </div>
-
         <div class="md-form{{ $errors->has('password') ? ' has-error' : '' }}">
             <i class="fa fa-lock prefix grey-text"></i>
             <input type="password" id="password" class="form-control" name="password">
@@ -38,15 +32,6 @@
             <input type="password" id="password_confirmation" class="form-control" name="password_confirmation">
             <label for="password_confirmation">Confirm Password</label>
         </div>
-
-        <section>
-            <select class="mdb-select{{ $errors->has('gender') ? ' has-error' : '' }}" name="gender">
-                <option value="" disabled selected>Gender</option>
-                <option value="m">Male</option>
-                <option value="f">Female</option>
-
-            </select>
-        </section>
 
         <section>
             <select class="mdb-select{{ $errors->has('role') ? ' has-error' : '' }}" name="role">

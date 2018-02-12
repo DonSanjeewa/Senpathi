@@ -13,6 +13,8 @@ class Teacher extends Model
         'nic',
         'dob' ,
         'address',
+        'gender',
+        'email',
         'contact_mobile',
         'contact_home',
         'civil_status',
@@ -25,14 +27,14 @@ class Teacher extends Model
         'personal_file_no' ,
         'designation_id',
         'section_id',
-        'medium' ,
-        'main_subject_id',
+        'medium',
         'joined_at' ,
         'service_grade_id',
         'nature_of_appointment',
         'current_role' ,
         'current_type',
         'salary',
-        'first_appointment_at'
+        'first_appointment_at',
+        "approval"
     ];
 }

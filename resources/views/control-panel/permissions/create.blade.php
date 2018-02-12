@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <form method="post" enctype="multipart/form-data" action="{{ route("control-panel.permissions.store") }}">
 
-                        @include("control-panel.roles.partials.form")
+                        @include("control-panel.permissions.partials.form")
 
                     </form>
                 </div>

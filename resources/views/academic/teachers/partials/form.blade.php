@@ -1,6 +1,8 @@
 <!--Accordion wrapper-->
 <div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
 
+    {{ csrf_field() }}
+
     <!-- Accordion card -->
     <div class="card">
 
@@ -22,7 +24,7 @@
                     <div class="col-md-6">
                         <div class="md-form{{ $errors->has('full_name') ? ' has-error' : '' }}">
                             <i class="fa fa-road prefix grey-text"></i>
-                            <input type="text" id="full_name" class="form-control" name="name_initials"
+                            <input type="text" id="full_name" class="form-control" name="full_name"
                                    value="{{ old("full_name") }}">
                             <label for="full_name">Full Name</label>
                         </div>
@@ -46,6 +48,23 @@
                             <input placeholder="Date of Birth" type="text" name="dob" id="dob"
                                    class="form-control datepicker">
                             <label for="dob">Date of Birth</label>
+                        </div>
+
+                        <div class="md-form{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <i class="fa fa-envelope prefix grey-text"></i>
+                            <input type="email" id="email" class="form-control" value="{{ old("email") }}" name="email">
+                            <label for="email">Email</label>
+                        </div>
+
+                        <div class="md-form">
+                            <i class="fa fa-phone prefix grey-text"></i>
+                            <select class="mdb-select{{ $errors->has('gender') ? ' has-error' : '' }}" name="gender" id="gender">
+                                <option value="" disabled selected>Select gender</option>
+                                <option value="m">Male</option>
+                                <option value="f">Female</option>
+                            </select>
+
+                            <label for="gender">Gender</label>
                         </div>
 
 
@@ -121,11 +140,13 @@
                             <select id="civil_status"
                                     class="mdb-select{{ $errors->has('civil_status') ? ' has-error' : '' }}"
                                     name="civil_status">
-                                <option value="" disabled selected>Civil Status</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <option value="" disabled selected>Select civil status</option>
+                                <option value="married">Married</option>
+                                <option value="single">Single</option>
+                                <option value="widow">Widow</option>
+                                <option value="other">Other</option>
                             </select>
+
                             <label for="civil_status">Civil Status</label>
                         </div>
 
@@ -134,10 +155,12 @@
                             <select id="nationality"
                                     class="mdb-select{{ $errors->has('nationality') ? ' has-error' : '' }}"
                                     name="nationality">
-                                <option value="" disabled selected>Nationality</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <option value="" disabled selected>Select nationality</option>
+
+                                @foreach($nationalities as $nationality)
+                                    <option value="{{ $nationality->id }}">{{$nationality->name}}</option>
+                                @endforeach
+
                             </select>
                             <label for="nationality">Nationality</label>
                         </div>
@@ -147,10 +170,12 @@
                             <select id="religion"
                                     class="mdb-select{{ $errors->has('religion') ? ' has-error' : '' }}"
                                     name="religion">
-                                <option value="" disabled selected>Religion</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <option value="" disabled selected>Select Religion</option>
+
+                                @foreach($religions as $religion)
+                                    <option value="{{ $religion->id }}">{{$religion->name}}</option>
+                                @endforeach
+
                             </select>
                             <label for="nationality">Religion</label>
                         </div>
@@ -287,10 +312,10 @@
                             <select id="designation"
                                     class="mdb-select{{ $errors->has('designation') ? ' has-error' : '' }}"
                                     name="designation">
-                                <option value="" disabled selected>Designation</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <option value="" disabled selected>Select designation</option>
+                                @foreach($designations as $designation)
+                                    <option value="{{ $designation->id }}">{{$designation->name}}</option>
+                                @endforeach
                             </select>
                             <label for="designation">Designation</label>
                         </div>
@@ -301,10 +326,11 @@
                             <select id="section"
                                     class="mdb-select{{ $errors->has('section') ? ' has-error' : '' }}"
                                     name="section">
-                                <option value="" disabled selected>Section</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <option value="" disabled selected>Select section</option>
+                                @foreach($sections as $section)
+                                    <option value="{{ $section->id }}">{{$section->name}}</option>
+                                @endforeach
+                            </select>
                             </select>
                             <label for="section">Section</label>
                         </div>
@@ -314,10 +340,10 @@
                             <select id="medium"
                                     class="mdb-select{{ $errors->has('medium') ? ' has-error' : '' }}"
                                     name="medium">
-                                <option value="" disabled selected>Medium</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <option value="" disabled selected>Select Medium</option>
+                                <option value="sinhala">Sinhala</option>
+                                <option value="tamil">Tamil</option>
+                                <option value="english">English</option>
                             </select>
                             <label for="medium">Medium</label>
                         </div>
@@ -327,10 +353,10 @@
                             <select id="main_subject"
                                     class="mdb-select{{ $errors->has('main_subject') ? ' has-error' : '' }}"
                                     name="main_subject">
-                                <option value="" disabled selected>Main Subject</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <option value="" disabled selected>Select main subject</option>
+                                @foreach($subjects as $subject)
+                                    <option value="{{ $subject->id }}">{{$subject->name}}</option>
+                                @endforeach
                             </select>
                             <label for="main_subject">Main Subject</label>
                         </div>
@@ -396,10 +422,10 @@
                             <select id="designation"
                                     class="mdb-select{{ $errors->has('service_grade') ? ' has-error' : '' }}"
                                     name="service_grade">
-                                <option value="" disabled selected>Service Grade</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <option value="" disabled selected>Select service grade</option>
+                                @foreach($serviceGrades as $serviceGrade)
+                                    <option value="{{ $serviceGrade->id }}">{{$serviceGrade->name}}</option>
+                                @endforeach
                             </select>
                             <label for="service_grade">Service Grade</label>
                         </div>
@@ -410,10 +436,12 @@
                             <select id="nature_of_appointment"
                                     class="mdb-select{{ $errors->has('nature_of_appointment') ? ' has-error' : '' }}"
                                     name="nature_of_appointment">
-                                <option value="" disabled selected>Nature of Appointment</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <option value="" disabled selected>Select the nature of appointment</option>
+                                <option value="graduate">Graduate</option>
+                                <option value="noc_diploma">NOC _ Diploma</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="training">Training</option>
+                                <option value="other">Other</option>
                             </select>
                             <label for="nature_of_appointment">Nature of Appointment</label>
                         </div>
@@ -423,10 +451,10 @@
                             <select id="current_role"
                                     class="mdb-select{{ $errors->has('current_role') ? ' has-error' : '' }}"
                                     name="current_role">
-                                <option value="" disabled selected>Current Role</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <option value="" disabled selected>Select current role</option>
+                                @foreach($academicRoles as $academicRole)
+                                    <option value="{{ $academicRole->id }}">{{$academicRole->name}}</option>
+                                @endforeach
                             </select>
                             <label for="current_role">Current Role</label>
                         </div>
@@ -436,10 +464,12 @@
                             <select id="current_type"
                                     class="mdb-select{{ $errors->has('current_type') ? ' has-error' : '' }}"
                                     name="current_type">
-                                <option value="" disabled selected>Current Type</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <option value="" disabled selected>Select current type</option>
+                                <option value="1">Available</option>
+                                <option value="2">Allocated</option>
+                                <option value="3">Retired</option>
+                                <option value="3">Transferred</option>
+                                <option value="3">Temporary</option>
                             </select>
                             <label for="current_type">Current Type</label>
                         </div>
@@ -457,7 +487,7 @@
 
                         <div class="md-form{{ $errors->has('first_appointment') ? ' has-error' : '' }}">
                             <i class="fa fa-calendar prefix grey-text"></i>
-                            <input placeholder="Date of Join" type="text" name="first_appointment" id="first_appointment"
+                            <input placeholder="First Appointment" type="text" name="first_appointment" id="first_appointment"
                                    class="form-control datepicker">
                             <label for="first_appointment">First Appointment</label>
                         </div>
@@ -467,10 +497,10 @@
                             <select id="fist_appointment_subject"
                                     class="mdb-select{{ $errors->has('fist_appointment_subject') ? ' has-error' : '' }}"
                                     name="fist_appointment_subject">
-                                <option value="" disabled selected>Fist Appointment Subject</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <option value="" disabled selected>Select the first appointment subject</option>
+                                @foreach($subjects as $subject)
+                                    <option value="{{ $subject->id }}">{{$subject->name}}</option>
+                                @endforeach
                             </select>
                             <label for="current_type">Fist Appointment Subject</label>
                         </div>
@@ -616,6 +646,13 @@
 
     <!-- Accordion card -->
 </div>
+
+@include("common.partials.form-errors")
+
+<div class="text-right">
+    <button class="btn btn-success">Save</button>
+</div>
+
 <!--/.Accordion wrapper-->
 
 @section("custom-styles")
@@ -723,6 +760,8 @@
 
         $('.add-educational-qualification').on('click', function (e) {
             e.preventDefault();
+
+            educationalExpCounter++;
 
             $('.educational-qualifications-placeholder').append(
                 `<div class="row" id="educational-qualification-${educationalExpCounter}">
