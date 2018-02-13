@@ -15,13 +15,15 @@ class CreateTeachersTable extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable();
 
             $table->string("name_initials");
             $table->string("full_name");
             $table->string("nic");
             $table->date("dob");
             $table->text("address");
+            $table->string('email')->nullable();
+            $table->string("gender");
             $table->string("contact_mobile");
             $table->string("contact_home");
 
@@ -38,7 +40,6 @@ class CreateTeachersTable extends Migration
             $table->string("designation_id");
             $table->string("section_id");
             $table->string("medium");
-            $table->string("main_subject_id");
             $table->date("joined_at");
 
             $table->string("service_grade_id");
@@ -48,6 +49,8 @@ class CreateTeachersTable extends Migration
             $table->string("salary");
 
             $table->date("first_appointment_at");
+
+            $table->string("approval")->default("pending");
 
             $table->timestamps();
         });

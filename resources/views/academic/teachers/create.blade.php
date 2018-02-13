@@ -6,7 +6,7 @@
             <div class="card">
                 <h5 class="card-header blue white-text">Create Teacher</h5>
                 <div class="card-body">
-                    <form method="post" enctype="multipart/form-data" action="{{ route("academic.teachers.store") }}">
+                    <form method="post" action="{{ route("academic.teachers.store") }}">
 
                         @include("academic.teachers.partials.form")
 

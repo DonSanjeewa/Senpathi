@@ -20,6 +20,7 @@ class PermissionsController extends Controller
 
     public function create()
     {
+
         return view("control-panel.permissions.create");
     }
 

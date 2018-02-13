@@ -18,17 +18,6 @@
                         <th>Actions</th>
                     </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <th>NIC</th>
-                        <th>Name</th>
-                        <th>Gender</th>
-                        <th>Grade</th>
-                        <th>Medium</th>
-                        <th>Contact</th>
-                        <th>Actions</th>
-                    </tr>
-                    </tfoot>
                     <tbody>
                     @foreach($teachers as $teacher)
                     <tr>

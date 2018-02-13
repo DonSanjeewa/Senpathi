@@ -34,9 +34,7 @@ class UsersController extends Controller
             "fname" => $request->input("fname"),
             "lname" => $request->input("lname"),
             "username" => $request->input("username"),
-            "email" => $request->input("email"),
             "password" => bcrypt($request->input("email")),
-            "gender" => $request->input("gender"),
             "registered_at" => Carbon::now(),
             "active" => true
         ]);
@@ -63,10 +61,8 @@ class UsersController extends Controller
             "fname"=> "required|string|max:255",
             "lname"=> "required|string|max:255",
             "username"=> "required|string|max:255",
-            "email"=> "nullable|email|unique:users,email",
             "password" => "required|string|min:6|confirmed",
             "role" => "required",
-            "gender" => "required"
         ]);
 
     }
