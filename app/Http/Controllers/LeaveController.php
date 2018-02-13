@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Leave;
 use Carbon\Carbon;
@@ -12,22 +13,33 @@ class LeaveController extends Controller
     
      public function create()
     {
-       	
-        return view('leaves.apply');
+        $userID = Auth::user()->id;
+        $leaveAmount = DB::table('leaves')
+                        ->select('days','leave_id')
+                        ->sum('days')
+                        ->groupby('leave_id');
+
+
+        dd($leaveAmount);
+        return view('leaves.apply')->with('leaveAmount',$leaveAmount);
+
      
     }
 
     public function Pending()
     {
-    	$leaves = DB::table('leaves')->get();
-        return view('leaves.Pending')->with('leaves', $leaves);
+
+    	$query = DB::table('leaves');
+        $query -> where('status','pending');
+        $pending_leaves = $query->get();
+        return view('leaves.Pending')->with('leaves', $pending_leaves);
     	
     }
 
-    public function viewAllLeaves(){
+    public function all(){
 
     	$leaves = DB::table('leaves')->get();
-        return view('leaves.pending')->with('leaves', $leaves);
+        return view('leaves.all')->with('leaves', $leaves);
     }
 
     public function store(Request $request)

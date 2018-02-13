@@ -8,9 +8,16 @@ $('.datepicker').pickadate();
     {{--TODO Complete leave apply--}}
      <div class="card">
         <div class="card-header black-skin lighten-1 white-text">
-           		Pending Leave Details        	
+           		All Leave Details
         	</div>
         </div>
+            @foreach ($leaveAmount as $leave)
+               dd($leave);
+                //$casualAmount = {{$leave->name}}
+
+            @endforeach
+
+
          <?php foreach ($leaves as $leave) { 
       			$createDate = new DateTime($leave->from);
       			$endDate = new DateTime($leave->to);
@@ -19,7 +26,7 @@ $('.datepicker').pickadate();
 				$toDate = $endDate->format('Y-m-d');
       		 ?>
                 <!--Panel-->
-                
+
                 <div class="card card-body">
                     <h4 class="card-title">Casual Leave</h4>
                     
