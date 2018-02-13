@@ -29,8 +29,8 @@
                         <ul>
                             <li><a href="{{route('academic.teachers.index')}}" class="waves-effect"><i class="fa fa-user-o"></i>Teachers List</a>
                             </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-pencil"></i>Customized Teacher List</a>
-                            </li>
+<!--                            <li><a href="#" class="waves-effect"><i class="fa fa-pencil"></i>Customized Teacher List</a>-->
+<!--                            </li>-->
                             <li><a href="{{route('academic.salary-requests.index')}}" class="waves-effect"><i class="fa fa-address-book-o"></i>View Salary Sheet
                                     Requests</a>
                             </li>

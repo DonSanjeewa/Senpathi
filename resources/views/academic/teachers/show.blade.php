@@ -67,9 +67,9 @@
                                 <thead><b>General</b></thead>
                                 <tr>
                                     <th>NIC NO</th>
-                                    <td>{{$teacher->nic_no}}</td>
+                                    <td>{{$teacher->nic}}</td>
                                     <th>Name With Initials</th>
-                                    <td>{{$teacher->name_with_initials}}</td>
+                                    <td>{{$teacher->name_initials}}</td>
                                 </tr>
                                 <tr>
                                     <th>Full Name</th>
@@ -93,7 +93,7 @@
                                     <th>Civil Status</th>
                                     <td>{{$teacher->civil_status}}</td>
                                     <th>Address</th>
-                                    <td>{{$teacher->permanent_addr}}</td>
+                                    <td>{{$teacher->address}}</td>
                                 </tr>
                             </table>
 

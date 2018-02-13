@@ -78,10 +78,10 @@ class TeachersTableSeeder extends Seeder
         DB::table("teachers")->insert([
             "user_id" => "3",
             "name_initials" => "R.R Rolwing",
-            "full_name" => "Rowing Rolwing",
-            "nic" => "*",
+            "full_name" => "X.X.X Singhabahu",
+            "nic" => "921223436V",
             "dob" => "1993-09-19",
-            "address" => Carbon::now(),
+            "address" => "Malabe",
             "contact_mobile" => "0771212132",
             "contact_home" => "0771212132",
             "civil_status" => "Married",
