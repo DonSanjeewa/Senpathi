@@ -17,8 +17,8 @@ class TeachersTableSeeder extends Seeder
 
         DB::table("teachers")->insert([
             "user_id" => "1",
-            "name_initials" => "A.B.C Singhabahu",
-            "full_name" => "ABA Singhabahu",
+            "name_initials" => "A.B Lisa Ann",
+            "full_name" => "Lisa Ann",
             "nic" => "9319923344V",
             "dob" => "1993-09-19",
             "address" => "Malabe",
@@ -47,8 +47,8 @@ class TeachersTableSeeder extends Seeder
 
         DB::table("teachers")->insert([
             "user_id" => "2",
-            "name_initials" => "A.B.C Singhabahu",
-            "full_name" => "P.Q.R Singhabahu",
+            "name_initials" => "C.A. Dextor",
+            "full_name" => "Cherm Dextor",
             "nic" => "9319923344V",
             "dob" => "1993-09-19",
             "address" => "Malabe",
@@ -77,8 +77,8 @@ class TeachersTableSeeder extends Seeder
 
         DB::table("teachers")->insert([
             "user_id" => "3",
-            "name_initials" => "A.B.C Singhabahu",
-            "full_name" => "X.X.X Singhabahu",
+            "name_initials" => "R.R Rolwing",
+            "full_name" => "Rowing Rolwing",
             "nic" => "*",
             "dob" => "1993-09-19",
             "address" => Carbon::now(),

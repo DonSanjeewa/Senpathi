@@ -19,8 +19,8 @@ class TeachersController extends Controller
 
     }
 
-    public function create(){
-
+    public function create()
+    { 
         $nationalities = DB::table("nationalities")->get();
         $religions = DB::table("religions")->get();
         $designations = DB::table("designations")->get();

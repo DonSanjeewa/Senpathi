@@ -11,18 +11,18 @@
 |
 */
 
-Route::redirect('/' , '/home' )->name('welcome');
+Route::redirect('/', '/home')->name('welcome');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login')->name('login.login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/unauthorized' , function (){
+Route::get('/unauthorized', function () {
     return "hit";
 })->name("unauthorized");
 
 //TODO super-user middleware
-Route::middleware(["auth" , "acl"])->group(function () {
+Route::middleware(["auth", "acl"])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     //Event routes
@@ -44,15 +44,20 @@ Route::middleware(["auth" , "acl"])->group(function () {
 
 
     //Timetable routes
-    Route::get('/timetables', 'TimetableController@index')->name('timetables.index');
-    Route::get('/timetables/create', 'TimetableController@create')->name('timetables.create');
+    Route::get('/timetables', 'Academic\TimetableController@index')->name('academic.timetables.index');
+    Route::get('/timetables/{year}/{class}/edit/{period}', 'Academic\TimetableController@edit')->name('academic.timetables.edit');
+    Route::get('/timetables/{year}/{class}/delete/{period}', 'Academic\TimetableController@remove')->name('academic.timetables.remove');
+    Route::get('/timetables/{year}/{class}', 'Academic\TimetableController@show')->name('academic.timetables.show');
+    Route::get('/timetables/create', 'Academic\TimetableController@create')->name('academic.timetables.create');
 
-    Route::post('/timetables', 'TimetableController@store')->name('timetables.store');
+
+    Route::post('/timetables', 'Academic\TimetableController@store')->name('academic.timetables.store');
+    Route::post('/timetables/update', 'Academic\TimetableController@update')->name('academic.timetables.update');
 
 
     //Salary requests
-    Route::get('/salary-requests', 'Academic\Teachers\SalaryRequestController@index')->name('academic.salary-requests.index');
-    Route::get('/salary-requests/{request}', 'Academic\Teachers\SalaryRequestController@show')->name('academic.salary-requests.show');
+    Route::get('/salary-requests', 'Academic\SalaryRequestController@index')->name('academic.salary-requests.index');
+    Route::get('/salary-requests/{request}', 'Academic\SalaryRequestController@show')->name('academic.salary-requests.show');
 
 
     //Salary Report
