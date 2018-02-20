@@ -10,35 +10,49 @@ use Carbon\Carbon;
 
 class LeaveController extends Controller
 {
-    
+
+    public function index(){
+        $leaves = DB::table('leaves')->get();
+        return view('leaves.all')->with('leaves', $leaves);
+    }
+
+
      public function create()
     {
         $userID = Auth::user()->id;
-        $leaveAmount = DB::table('leaves')
-                        ->select('days','leave_id')
-                        ->sum('days')
-                        ->groupby('leave_id');
+        $leaveAmount =  DB::table('leaves')
+                        ->select('leave_id',DB::raw('SUM(days) as sum '))
+                        ->where('teacher_id',$userID)
+                        ->groupBy('leave_id')
+                        ->get();
 
-
-        dd($leaveAmount);
         return view('leaves.apply')->with('leaveAmount',$leaveAmount);
 
-     
     }
 
     public function Pending()
     {
 
+        $userID = Auth::user()->id;
+        $type = DB::table('roles')
+                         ->where('id',$userID)
+                         ->select('slug')
+                         ->first();
+       
     	$query = DB::table('leaves');
         $query -> where('status','pending');
         $pending_leaves = $query->get();
-        return view('leaves.Pending')->with('leaves', $pending_leaves);
+        return view('leaves.Pending')->with('leaves', compact($pending_leaves,$type));
     	
     }
 
     public function all(){
 
-    	$leaves = DB::table('leaves')->get();
+    	//$leaves = DB::table('leaves')->get();
+        $leaves = DB::table('leaves')
+                         ->join('users','leaves.teacher_id', '=' ,'users.id')
+                         -> where('leaves.status','pending')
+                         ->get();
         return view('leaves.all')->with('leaves', $leaves);
     }
 

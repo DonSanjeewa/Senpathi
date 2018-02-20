@@ -1,3 +1,5 @@
+
+
 @extends('layouts.extended')
 
 @section('content')
@@ -40,8 +42,5 @@
      </div>  
 
     <!--/.Panel-->
-@endsection 
-
-					
-
-		
+    @endsection 
+@endif

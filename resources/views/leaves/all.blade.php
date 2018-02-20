@@ -1,44 +1,36 @@
- @extends('layouts.extended')
-<script type="text/javascript">
-$('.datepicker').pickadate();
-</script>
+@extends('layouts.extended')
 
 @section('content')
-    <!--Panel-->
-    {{--TODO Complete leave apply--}}
-     <div class="card">
-        <div class="card-header black-skin lighten-1 white-text">
-           		All Leave Details
-        	</div>
-        </div>
-            @foreach ($leaveAmount as $leave)
-               dd($leave);
-                //$casualAmount = {{$leave->name}}
-
-            @endforeach
-
-
-         <?php foreach ($leaves as $leave) { 
-      			$createDate = new DateTime($leave->from);
-      			$endDate = new DateTime($leave->to);
-
-				$fromDate = $createDate->format('Y-m-d');
-				$toDate = $endDate->format('Y-m-d');
-      		 ?>
-                <!--Panel-->
-
-                <div class="card card-body">
-                    <h4 class="card-title">Casual Leave</h4>
-                    
-                    <p class="card-text">From : <?php echo $fromDate; ?></p>
-                    <p class="card-text">To :<?php echo $toDate; ?></p>
-                    <p class="card-text">Number of Days:<?php echo $leave->days; ?></p>
-                       
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <h5 class="card-header blue white-text">Events</h5>
+                <div class="card-body">
+                    <table id="all-events" class="table table-bordered data-table-custom" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Amount of Days</th>
+                           
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($leaves as $leave)
+                            <tr>
+                                <td>{{$leave->fname}}{{$leave->lname}}</td>
+                                <td>{{$leave->from}}</td>
+                                <td>{{$leave->to}}</td>
+                                <td>{{$leave->days}}</td>
+                                
+                   
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
-                <br>
-            <?php } ?>
-     
-     </div>  
-
-    <!--/.Panel-->
-@endsection 
+            </div>
+        </div>
+    </div>
+@endsection
