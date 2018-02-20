@@ -34,15 +34,11 @@ class LeaveController extends Controller
     {
 
         $userID = Auth::user()->id;
-        $type = DB::table('roles')
-                         ->where('id',$userID)
-                         ->select('slug')
-                         ->first();
        
     	$query = DB::table('leaves');
         $query -> where('status','pending');
         $pending_leaves = $query->get();
-        return view('leaves.Pending')->with('leaves', compact($pending_leaves,$type));
+        return view('leaves.Pending')->with('leaves',$pending_leaves);
     	
     }
 
