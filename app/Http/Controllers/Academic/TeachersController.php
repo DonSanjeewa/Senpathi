@@ -45,8 +45,8 @@ class TeachersController extends Controller
 
         //TODO implement logic.
         //event( new ApprovalRequired(Teacher::class , 1 , [1,2]));
-        
-        //dd($request->all());
+
+        $this->validator($request);
 
         $teacher = Teacher::create([
             'full_name'             => $request->input("full_name"),
