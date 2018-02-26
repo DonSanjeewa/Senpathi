@@ -58,7 +58,7 @@
                 <div class="text-left mt-3 mb-5">
 
                     <div class="card">
-                        <div class="card-header blue white-text">
+                        <div class="card-header gold white-text">
                             <h4>Personal Details </h4>
                         </div>
                         <div class="card-body">
