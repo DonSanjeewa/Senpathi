@@ -48,11 +48,11 @@
                         <i class="fa fa-angle-down rotate-icon"></i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-hourglass-start"></i>Pending Leaves</a>
+                            <li><a href="{{route('leaves.pending')}}" class="waves-effect"><i class="fa fa-hourglass-start"></i>Pending Leaves</a>
                             </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-check-circle"></i>Apply Leave</a>
+                            <li><a href="{{route('leaves.apply')}}" class="waves-effect"><i class="fa fa-check-circle"></i>Apply Leave</a>
                             </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-briefcase"></i>All Leaves</a>
+                            <li><a href="{{route('leaves.all')}}" class="waves-effect"><i class="fa fa-briefcase"></i>All Leaves</a>
                             </li>
                             <li><a href="#" class="waves-effect"><i class="fa fa-line-chart"></i>Leaves Report</a>
                             </li>

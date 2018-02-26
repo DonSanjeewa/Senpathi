@@ -43,10 +43,12 @@ class TeachersController extends Controller
 
     public function store(Request $request){
 
-       event( new ApprovalRequired(Teacher::class , 1 , [1,2]));
+//       event( new ApprovalRequired(Teacher::class , 1 , [1,2]));
+//
+//
+//        return;
 
-
-        return;
+        $this->validator($request);
 
         $teacher = Teacher::create([
             'name_initials'         => $request->input("name_initials"),
@@ -126,7 +128,7 @@ class TeachersController extends Controller
             "contact_mobile"        => "required|string|max:10",
             "contact_home"          => "required|string|max:10",
             "gender"                => "required",
-            "email"                 => "nullable|email|unique:users,email",
+            "email"                 => "nullable|email|unique:teachers,email",
 
             "widow_and_orphan_no"   => "required|string|max:255",
             "salary_compute_no"     => "required|string|max:255",
