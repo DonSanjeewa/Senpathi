@@ -42,17 +42,17 @@ class TeachersController extends Controller
 
 
     public function store(Request $request){
-
 //       event( new ApprovalRequired(Teacher::class , 1 , [1,2]));
 //
 //
 //        return;
 
+
         $this->validator($request);
 
         $teacher = Teacher::create([
-            'name_initials'         => $request->input("name_initials"),
             'full_name'             => $request->input("full_name"),
+            'name_initials'         => $request->input("name_initials"),
             'nic'                   => $request->input("nic") ,
             'dob'                   => $this->parseDateString($request->input("dob")) ,
             'address'               => $request->input("address"),
@@ -60,34 +60,39 @@ class TeachersController extends Controller
             'contact_home'          => $request->input("contact_home"),
             'gender'                => $request->input("gender"),
             'email'                 => $request->input("email"),
+
             'civil_status'          => $request->input("civil_status"),
             'nationality_id'        => $request->input("nationality"),
             'religion_id'           => $request->input("religion"),
+
             'widow_and_orphan_no'   => $request->input("widow_and_orphan_no") ,
             'salary_compute_no'     => $request->input("salary_compute_no"),
             'signature_no'          => $request->input("signature_no"),
             'gov_reg_no'            => $request->input("gov_reg_no"),
             'personal_file_no'      => $request->input("personal_file_no"),
+
             'designation_id'        => $request->input("designation"),
             'section_id'            => $request->input("section"),
             'medium'                => $request->input("medium"),
             'joined_at'             => $this->parseDateString($request->input("joined_at")) ,
+
             'service_grade_id'      => $request->input("service_grade"),
             'nature_of_appointment' => $request->input("nature_of_appointment"),
             'current_role'          => $request->input("current_role") ,
             'current_type'          => $request->input("current_type"),
             'salary'                => $request->input("salary"),
             'first_appointment_at'  => $this->parseDateString($request->input("first_appointment_at"))
+
         ]);
 
         //TODO validation for exp and qualifications
 
-        foreach (range(1 , count($request->input("employer"))) as $i){
+        foreach ($request->input("employer") as $expKey => $expVal){
             DB::table("teacher_experiences")->insert([
                 "teacher_id" => $teacher->id,
-                "employer"   => $request->input("employer")[$i],
-                "subject"    => $request->input("subject")[$i],
-                "years"      => $request->input("years")[$i]
+                "employer"   => $request->input("employer")[$expKey],
+                "subject"    => $request->input("subject")[$expKey],
+                "years"      => $request->input("years")[$expKey]
             ]);
         }
 
@@ -108,8 +113,6 @@ class TeachersController extends Controller
         }
 
         return redirect()->route("academic.teachers.index");
-
-
     }
 
 
