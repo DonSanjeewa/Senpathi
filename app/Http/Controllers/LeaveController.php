@@ -38,11 +38,13 @@ class LeaveController extends Controller
                          ->where('id',$userID)
                          ->select('slug')
                          ->first();
-       
+
+
     	$query = DB::table('leaves');
         $query -> where('status','pending');
         $pending_leaves = $query->get();
-        return view('leaves.Pending')->with('leaves', compact($pending_leaves,$type));
+      //  var_dump($pending_leaves);
+        return view('leaves.Pending')->with('leaves',$pending_leaves );
     	
     }
 
@@ -63,7 +65,7 @@ class LeaveController extends Controller
     	$request['to']   = $this->formatDateTime($request->input('end_date'));
 
     	$days = $request['to']->diffInDays($request['from']);	
-    	
+
     	Leave::create([
     		'teacher_id' => $request->user()->id,
             'leave_id' => $request->input('leave_id'),
@@ -74,7 +76,9 @@ class LeaveController extends Controller
             'next_approval' => 1
             
     	]);
-    	return redirect()->route('leaves.viewPending');
+
+        return $this->all();
+
     }
 
     private function formatDateTime($date)
