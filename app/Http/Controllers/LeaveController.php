@@ -33,11 +33,22 @@ class LeaveController extends Controller
     public function Pending()
     {
 
-        $userID = Auth::user()->id;
-       
-    	$query = DB::table('leaves');
-        $query -> where('status','pending');
-        $pending_leaves = $query->get();
+        $pending_leaves = DB::table('leaves')
+                         ->join('users','leaves.teacher_id','users.id')
+                         ->where('leaves.status','pending')
+                         ->select(
+                                'users.fname',
+                                'users.lname',
+                                'users.id as userID',
+                                'leaves.from',
+                                'leaves.to',
+                                'leaves.days',
+                                'leaves.status',
+                                'leaves.id as leaveid',
+                                'leaves.leave_id' 
+                        )
+                         ->get();
+
         return view('leaves.Pending')->with('leaves',$pending_leaves);
     	
     }
@@ -50,6 +61,15 @@ class LeaveController extends Controller
                          -> where('leaves.status','pending')
                          ->get();
         return view('leaves.all')->with('leaves', $leaves);
+    }
+
+    public function report(){
+
+        $leaves = DB::table('leaves')
+                         ->join('users','leaves.teacher_id', '=' ,'users.id')
+                         ->get();
+        return view('leaves.report')->with('leaves', $leaves);
+
     }
 
     public function store(Request $request)
@@ -70,7 +90,17 @@ class LeaveController extends Controller
             'next_approval' => 1
             
     	]);
-    	return redirect()->route('leaves.viewPending');
+    	return redirect()->route('leaves.pending');
+    }
+
+    public function approve($userID){
+
+           $query = DB::table('leaves')
+                    ->where('id', $userID)
+                    ->update(['status' => "approve"]);
+
+           return redirect()->route('leaves.pending');
+
     }
 
     private function formatDateTime($date)

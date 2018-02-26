@@ -28,11 +28,17 @@
                     <h4 class="card-title">Maternity Leave</h4>
                     @endif
 
-                    	
+                    <p class="card-text">Name : {{$leave->fname}} {{$leave->lname}} </p>
+                    <p class="card-text">ID :  {{$leave->leaveid}} </p>	
                     <p class="card-text">From :  {{$leave->from}} </p>
                     <p class="card-text">To : {{$leave->to}} </p>
                     <p class="card-text">Number of Days: {{$leave->days}}</p>
-                       
+                    <div class="col-md-3">
+                    <a href="/leaves/approve/{{$leave->leaveid}}">
+                    <button class="btn btn-deep-orange">Approve</button>
+                    </a>
+                    <button class="btn btn-deep-orange">Cancel</button>
+                    </div> 
                 </div>
                 <br>
             @endforeach
