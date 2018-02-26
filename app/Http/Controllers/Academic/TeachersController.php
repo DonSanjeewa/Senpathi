@@ -129,7 +129,7 @@ class TeachersController extends Controller
             "contact_mobile"        => "required|string|max:10",
             "contact_home"          => "required|string|max:10",
             "gender"                => "required",
-            "email"                 => "nullable|email|unique:users,email",
+            "email"                 => "nullable|email|unique:teachers,email",
 
             "widow_and_orphan_no"   => "required|string|max:255",
             "salary_compute_no"     => "required|string|max:255",
