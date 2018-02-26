@@ -5,7 +5,7 @@
     <!--Panel-->
     {{--TODO Complete leave apply--}}
      <div class="card">
-        <div class="card-header black-skin lighten-1 white-text">
+        <div class="card-header gold white-text">
             Leave Details
         </div>
         <div class="row">
@@ -40,7 +40,7 @@
      <br>
 
         <div class="card">
-        <div class="card-header black-skin lighten-1 white-text">
+        <div class="card-header gold white-text">
             Apply Leave
         </div>
         <div class="card-body">

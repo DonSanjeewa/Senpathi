@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <h5 class="card-header blue white-text">Manage Timetable</h5>
+                <h5 class="card-header gold white-text">Manage Timetable</h5>
                 <div class="card-body">
                     <table id="timetable" class="table table-bordered" cellspacing="0" width="100%">
                         <thead>
