@@ -22,7 +22,7 @@
 
                         <div class="card-body">
                             <!--Header-->
-                            <div class="form-header blue accent-1">
+                            <div class="form-header gold accent-1">
                                 <h3>
                                     <i class="fa fa-lock"></i> Login </h3>
                             </div>

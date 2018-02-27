@@ -3,7 +3,7 @@
 @section('content')
     @if(!empty($request))
         <div class="card">
-            <div class="card-header black-skin white-text">
+            <div class="card-header gold white-text">
                 <h4>Salary Request Details </h4>
             </div>
             <div class="card-body">

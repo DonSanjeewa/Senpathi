@@ -320,5 +320,14 @@ class PermissionsTableSeeder extends Seeder
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
         ]);
+
+        DB::table("permissions")->insert([
+            "name" => "Teacher Full Report",
+            "slug" => "teacher_full_report",
+            "route_name" => "reports.teachers-full-report",
+            "description" => "",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
     }
 }
