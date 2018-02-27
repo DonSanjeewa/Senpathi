@@ -13,7 +13,16 @@ $(document).ready(function () {
         }
     });
 
-    $('.datepicker').pickadate();
+
+
+ $('.datepicker').pickadate({
+    selectYears: 80,
+    min: new Date(1960,3,20),
+    max: new Date(2020,7,14),
+});
+
+
+    
 
     $('.timepicker').pickatime({
         twelvehour: true
