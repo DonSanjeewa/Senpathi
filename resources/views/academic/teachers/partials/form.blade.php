@@ -1,9 +1,9 @@
 <!--Accordion wrapper-->
 <div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
 
-    {{ csrf_field() }}
+{{ csrf_field() }}
 
-    <!-- Accordion card -->
+<!-- Accordion card -->
     <div class="card">
 
         <!-- Card header -->
@@ -23,14 +23,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="md-form{{ $errors->has('full_name') ? ' has-error' : '' }}">
-                            <i class="fa fa-road prefix grey-text"></i>
+                            <i class="fa fa-user prefix grey-text"></i>
                             <input type="text" id="full_name" class="form-control" name="full_name"
                                    value="{{ old("full_name") }}">
                             <label for="full_name">Full Name</label>
                         </div>
 
                         <div class="md-form{{ $errors->has('name_initials') ? ' has-error' : '' }}">
-                            <i class="fa fa-road prefix grey-text"></i>
+                            <i class="fa fa-user prefix grey-text"></i>
                             <input type="text" id="name_initials" class="form-control" name="name_initials"
                                    value="{{ old("name_initials") }}">
                             <label for="name_initials">Name With Initials</label>
@@ -38,7 +38,7 @@
 
 
                         <div class="md-form{{ $errors->has('nic') ? ' has-error' : '' }}">
-                            <i class="fa fa-road prefix grey-text"></i>
+                            <i class="fa fa-address-card prefix grey-text"></i>
                             <input type="text" id="nic" class="form-control" name="nic" value="{{ old("nic") }}">
                             <label for="nic">NIC</label>
                         </div>
@@ -57,11 +57,22 @@
                         </div>
 
                         <div class="md-form">
-                            <i class="fa fa-phone prefix grey-text"></i>
-                            <select class="mdb-select{{ $errors->has('gender') ? ' has-error' : '' }}" name="gender" id="gender">
-                                <option value="" disabled selected>Select gender</option>
-                                <option value="m">Male</option>
-                                <option value="f">Female</option>
+                            <i class="fa fa-user prefix grey-text"></i>
+                            <select class="mdb-select{{ $errors->has('gender') ? ' has-error' : '' }}" name="gender"
+                                    id="gender">
+                                @if(!old("gender"))
+                                    <option value="" disabled selected>Select gender</option>
+                                @endif
+                                @if(old("gender") === "m")
+                                    <option value="m" selected>Male</option>
+                                    <option value="f">Female</option>
+                                @elseif(old("gender") === "f")
+                                    <option value="m">Male</option>
+                                    <option value="f" selected>Female</option>
+                                @else
+                                    <option value="m">Male</option>
+                                    <option value="f">Female</option>
+                                @endif
                             </select>
 
                             <label for="gender">Gender</label>
@@ -75,7 +86,7 @@
                         <div class="md-form{{ $errors->has('address') ? ' has-error' : '' }}">
                             <i class="fa fa-pencil prefix grey-text"></i>
                             <textarea type="text" id="address" class="md-textarea" style="height: 157px"
-                                      name="address"></textarea>
+                                      name="address">{{ old("address") }}</textarea>
                             <label for="address">Address</label>
                         </div>
 
@@ -103,7 +114,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div style="float: right">
-                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseTwo" data-target-prev="#collapseOne">
+                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseTwo"
+                                    data-target-prev="#collapseOne">
                                 Next
                             </button>
                         </div>
@@ -136,29 +148,55 @@
                     <div class="col-md-6">
 
                         <div class="md-form">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <select id="civil_status"
                                     class="mdb-select{{ $errors->has('civil_status') ? ' has-error' : '' }}"
                                     name="civil_status">
                                 <option value="" disabled selected>Select civil status</option>
-                                <option value="married">Married</option>
-                                <option value="single">Single</option>
-                                <option value="widow">Widow</option>
-                                <option value="other">Other</option>
+
+                                @if(old("civil_status") === "married")
+                                    <option value="married" selected>Married</option>
+                                @else
+                                    <option value="married">Married</option>
+                                @endif
+
+                                @if(old("civil_status") === "single")
+                                    <option value="single" selected>Single</option>
+                                @else
+                                    <option value="single">Single</option>
+                                @endif
+
+                                @if(old("civil_status") === "widow")
+                                    <option value="widow" selected>Widow</option>
+                                @else
+                                    <option value="widow">Widow</option>
+                                @endif
+
+                                @if(old("civil_status") === "other")
+                                    <option value="other" selected>Other</option>
+                                @else
+                                    <option value="other">Other</option>
+                                @endif
+
                             </select>
 
                             <label for="civil_status">Civil Status</label>
                         </div>
 
                         <div class="md-form">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <select id="nationality"
                                     class="mdb-select{{ $errors->has('nationality') ? ' has-error' : '' }}"
                                     name="nationality">
                                 <option value="" disabled selected>Select nationality</option>
 
                                 @foreach($nationalities as $nationality)
-                                    <option value="{{ $nationality->id }}">{{$nationality->name}}</option>
+
+                                    @if(old("nationality") == $nationality->id)
+                                        <option value="{{ $nationality->id }}" selected>{{$nationality->name}}</option>
+                                    @else
+                                        <option value="{{ $nationality->id }}">{{$nationality->name}}</option>
+                                    @endif
                                 @endforeach
 
                             </select>
@@ -166,14 +204,18 @@
                         </div>
 
                         <div class="md-form">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <select id="religion"
                                     class="mdb-select{{ $errors->has('religion') ? ' has-error' : '' }}"
                                     name="religion">
                                 <option value="" disabled selected>Select Religion</option>
 
                                 @foreach($religions as $religion)
-                                    <option value="{{ $religion->id }}">{{$religion->name}}</option>
+                                    @if(old("religion") == $religion->id)
+                                        <option value="{{ $religion->id }}" selected>{{$religion->name}}</option>
+                                    @else
+                                        <option value="{{ $religion->id }}">{{$religion->name}}</option>
+                                    @endif
                                 @endforeach
 
                             </select>
@@ -187,13 +229,15 @@
                     <div class="col-md-12">
 
                         <div style="float: left">
-                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseOne" data-target-prev="#collapseTwo">
+                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseOne"
+                                    data-target-prev="#collapseTwo">
                                 Previous
                             </button>
                         </div>
 
                         <div style="float: right">
-                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseThree" data-target-prev="#collapseTwo">
+                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseThree"
+                                    data-target-prev="#collapseTwo">
                                 Next
                             </button>
                         </div>
@@ -227,35 +271,35 @@
                     <div class="col-md-6">
 
                         <div class="md-form{{ $errors->has('widow_and_orphan_no') ? ' has-error' : '' }}">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <input type="text" id="widow_and_orphan_no" class="form-control" name="widow_and_orphan_no"
                                    value="{{ old("widow_and_orphan_no") }}">
                             <label for="widow_and_orphan_no">Widow & Orphan No</label>
                         </div>
 
                         <div class="md-form{{ $errors->has('salary_compute_no') ? ' has-error' : '' }}">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <input type="text" id="salary_compute_no" class="form-control" name="salary_compute_no"
                                    value="{{ old("salary_compute_no") }}">
                             <label for="salary_compute_no">Salary Compute No</label>
                         </div>
 
                         <div class="md-form{{ $errors->has('signature_no') ? ' has-error' : '' }}">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <input type="text" id="signature_no" class="form-control" name="signature_no"
                                    value="{{ old("signature_no") }}">
                             <label for="signature_no">Signature No</label>
                         </div>
 
                         <div class="md-form{{ $errors->has('gov_reg_no') ? ' has-error' : '' }}">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <input type="text" id="gov_reg_no" class="form-control" name="gov_reg_no"
                                    value="{{ old("gov_reg_no") }}">
                             <label for="gov_reg_no">Government Registration No</label>
                         </div>
 
                         <div class="md-form{{ $errors->has('personal_file_no') ? ' has-error' : '' }}">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <input type="text" id="personal_file_no" class="form-control" name="personal_file_no"
                                    value="{{ old("personal_file_no") }}">
                             <label for="gov_reg_no">Personal File No</label>
@@ -269,13 +313,15 @@
                     <div class="col-md-12">
 
                         <div style="float: left">
-                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseTwo" data-target-prev="#collapseThree">
+                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseTwo"
+                                    data-target-prev="#collapseThree">
                                 Previous
                             </button>
                         </div>
 
                         <div style="float: right">
-                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseFour" data-target-prev="#collapseThree">
+                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseFour"
+                                    data-target-prev="#collapseThree">
                                 Next
                             </button>
                         </div>
@@ -308,13 +354,17 @@
 
 
                         <div class="md-form">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <select id="designation"
                                     class="mdb-select{{ $errors->has('designation') ? ' has-error' : '' }}"
                                     name="designation">
                                 <option value="" disabled selected>Select designation</option>
                                 @foreach($designations as $designation)
-                                    <option value="{{ $designation->id }}">{{$designation->name}}</option>
+                                    @if(old("designation") == $designation->id)
+                                        <option value="{{ $designation->id }}" selected>{{$designation->name}}</option>
+                                    @else
+                                        <option value="{{ $designation->id }}">{{$designation->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             <label for="designation">Designation</label>
@@ -322,13 +372,17 @@
 
 
                         <div class="md-form">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <select id="section"
                                     class="mdb-select{{ $errors->has('section') ? ' has-error' : '' }}"
                                     name="section">
                                 <option value="" disabled selected>Select section</option>
                                 @foreach($sections as $section)
-                                    <option value="{{ $section->id }}">{{$section->name}}</option>
+                                    @if(old("section") == $section->id)
+                                        <option value="{{ $section->id }}" selected>{{$section->name}}</option>
+                                    @else
+                                        <option value="{{ $section->id }}">{{$section->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             </select>
@@ -336,26 +390,52 @@
                         </div>
 
                         <div class="md-form">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <select id="medium"
                                     class="mdb-select{{ $errors->has('medium') ? ' has-error' : '' }}"
                                     name="medium">
-                                <option value="" disabled selected>Select Medium</option>
-                                <option value="sinhala">Sinhala</option>
-                                <option value="tamil">Tamil</option>
-                                <option value="english">English</option>
+
+                                @if(!old("medium"))
+                                    <option value="" disabled selected>Select Medium</option>
+                                @endif
+
+                                @if(old("medium") == "sinhala")
+                                    <option value="sinhala" selected>Sinhala</option>
+                                @else
+                                    <option value="sinhala">Sinhala</option>
+                                @endif
+
+                                @if(old("medium") == "tamil")
+                                    <option value="tamil" selected>Tamil</option>
+                                @else
+                                    <option value="tamil">Tamil</option>
+                                @endif
+
+                                @if(old("medium") == "english")
+                                    <option value="english" selected>English</option>
+                                @else
+                                    <option value="english">English</option>
+                                @endif
+
                             </select>
                             <label for="medium">Medium</label>
                         </div>
 
                         <div class="md-form">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <select id="main_subject"
                                     class="mdb-select{{ $errors->has('main_subject') ? ' has-error' : '' }}"
                                     name="main_subject">
-                                <option value="" disabled selected>Select main subject</option>
+                                @if(!old("main_subject"))
+                                    <option value="" disabled selected>Select main subject</option>
+                                @endif
+
                                 @foreach($subjects as $subject)
-                                    <option value="{{ $subject->id }}">{{$subject->name}}</option>
+                                    @if(old("main_subject") == $subject->id)
+                                        <option value="{{ $subject->id }}" selected>{{$subject->name}}</option>
+                                    @else
+                                        <option value="{{ $subject->id }}">{{$subject->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             <label for="main_subject">Main Subject</label>
@@ -366,7 +446,7 @@
 
                     <div class="col-md-6">
                         <div class="md-form{{ $errors->has('joined_at') ? ' has-error' : '' }}">
-                            <i class="fa fa-calendar prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <input placeholder="Date of Join" type="text" name="joined_at" id="joined_at"
                                    class="form-control datepicker">
                             <label for="joined_at">Date of Join</label>
@@ -379,13 +459,15 @@
                     <div class="col-md-12">
 
                         <div style="float: left">
-                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseThree" data-target-prev="#collapseFour">
+                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseThree"
+                                    data-target-prev="#collapseFour">
                                 Previous
                             </button>
                         </div>
 
                         <div style="float: right">
-                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseFive" data-target-prev="#collapseFour">
+                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseFive"
+                                    data-target-prev="#collapseFour">
                                 Next
                             </button>
                         </div>
@@ -418,13 +500,18 @@
 
 
                         <div class="md-form">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <select id="designation"
                                     class="mdb-select{{ $errors->has('service_grade') ? ' has-error' : '' }}"
                                     name="service_grade">
                                 <option value="" disabled selected>Select service grade</option>
                                 @foreach($serviceGrades as $serviceGrade)
-                                    <option value="{{ $serviceGrade->id }}">{{$serviceGrade->name}}</option>
+                                    @if(old("service_grade") == $serviceGrade->id)
+                                        <option value="{{ $serviceGrade->id }}"
+                                                selected>{{$serviceGrade->name}}</option>
+                                    @else
+                                        <option value="{{ $serviceGrade->id }}">{{$serviceGrade->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             <label for="service_grade">Service Grade</label>
@@ -432,27 +519,60 @@
 
 
                         <div class="md-form">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <select id="nature_of_appointment"
                                     class="mdb-select{{ $errors->has('nature_of_appointment') ? ' has-error' : '' }}"
                                     name="nature_of_appointment">
-                                <option value="" disabled selected>Select the nature of appointment</option>
-                                <option value="graduate">Graduate</option>
-                                <option value="noc_diploma">NOC _ Diploma</option>
-                                <option value="diploma">Diploma</option>
-                                <option value="training">Training</option>
-                                <option value="other">Other</option>
+                                @if(!old("nature_of_appointment"))
+                                    <option value="" disabled selected>Select the nature of appointment</option>
+                                @endif
+
+                                @if(old("nature_of_appointment") === "graduate")
+                                    <option value="graduate" selected>Graduate</option>
+                                @else
+                                    <option value="graduate">Graduate</option>
+                                @endif
+
+                                @if(old("nature_of_appointment") === "noc_diploma")
+                                    <option value="noc_diploma" selected>NOC _ Diploma</option>
+                                @else
+                                    <option value="noc_diploma">NOC _ Diploma</option>
+                                @endif
+
+
+                                @if(old("nature_of_appointment") === "diploma")
+                                    <option value="diploma" selected>Diploma</option>
+                                @else
+                                    <option value="diploma">Diploma</option>
+                                @endif
+
+                                @if(old("nature_of_appointment") === "training")
+                                    <option value="training" selected>Training</option>
+                                @else
+                                    <option value="training">Training</option>
+                                @endif
+
+                                @if(old("nature_of_appointment") === "other")
+                                    <option value="other" selected>Other</option>
+                                @else
+                                    <option value="other">Other</option>
+                                @endif
+
                             </select>
                             <label for="nature_of_appointment">Nature of Appointment</label>
                         </div>
 
                         <div class="md-form">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <select id="current_role"
                                     class="mdb-select{{ $errors->has('current_role') ? ' has-error' : '' }}"
                                     name="current_role">
                                 <option value="" disabled selected>Select current role</option>
                                 @foreach($academicRoles as $academicRole)
+                                    @if(old("current_role") === $academicRole->id )
+                                        <option value="{{ $academicRole->id }}"
+                                                selected>{{$academicRole->name}}</option>
+                                    @endif
                                     <option value="{{ $academicRole->id }}">{{$academicRole->name}}</option>
                                 @endforeach
                             </select>
@@ -460,16 +580,45 @@
                         </div>
 
                         <div class="md-form">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <select id="current_type"
                                     class="mdb-select{{ $errors->has('current_type') ? ' has-error' : '' }}"
                                     name="current_type">
-                                <option value="" disabled selected>Select current type</option>
-                                <option value="1">Available</option>
-                                <option value="2">Allocated</option>
-                                <option value="3">Retired</option>
-                                <option value="3">Transferred</option>
-                                <option value="3">Temporary</option>
+
+                                @if(!old("current_type"))
+                                    <option value="" disabled selected>Select current type</option>
+                                @endif
+
+                                @if(old("current_type") === "1")
+                                    <option value="1" selected>Available</option>
+                                @else
+                                    <option value="1">Available</option>
+                                @endif
+
+                                @if(old("current_type") === "2")
+                                    <option value="2" selected>Allocated</option>
+                                @else
+                                    <option value="2">Allocated</option>
+                                @endif
+
+                                @if(old("current_type") === "3")
+                                    <option value="3" selected>Retired</option>
+                                @else
+                                    <option value="3">Retired</option>
+                                @endif
+
+                                @if(old("current_type") === "4")
+                                    <option value="4" selected>Transferred</option>
+                                @else
+                                    <option value="4">Transferred</option>
+                                @endif
+
+                                @if(old("current_type") === "5")
+                                    <option value="5" selected>Temporary</option>
+                                @else
+                                    <option value="5">Temporary</option>
+                                @endif
+
                             </select>
                             <label for="current_type">Current Type</label>
                         </div>
@@ -479,7 +628,7 @@
 
                     <div class="col-md-6">
                         <div class="md-form{{ $errors->has('salary') ? ' has-error' : '' }}">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <input type="text" id="salary" class="form-control" name="salary"
                                    value="{{ old("salary") }}">
                             <label for="salary">Salary</label>
@@ -487,19 +636,24 @@
 
                         <div class="md-form{{ $errors->has('first_appointment') ? ' has-error' : '' }}">
                             <i class="fa fa-calendar prefix grey-text"></i>
-                            <input placeholder="First Appointment" type="text" name="first_appointment" id="first_appointment"
+                            <input placeholder="First Appointment" type="text" name="first_appointment"
+                                   id="first_appointment"
                                    class="form-control datepicker">
                             <label for="first_appointment">First Appointment</label>
                         </div>
 
                         <div class="md-form">
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-pencil prefix grey-text"></i>
                             <select id="fist_appointment_subject"
                                     class="mdb-select{{ $errors->has('fist_appointment_subject') ? ' has-error' : '' }}"
                                     name="fist_appointment_subject">
                                 <option value="" disabled selected>Select the first appointment subject</option>
                                 @foreach($subjects as $subject)
-                                    <option value="{{ $subject->id }}">{{$subject->name}}</option>
+                                    @if(old("fist_appointment_subject") === $subject->id)
+                                        <option value="{{ $subject->id }}" selected>{{$subject->name}}</option>
+                                    @else
+                                        <option value="{{ $subject->id }}">{{$subject->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             <label for="current_type">Fist Appointment Subject</label>
@@ -514,13 +668,15 @@
                     <div class="col-md-12">
 
                         <div style="float: left">
-                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseFour" data-target-prev="#collapseFive">
+                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseFour"
+                                    data-target-prev="#collapseFive">
                                 Previous
                             </button>
                         </div>
 
                         <div style="float: right">
-                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseSix" data-target-prev="#collapseFive">
+                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseSix"
+                                    data-target-prev="#collapseFive">
                                 Next
                             </button>
                         </div>
@@ -564,13 +720,15 @@
                     <div class="col-md-12">
 
                         <div style="float: left">
-                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseFive" data-target-prev="#collapseSix">
+                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseFive"
+                                    data-target-prev="#collapseSix">
                                 Previous
                             </button>
                         </div>
 
                         <div style="float: right">
-                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseSeven" data-target-prev="#collapseSix">
+                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseSeven"
+                                    data-target-prev="#collapseSix">
                                 Next
                             </button>
                         </div>
@@ -632,7 +790,8 @@
                     <div class="col-md-12">
 
                         <div style="float: left">
-                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseSix" data-target-prev="#collapseSeven">
+                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseSix"
+                                    data-target-prev="#collapseSeven">
                                 Previous
                             </button>
                         </div>
@@ -658,7 +817,7 @@
 @section("custom-styles")
     <style>
 
-        .delete-item{
+        .delete-item {
             cursor: pointer;
             font-size: 20px;
         }
@@ -672,7 +831,7 @@
     <script>
 
 
-        $(".toggle").on("click" ,function (e) {
+        $(".toggle").on("click", function (e) {
 
             e.preventDefault();
 
@@ -683,7 +842,7 @@
 
         let expCounter = 0;
         let proffesionalExpCounter = 0;
-        let educationalExpCounter  = 0;
+        let educationalExpCounter = 0;
 
 
         $('.add-experience').on("click", function (e) {
@@ -787,7 +946,7 @@
 
         });
 
-        $(document).on('click' , ".delete-item" ,function (e) {
+        $(document).on('click', ".delete-item", function (e) {
             e.preventDefault();
             console.log(this);
             $($(this).attr("data-target")).remove();
