@@ -42,12 +42,8 @@ class TeachersController extends Controller
 
 
     public function store(Request $request){
-//       event( new ApprovalRequired(Teacher::class , 1 , [1,2]));
-//
-//
-//        return;
-
-
+        //TODO implement logic.
+        //event( new ApprovalRequired(Teacher::class , 1 , [1,2]));
         $this->validator($request);
 
         $teacher = Teacher::create([
