@@ -64,6 +64,7 @@ Route::middleware(["auth" , "acl"])->group(function () {
     Route::get('/leaves/all', 'LeaveController@all')->name('leaves.all');
     Route::get('/leaves/approve/{userId}', 'LeaveController@approve');
     Route::get('/leaves/report', 'LeaveController@report')->name('leaves.report');
+    Route::get('/leaves/cancel/{leaveID}', 'LeaveController@cancel');
     //TODO super-user middleware
 
     //Control Panel > Users Routes

@@ -37,7 +37,9 @@
                     <a href="/leaves/approve/{{$leave->leaveid}}">
                     <button class="btn btn-deep-orange">Approve</button>
                     </a>
+                    <a href="/leaves/cancel/{{$leave->leaveid}}">
                     <button class="btn btn-deep-orange">Cancel</button>
+                    </a>
                     </div> 
                 </div>
                 <br>

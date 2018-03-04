@@ -23,9 +23,9 @@ class LeaveController extends Controller
         $leaveAmount =  DB::table('leaves')
                         ->select('leave_id',DB::raw('SUM(days) as sum '))
                         ->where('teacher_id',$userID)
-                        ->groupBy('leave_id')
+                        ->groupBy ('leave_id')
                         ->get();
-
+                        
         return view('leaves.apply')->with('leaveAmount',$leaveAmount);
 
     }
@@ -53,12 +53,21 @@ class LeaveController extends Controller
     	
     }
 
-    public function all(){
+    public function cancel($leaveID){
 
+        $query =  DB::table('leaves')
+                 ->where('leaves.id',$leaveID)
+                 ->delete();
+
+        return $this->pending();
+    }
+
+    public function all(){
+        $userID = Auth::user()->id;
     	//$leaves = DB::table('leaves')->get();
         $leaves = DB::table('leaves')
                          ->join('users','leaves.teacher_id', '=' ,'users.id')
-                         -> where('leaves.status','pending')
+                         ->where('users.id',$userID)
                          ->get();
         return view('leaves.all')->with('leaves', $leaves);
     }
@@ -90,7 +99,7 @@ class LeaveController extends Controller
             'next_approval' => 1
             
     	]);
-    	return redirect()->route('leaves.pending');
+    	return redirect()->route('leaves.all');
     }
 
     public function approve($userID){

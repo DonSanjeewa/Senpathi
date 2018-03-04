@@ -1,3 +1,4 @@
+ $userID = Auth::user()->id;
 <div id="slide-out" class="side-nav sn-bg-4 fixed mdb-sidenav">
     <ul class="custom-scrollbar list-unstyled" style="max-height:100vh;">
         <!-- Logo -->
