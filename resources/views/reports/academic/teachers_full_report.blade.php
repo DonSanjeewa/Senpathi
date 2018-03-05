@@ -18,7 +18,7 @@
 </div>
 
 <table style="width:100%">
-<tr>
+<tr style="color:white;font-weight:700;background-color:rgba(45, 65, 83, 1);font-family:Arial Black;font-size:15px">
   <th>Name With Initials</th>
   <th>Full Name</th>
   <th>NIC</th>
