@@ -43,8 +43,9 @@ class TeachersController extends Controller
 
     public function store(Request $request){
 
+
         //TODO implement logic.
-        event( new ApprovalRequired(Teacher::class , 1 , [1,2]));
+        //event( new ApprovalRequired(Teacher::class , 1 , [1,2]));
 
         $this->validator($request);
 
@@ -85,6 +86,7 @@ class TeachersController extends Controller
 
         //TODO validation for exp and qualifications
 
+
         foreach ($request->input("employer") as $expKey => $expVal){
             DB::table("teacher_experiences")->insert([
                 "teacher_id" => $teacher->id,
@@ -101,6 +103,7 @@ class TeachersController extends Controller
                 "type"    => "professional"
             ]);
         }
+
 
         foreach ($request->input("educational-qualification") as $qualification){
             DB::table("teacher_qualifications")->insert([

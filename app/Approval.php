@@ -19,4 +19,7 @@ class Approval extends Model
 
     }
 
+
+    //TODO getPendingApprovals($userID)
+    //where status is pending in approval and approvers array contain my id(auth()->user()->id)
 }

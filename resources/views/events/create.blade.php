@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <h5 class="card-header blue white-text">Create Event</h5>
+                <h5 class="card-header gold white-text">Create Event</h5>
                 <div class="card-body">
                     <form method="POST" action="{{route('events.store')}}">
                         {{ csrf_field() }}

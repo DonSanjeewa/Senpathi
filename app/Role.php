@@ -13,4 +13,8 @@ class Role extends Model
     public function permission(){
         return $this->hasOne(Permission::class);
     }
+
+    //TODO getDeputyPrincipalIds()
+    //1. get role id from role
+    //2. get users with above role id from user_role
 }

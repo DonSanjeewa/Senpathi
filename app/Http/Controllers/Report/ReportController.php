@@ -25,4 +25,11 @@ class ReportController extends Controller
         $pdf = PDF::loadView('reports.academic.teacher_details', compact('teacher'));
         return $pdf->download('TeacherDetails.pdf');
     }
+
+    public function teacherFullReport()
+    {
+        $teachers = Teacher::all();
+        $pdf = PDF::loadView('reports.academic.teachers_full_report', compact('teachers'))->setPaper('A4','landscape');
+        return $pdf->download('StaffFullReport.pdf');
+    }
 }

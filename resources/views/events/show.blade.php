@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h5 class="card-header blue white-text">Events</h5>
+                    <h5 class="card-header gold white-text">Events</h5>
                     <div class="card-body">
                         <h5>Event</h5>
                         <table id="all-events" class="table table-bordered" cellspacing="0" width="100%">
