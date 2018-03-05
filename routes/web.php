@@ -65,6 +65,9 @@ Route::middleware(["auth", "acl"])->group(function () {
     //Teacher details Report
     Route::get('/generate-teacher-report/{teacher}', 'Report\ReportController@teacherDetailsPdfView')->name('report.teacher-details');
 
+    Route::get('/teachers-full-report', 'Report\ReportController@teacherFullReport')->name('reports.teachers-full-report');
+    
+
     //Leave routes
     Route::get('/leaves', 'LeaveController@index')->name('leaves.index');
     Route::get('/leaves/apply', 'LeaveController@create')->name('leaves.apply');

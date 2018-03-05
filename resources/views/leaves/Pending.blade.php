@@ -6,7 +6,7 @@
     <!--Panel-->
     {{--TODO Complete leave apply--}}
      <div class="card">
-        <div class="card-header black-skin lighten-1 white-text">
+        <div class="card-header gold white-text">
            		Pending Leave Details        	
         	</div>
         </div>

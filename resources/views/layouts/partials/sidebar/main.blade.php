@@ -38,7 +38,7 @@
                             </li>
                             <li><a href="#" class="waves-effect"><i class="fa fa-check"></i>Approve Teacher</a>
                             </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-suitcase"></i>Staff Full Report</a>
+                            <li><a href="{{route('reports.teachers-full-report')}}" class="waves-effect"><i class="fa fa-suitcase"></i>Staff Full Report</a>
                             </li>
                         </ul>
                     </div>

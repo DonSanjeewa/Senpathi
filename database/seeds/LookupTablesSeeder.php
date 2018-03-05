@@ -238,8 +238,43 @@ class LookupTablesSeeder extends Seeder
         ]);
 
         DB::table("designations")->insert([
+            "name" => "Acting Principal",
+            "slug" => "acting_Principal",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("designations")->insert([
+            "name" => "Acting Deputy Principal",
+            "slug" => "acting_deputy_Principal",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("designations")->insert([
+            "name" => "Assistant Principal",
+            "slug" => "assistant_Principal",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("designations")->insert([
             "name" => "Deputy Principal",
             "slug" => "deputy_Principal",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("designations")->insert([
+            "name" => "Acting Assistant Principal",
+            "slug" => "acting_assistant_Principal",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("designations")->insert([
+            "name" => "Teacher",
+            "slug" => "teacher",
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
         ]);
