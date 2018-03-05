@@ -33,6 +33,9 @@ class LeaveController extends Controller
     public function Pending()
     {
 
+
+        $userName = Auth::user()->username;
+        if($userName == "viceprincipal"){
         $pending_leaves = DB::table('leaves')
                          ->join('users','leaves.teacher_id','users.id')
                          ->where('leaves.status','pending')
@@ -50,6 +53,27 @@ class LeaveController extends Controller
                          ->get();
 
         return view('leaves.Pending')->with('leaves',$pending_leaves);
+    }
+
+      if($userName == "superadmin"){
+        $pending_leaves = DB::table('leaves')
+                         ->join('users','leaves.teacher_id','users.id')
+                         ->where('leaves.status','Vice Principal Approved')
+                         ->select(
+                                'users.fname',
+                                'users.lname',
+                                'users.id as userID',
+                                'leaves.from',
+                                'leaves.to',
+                                'leaves.days',
+                                'leaves.status',
+                                'leaves.id as leaveid',
+                                'leaves.leave_id' 
+                        )
+                         ->get();
+
+        return view('leaves.Pending')->with('leaves',$pending_leaves);
+    }
     	
     }
 
@@ -104,11 +128,24 @@ class LeaveController extends Controller
 
     public function approve($userID){
 
+        $userName = Auth::user()->username;
+       
+        if($userName == 'viceprincipal'){
+
            $query = DB::table('leaves')
                     ->where('id', $userID)
-                    ->update(['status' => "approve"]);
+                    ->update(['status' => "Vice Principal Approved"]);
 
            return redirect()->route('leaves.pending');
+       }
+       if($userName == 'superadmin'){
+
+           $query = DB::table('leaves')
+                    ->where('id', $userID)
+                    ->update(['status' => "Approved"]);
+
+           return redirect()->route('leaves.pending');
+       }
 
     }
 
