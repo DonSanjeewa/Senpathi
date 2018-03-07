@@ -36,8 +36,10 @@
                             </li>
                             <li><a href="{{route('academic.teachers.create')}}" class="waves-effect"><i class="fa fa-user-plus"></i>Create Teacher</a>
                             </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-check"></i>Approve Teacher</a>
-                            </li>
+                            @if(auth()->user()->username == 'superadmin')
+                            <li><a href="{{route('approvels.index')}}" class="waves-effect"><i class="fa fa-check"></i>Approve Teacher</a>
+                            </li> 
+                            @endif
                             <li><a href="{{route('reports.teachers-full-report')}}" class="waves-effect"><i class="fa fa-suitcase"></i>Staff Full Report</a>
                             </li>
                         </ul>

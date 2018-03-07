@@ -13,6 +13,13 @@ class SectionTableSeeder extends Seeder
     public function run()
     {
         DB::table("sections")->insert([
+            "name" => "NA",
+            "slug" => "na",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("sections")->insert([
             "name" => "1 - 5",
             "slug" => "1_to_5",
             "created_at" => Carbon::now(),

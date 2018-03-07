@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Academic;
 use App\Events\ApprovalRequired;
 use App\Subject;
 use App\Teacher;
+use App\Role;
+use App\Approval;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -42,44 +44,52 @@ class TeachersController extends Controller
 
 
     public function store(Request $request){
-        //TODO implement logic.
-        //event( new ApprovalRequired(Teacher::class , 1 , [1,2]));
-        $this->validator($request);
 
-        $teacher = Teacher::create([
-            'full_name'             => $request->input("full_name"),
-            'name_initials'         => $request->input("name_initials"),
-            'nic'                   => $request->input("nic") ,
-            'dob'                   => $this->parseDateString($request->input("dob")) ,
-            'address'               => $request->input("address"),
-            'contact_mobile'        => $request->input("contact_mobile"),
-            'contact_home'          => $request->input("contact_home"),
-            'gender'                => $request->input("gender"),
-            'email'                 => $request->input("email"),
+        //To get all the deputy principle IDs
+        $deputiPriciples=Role::getDeputyPrincipalIds();
+  
+        //To get the current user ID
+        $user = auth()->user()->id;
 
-            'civil_status'          => $request->input("civil_status"),
-            'nationality_id'        => $request->input("nationality"),
-            'religion_id'           => $request->input("religion"),
+        //To add a record to approvel table
+        event( new ApprovalRequired(Teacher::class , $user , $deputiPriciples));
+        // $this->validator($request);
+        
+        $test=Approval::getPendingApprovals();
+        // $teacher = Teacher::create([
+        //     'full_name'             => $request->input("full_name"),
+        //     'name_initials'         => $request->input("name_initials"),
+        //     'nic'                   => $request->input("nic") ,
+        //     'dob'                   => $this->parseDateString($request->input("dob")) ,
+        //     'address'               => $request->input("address"),
+        //     'contact_mobile'        => $request->input("contact_mobile"),
+        //     'contact_home'          => $request->input("contact_home"),
+        //     'gender'                => $request->input("gender"),
+        //     'email'                 => $request->input("email"),
 
-            'widow_and_orphan_no'   => $request->input("widow_and_orphan_no") ,
-            'salary_compute_no'     => $request->input("salary_compute_no"),
-            'signature_no'          => $request->input("signature_no"),
-            'gov_reg_no'            => $request->input("gov_reg_no"),
-            'personal_file_no'      => $request->input("personal_file_no"),
+        //     'civil_status'          => $request->input("civil_status"),
+        //     'nationality_id'        => $request->input("nationality"),
+        //     'religion_id'           => $request->input("religion"),
 
-            'designation_id'        => $request->input("designation"),
-            'section_id'            => $request->input("section"),
-            'medium'                => $request->input("medium"),
-            'joined_at'             => $this->parseDateString($request->input("joined_at")) ,
+        //     'widow_and_orphan_no'   => $request->input("widow_and_orphan_no") ,
+        //     'salary_compute_no'     => $request->input("salary_compute_no"),
+        //     'signature_no'          => $request->input("signature_no"),
+        //     'gov_reg_no'            => $request->input("gov_reg_no"),
+        //     'personal_file_no'      => $request->input("personal_file_no"),
 
-            'service_grade_id'      => $request->input("service_grade"),
-            'nature_of_appointment' => $request->input("nature_of_appointment"),
-            'current_role'          => $request->input("current_role") ,
-            'current_type'          => $request->input("current_type"),
-            'salary'                => $request->input("salary"),
-            'first_appointment_at'  => $this->parseDateString($request->input("first_appointment_at"))
+        //     'designation_id'        => $request->input("designation"),
+        //     'section_id'            => $request->input("section"),
+        //     'medium'                => $request->input("medium"),
+        //     'joined_at'             => $this->parseDateString($request->input("joined_at")) ,
 
-        ]);
+        //     'service_grade_id'      => $request->input("service_grade"),
+        //     'nature_of_appointment' => $request->input("nature_of_appointment"),
+        //     'current_role'          => $request->input("current_role") ,
+        //     'current_type'          => $request->input("current_type"),
+        //     'salary'                => $request->input("salary"),
+        //     'first_appointment_at'  => $this->parseDateString($request->input("first_appointment_at"))
+
+        // ]);
 
         //TODO validation for exp and qualifications
 
@@ -100,6 +110,7 @@ class TeachersController extends Controller
         //     ]);
         // }
 
+
         foreach ($request->input("educational-qualification") as $qualification){
             DB::table("teacher_qualifications")->insert([
                 "teacher_id" => $teacher->id,
@@ -109,6 +120,7 @@ class TeachersController extends Controller
         }
 
         return redirect()->route("academic.teachers.index");
+
     }
 
 
@@ -144,6 +156,16 @@ class TeachersController extends Controller
 
     private function parseDateString($dateString){
         return Carbon::parse($dateString)->toDateString();
+    }
+
+
+    public function approve()
+    {
+
+        $pendingRequets = Approval::getPendingApprovals();
+
+        //var_dump($pendingRequets);
+        return view('approvels.index')->with('pending', $pendingRequets);; 
     }
 
 

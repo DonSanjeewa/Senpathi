@@ -39,8 +39,10 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::post('/academic/teachers', 'Academic\TeachersController@store')->name('academic.teachers.store');
 
     Route::get('/academic/teachers/create', 'Academic\TeachersController@create')->name('academic.teachers.create');
-
+    Route::get('/academic/teachers/approve', 'Academic\TeachersController@approve')->name('approvels.index');
     Route::get('/academic/teachers/{teacher}', 'Academic\TeachersController@show')->name('academic.teachers.show');
+
+    
 
 
     //Timetable routes
