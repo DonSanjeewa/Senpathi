@@ -38,8 +38,9 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::get('/academic/teachers', 'Academic\TeachersController@index')->name('academic.teachers.index');
     Route::post('/academic/teachers', 'Academic\TeachersController@store')->name('academic.teachers.store');
 
+    Route::get('/academic/approvals', 'Academic\TeachersController@approvals')->name('approvals.index');
+
     Route::get('/academic/teachers/create', 'Academic\TeachersController@create')->name('academic.teachers.create');
-    Route::get('/academic/teachers/approve', 'Academic\TeachersController@approve')->name('approvels.index');
     Route::get('/academic/teachers/{teacher}', 'Academic\TeachersController@show')->name('academic.teachers.show');
 
     

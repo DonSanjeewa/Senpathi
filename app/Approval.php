@@ -21,20 +21,4 @@ class Approval extends Model
 
 
     }
-
-    public static function getPendingApprovals()
-    {
-
-        // $userId=auth()->user()->id;
-
-
-        $users = DB::table('approvals')
-            ->select('users.username', 'approvals.status')
-            ->leftJoin('users', 'users.id', '=', 'approvals.reference_id')
-            ->get();
-
-
-        return $users;
-
-    }
 }

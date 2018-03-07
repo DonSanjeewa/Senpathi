@@ -169,13 +169,33 @@ class TeachersController extends Controller
     }
 
 
-    public function approve()
+    public function approvals()
     {
 
-        $pendingRequets = Approval::getPendingApprovals();
+        $userId = auth()->user()->id;
 
-        //var_dump($pendingRequets);
-        return view('approvels.index')->with('pending', $pendingRequets);
+        $allApprovals = DB::table("approvals")->where("status" , "pending")->get();
+
+        $assignedApprovals = [];
+
+        foreach ($allApprovals as $approval){
+
+            if (in_array($userId , json_decode($approval->approvers))){
+
+                   $referencedItem = $approval->reference_class::find($approval->reference_id);
+
+                   $approval->item = $referencedItem;
+
+                   array_push($assignedApprovals , $approval);
+
+
+
+            }
+        }
+
+        return $assignedApprovals;
+
+        return view('approvals.index' , compact('assignedApprovals'));
     }
 
 

@@ -22,7 +22,7 @@
         </tr>
         </tfoot>
         <tbody>
-        @foreach($pending as $request)
+        @foreach($assignedApprovals as $request)
         <tr>
             <td>{{$request->username}}</td>
             @if ($request->status == 'pending')
