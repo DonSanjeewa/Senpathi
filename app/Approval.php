@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use App\Approval;
 
 class Approval extends Model
 {
@@ -17,6 +19,22 @@ class Approval extends Model
     public static function reject(){
 
 
+    }
+
+    public static function getPendingApprovals(){
+
+        // $userId=auth()->user()->id;
+        
+    
+        $users = DB::table('approvals')
+                ->select('users.username','approvals.status')
+                ->leftJoin('users', 'users.id', '=', 'approvals.reference_id')
+                ->get();
+
+               
+    return $users;
+
+   
     }
 
 }
