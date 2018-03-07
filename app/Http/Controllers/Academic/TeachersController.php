@@ -110,15 +110,17 @@ class TeachersController extends Controller
         //     ]);
         // }
 
-        // foreach ($request->input("educational-qualification") as $qualification){
-        //     DB::table("teacher_qualifications")->insert([
-        //         "teacher_id" => $teacher->id,
-        //         "qualification"   => $qualification,
-        //         "type"    => "educational"
-        //     ]);
-        // }
 
-        // return redirect()->route("academic.teachers.index");
+        foreach ($request->input("educational-qualification") as $qualification){
+            DB::table("teacher_qualifications")->insert([
+                "teacher_id" => $teacher->id,
+                "qualification"   => $qualification,
+                "type"    => "educational"
+            ]);
+        }
+
+        return redirect()->route("academic.teachers.index");
+
     }
 
 
