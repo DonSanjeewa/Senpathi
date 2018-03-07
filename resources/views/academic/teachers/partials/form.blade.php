@@ -858,7 +858,7 @@
                                 <div class="md-form ">
                                     <i class="fa fa-phone prefix grey-text"></i>
                                     <input type="text" id="employer[${expCounter}]" class="form-control" name="employer[${expCounter}]">
-                                    <label for="employer[${expCounter}]">Employer</label>
+                                    <label for="employer[${expCounter}]">School</label>
                                 </div>
                             </div>
                             <div class="col-md-4">

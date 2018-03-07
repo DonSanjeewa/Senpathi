@@ -329,5 +329,15 @@ class PermissionsTableSeeder extends Seeder
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
         ]);
+
+        
+        DB::table("permissions")->insert([
+            "name" => "Teachers Approvel",
+            "slug" => "approvels_index",
+            "route_name" => "approvels.index",
+            "description" => "",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
     }
 }

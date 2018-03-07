@@ -3,18 +3,24 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Role extends Model
 {
 
-    protected $fillable = ["name" , "slug" , "description"];
+    protected $fillable = ["name", "slug", "description"];
 
 
-    public function permission(){
+    public function permission()
+    {
         return $this->hasOne(Permission::class);
     }
 
-    //TODO getDeputyPrincipalIds()
-    //1. get role id from role
-    //2. get users with above role id from user_role
+
+    public static function getDeputyPrincipalIds()
+    {
+        $roleId = DB::table('roles')->where('slug', 'vice_principal')->pluck('id');
+        $deputyPrincipalIds = DB::table('user_role')->where('role_id', $roleId)->pluck('user_id');;
+        return $deputyPrincipalIds;
+    }
 }
