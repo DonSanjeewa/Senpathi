@@ -44,7 +44,7 @@ class CreateTeachersTable extends Migration
 
             $table->string("service_grade_id")->nullable();
             $table->string("nature_of_appointment")->nullable();
-            $table->string("current_role")->nullable();
+            $table->json("current_role")->nullable();
             $table->string("current_type")->nullable();
             $table->string("salary")->nullable();
 

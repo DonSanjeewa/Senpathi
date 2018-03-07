@@ -77,7 +77,7 @@ class TeachersController extends Controller
 
             'service_grade_id'      => $request->input("service_grade"),
             'nature_of_appointment' => $request->input("nature_of_appointment"),
-            'current_role'          => $request->input("current_role") ,
+            'current_role'          => json_encode($request->input("current_role")) ,
             'current_type'          => $request->input("current_type"),
             'salary'                => $request->input("salary"),
             'first_appointment_at'  => $this->parseDateString($request->input("first_appointment_at"))
@@ -86,31 +86,37 @@ class TeachersController extends Controller
 
         //TODO validation for exp and qualifications
 
-
-        foreach ($request->input("employer") as $expKey => $expVal){
-            DB::table("teacher_experiences")->insert([
-                "teacher_id" => $teacher->id,
-                "employer"   => $request->input("employer")[$expKey],
-                "subject"    => $request->input("subject")[$expKey],
-                "years"      => $request->input("years")[$expKey]
-            ]);
+        if ($request->has("employer")){
+            foreach ($request->input("employer") as $expKey => $expVal){
+                DB::table("teacher_experiences")->insert([
+                    "teacher_id" => $teacher->id,
+                    "employer"   => $request->input("employer")[$expKey],
+                    "subject"    => $request->input("subject")[$expKey],
+                    "years"      => $request->input("years")[$expKey]
+                ]);
+            }
         }
 
-        foreach ($request->input("professional-qualification") as $qualification){
-            DB::table("teacher_qualifications")->insert([
-                "teacher_id" => $teacher->id,
-                "qualification"   => $qualification,
-                "type"    => "professional"
-            ]);
+        if ($request->has("professional-qualification")){
+
+            foreach ($request->input("professional-qualification") as $qualification){
+                DB::table("teacher_qualifications")->insert([
+                    "teacher_id" => $teacher->id,
+                    "qualification"   => $qualification,
+                    "type"    => "professional"
+                ]);
+            }
         }
 
+        if ($request->has("educational-qualification")){
 
-        foreach ($request->input("educational-qualification") as $qualification){
-            DB::table("teacher_qualifications")->insert([
-                "teacher_id" => $teacher->id,
-                "qualification"   => $qualification,
-                "type"    => "educational"
-            ]);
+            foreach ($request->input("educational-qualification") as $qualification){
+                DB::table("teacher_qualifications")->insert([
+                    "teacher_id" => $teacher->id,
+                    "qualification"   => $qualification,
+                    "type"    => "educational"
+                ]);
+            }
         }
 
         return redirect()->route("academic.teachers.index");
@@ -126,7 +132,7 @@ class TeachersController extends Controller
         $request->validate([
             "full_name"             => "required|string|max:255",
             "name_initials"         => "required|string|max:255",
-            "nic"                   => "required|string|max:10",
+            "nic"                   => ["required","regex:/[0-9]{9}[x|X|v|V]$/i","string", "max:10"],
             "dob"                   => "required",
             "address"               => "required|string|max:255",
             "contact_mobile"        => "required|string|max:10",
