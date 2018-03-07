@@ -83,22 +83,22 @@ class TeachersController extends Controller
 
         //TODO validation for exp and qualifications
 
-        foreach ($request->input("employer") as $expKey => $expVal){
-            DB::table("teacher_experiences")->insert([
-                "teacher_id" => $teacher->id,
-                "employer"   => $request->input("employer")[$expKey],
-                "subject"    => $request->input("subject")[$expKey],
-                "years"      => $request->input("years")[$expKey]
-            ]);
-        }
+        // foreach ($request->input("employer") as $expKey => $expVal){
+        //     DB::table("teacher_experiences")->insert([
+        //         "teacher_id" => $teacher->id,
+        //         "employer"   => $request->input("employer")[$expKey],
+        //         "subject"    => $request->input("subject")[$expKey],
+        //         "years"      => $request->input("years")[$expKey]
+        //     ]);
+        // }
 
-        foreach ($request->input("professional-qualification") as $qualification){
-            DB::table("teacher_qualifications")->insert([
-                "teacher_id" => $teacher->id,
-                "qualification"   => $qualification,
-                "type"    => "professional"
-            ]);
-        }
+        // foreach ($request->input("professional-qualification") as $qualification){
+        //     DB::table("teacher_qualifications")->insert([
+        //         "teacher_id" => $teacher->id,
+        //         "qualification"   => $qualification,
+        //         "type"    => "professional"
+        //     ]);
+        // }
 
         foreach ($request->input("educational-qualification") as $qualification){
             DB::table("teacher_qualifications")->insert([
