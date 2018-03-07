@@ -14,7 +14,15 @@
                         <th>Gender</th>
                         <th>Medium</th>
                         <th>Contact</th>
-                        <th>Actions</th>
+                        <th>DOB</th>
+                        <th>Email</th>
+                        <th>Civil Status</th>
+                        <th>Medium</th>
+                        <th >Current Role</th>
+                        <th >Salary</th>
+                        <th >First Appointment</th>
+                        <th >Nature of Appointment</th>
+                        <th >Actions</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -24,7 +32,15 @@
                         <th>Gender</th>
                         <th>Medium</th>
                         <th>Contact</th>
-                        <th>Actions</th>
+                        <th>DOB</th>
+                        <th >Email</th>
+                        <th >Civil Status</th>
+                        <th >Medium</th>
+                        <th >Current Role</th>
+                        <th >Salary</th>
+                        <th >First Appointment</th>
+                        <th >Nature of Appointment</th>
+                        <th >Actions</th>
                     </tr>
                     </tfoot>
                     <tbody>
@@ -41,15 +57,23 @@
                         @endif
                         <td>{{$teacher->medium}}</td>
                         <td>{{$teacher->contact_mobile}}</td>
+                        <td>{{$teacher->dob}}</td>
+                        <td class="test">{{$teacher->email}}</td>
+                        <td class="test">{{$teacher->civil_status}}</td>
+                        <td class="test">{{$teacher->medium}}</td>
+                        <td class="test">{{$teacher->current_role}}</td>
+                        <td class="test">{{$teacher->salary}}</td>
+                        <td class="test">{{$teacher->first_appointment_at}}</td>
+                        <td class="test">{{$teacher->nature_of_appointment}}</td>
                         {{--TODO add action mapping for buttons--}}
                         <td>
-                            <a href="{{route('academic.teachers.show', ['teacher' => $teacher->id])}}" class="btn btn-primary btn-custom">
+                            <a href="{{route('academic.teachers.show', ['teacher' => $teacher->id])}}" class="btn btn-primary btn-custom btn-sm">
                                 <i class="fa fa-list-alt" aria-hidden="true"></i>
                             </a>
-                            <a class="btn btn-warning btn-custom">
+                            <a class="btn btn-warning btn-custom btn-sm">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
-                            <a class="btn btn-danger btn-custom">
+                            <a class="btn btn-danger btn-custom btn-sm">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </a>
                         </td>
@@ -67,15 +91,22 @@
 @section('custom-scripts')
 <script>
     $(document).ready(function() {
+        
         var table = $('#all-teachers').DataTable({
+
+            "columnDefs": [
+           
+            { "visible": false,  "targets": [ 6,7,8,9,10,11,12 ] }
+        ],
             "lengthChange": false,
             dom: 'Bfrtip',
             buttons: [
                 'colvis','copy', 'excel',
                 {
                     extend: 'pdfHtml5',
+                    orientation: 'landscape',
                     exportOptions: {
-                        columns:[0,1,2,3,4]
+                        columns: [':visible :not(:last-child)']
                     },
                     title: $('#all-teachers').attr('title'),
                     customize: function ( doc ) {
@@ -93,10 +124,12 @@
         $('#all-teachers tbody').on( 'click', 'tr', function () {
             if ( $(this).hasClass('selected') ) {
                 $(this).removeClass('selected');
+                
             }
             else {
                 table.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
+                
             }
         } );
     } );
