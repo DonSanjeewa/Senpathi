@@ -26,6 +26,6 @@ class Approve
      */
     public function handle(Approved $event)
     {
-        //
+
     }
 }
