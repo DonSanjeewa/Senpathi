@@ -566,10 +566,10 @@
                             <i class="fa fa-pencil prefix grey-text"></i>
                             <select id="current_role"
                                     class="mdb-select{{ $errors->has('current_role') ? ' has-error' : '' }}"
-                                    name="current_role">
+                                    name="current_role[]" multiple>
                                 <option value="" disabled selected>Select current role</option>
                                 @foreach($academicRoles as $academicRole)
-                                    @if(old("current_role") === $academicRole->id )
+                                    @if( !is_null(old("current_role")) && in_array($academicRole->id , old("current_role")) )
                                         <option value="{{ $academicRole->id }}"
                                                 selected>{{$academicRole->name}}</option>
                                     @endif
