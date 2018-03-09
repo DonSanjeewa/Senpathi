@@ -43,6 +43,7 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::get('/academic/approvals/{approval}/approve' , 'Academic\TeachersController@approve')->name('approvals.approve');
     Route::get('/academic/approvals/{approval}/reject' , 'Academic\TeachersController@reject')->name('approvals.reject');
 
+
     Route::get('/academic/teachers/create', 'Academic\TeachersController@create')->name('academic.teachers.create');
     Route::get('/academic/teachers/{teacher}', 'Academic\TeachersController@show')->name('academic.teachers.show');
 

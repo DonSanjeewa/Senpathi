@@ -198,7 +198,6 @@ class TeachersController extends Controller
     }
 
     public function approve(Approval $approval){
-
         event(new Approved($approval->id , auth()->user()->id));
         return back();
     }
