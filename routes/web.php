@@ -18,7 +18,7 @@ Route::post('/login', 'Auth\LoginController@login')->name('login.login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/unauthorized', function () {
-    return "hit";
+    return "unauthorized";
 })->name("unauthorized");
 
 //TODO super-user middleware
@@ -39,6 +39,9 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::post('/academic/teachers', 'Academic\TeachersController@store')->name('academic.teachers.store');
 
     Route::get('/academic/approvals', 'Academic\TeachersController@approvals')->name('approvals.index');
+
+    Route::get('/academic/approvals/{approval}/approve' , 'Academic\TeachersController@approve')->name('approvals.approve');
+    Route::get('/academic/approvals/{approval}/reject' , 'Academic\TeachersController@reject')->name('approvals.reject');
 
     Route::get('/academic/teachers/create', 'Academic\TeachersController@create')->name('academic.teachers.create');
     Route::get('/academic/teachers/{teacher}', 'Academic\TeachersController@show')->name('academic.teachers.show');

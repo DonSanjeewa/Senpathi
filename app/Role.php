@@ -23,4 +23,11 @@ class Role extends Model
         $deputyPrincipalIds = DB::table('user_role')->where('role_id', $roleId)->pluck('user_id');;
         return $deputyPrincipalIds;
     }
+
+    public static function getPrincipalIds()
+    {
+        $roleId = DB::table('roles')->where('slug', 'principal')->pluck('id');
+        $principalIds = DB::table('user_role')->where('role_id', $roleId)->pluck('user_id');;
+        return $principalIds;
+    }
 }

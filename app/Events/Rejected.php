@@ -14,7 +14,7 @@ class Rejected
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $rejectedClass;
+    public $approvalId;
     public $rejectedId;
     public $rejectedBy;
 
@@ -25,10 +25,9 @@ class Rejected
      * @param $rejectedId
      * @param $rejectedBy
      */
-    public function __construct($rejectedClass, $rejectedId, $rejectedBy)
+    public function __construct($approvalId, $rejectedBy)
     {
-        $this->rejectedClass = $rejectedClass;
-        $this->rejectedId = $rejectedId;
+        $this->approvalId = $approvalId;
         $this->rejectedBy = $rejectedBy;
     }
 

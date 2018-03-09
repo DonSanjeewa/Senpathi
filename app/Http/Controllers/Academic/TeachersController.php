@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Academic;
 
 use App\Events\ApprovalRequired;
+use App\Events\Approved;
+use App\Events\Rejected;
 use App\Subject;
 use App\Teacher;
 use App\Role;
@@ -187,9 +189,6 @@ class TeachersController extends Controller
                    $approval->item = $referencedItem;
 
                    array_push($assignedApprovals , $approval);
-
-
-
             }
         }
 
@@ -198,5 +197,14 @@ class TeachersController extends Controller
         return view('approvals.index' , compact('assignedApprovals'));
     }
 
+    public function approve(Approval $approval){
 
+        event(new Approved($approval->id , auth()->user()->id));
+        return back();
+    }
+
+    public function reject(Approval $approval){
+        event(new Rejected($approval->id , auth()->user()->id));
+        return back();
+    }
 }

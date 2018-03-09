@@ -60,7 +60,7 @@ class User extends Authenticatable
        $roleRef =  DB::table("user_role")->where("user_id" , $this->id)->first();
 
        if ($roleRef){
-           return Role::find($roleRef->id)->first();
+           return Role::find($roleRef->role_id);
        }
 
        return null;
