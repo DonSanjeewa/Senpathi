@@ -21,10 +21,11 @@
             <th>Actions</th>
         </tr>
         </tfoot>
+        @if($assignedApprovals)
         <tbody>
         @foreach($assignedApprovals as $request)
         <tr>
-            <td>{{$request->username}}</td>
+            <td>{{$request->item->full_name}}</td>
             @if ($request->status == 'pending')
                 <td><span class="d-sm-block bg-primary text-white text-capitalize text-lg-center">Pending</span></td>
             @endif
@@ -36,16 +37,20 @@
             @endif
             {{--TODO add action mapping for buttons--}}
             <td>
-                <a href="" class="btn btn-primary btn-custom">
+                <a href="{{route('approvals.approve', ['approval' =>  $request->id])}}" class="btn btn-primary btn-custom">
                     <i class="fa fa-check" aria-hidden="true"></i>
                 </a>
-                <a href="" class="btn btn-danger btn-custom">
+                <a href="{{route('approvals.reject', ['approval' => $request->id ])}}" class="btn btn-danger btn-custom">
                     <i class="fa fa-close" aria-hidden="true"></i>
                 </a>
             </td>
         </tr>
         @endforeach
         </tbody>
+        @endif
+        @if(!$assignedApprovals)
+        <td>No any approvels to show</td>
+        @endif
     </table>
 </div>
 @endsection
