@@ -18,7 +18,7 @@ Route::post('/login', 'Auth\LoginController@login')->name('login.login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/unauthorized', function () {
-    return "hit";
+    return "unauthorized";
 })->name("unauthorized");
 
 //TODO super-user middleware
@@ -38,9 +38,15 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::get('/academic/teachers', 'Academic\TeachersController@index')->name('academic.teachers.index');
     Route::post('/academic/teachers', 'Academic\TeachersController@store')->name('academic.teachers.store');
 
+    Route::get('/academic/approvals', 'Academic\TeachersController@approvals')->name('approvals.index');
+
+    Route::get('/academic/approvals/{approval}/approve' , 'Academic\TeachersController@approve')->name('approvals.approve');
+    Route::get('/academic/approvals/{approval}/reject' , 'Academic\TeachersController@reject')->name('approvals.reject');
+
+
     Route::get('/academic/teachers/create', 'Academic\TeachersController@create')->name('academic.teachers.create');
-    Route::get('/academic/teachers/approve', 'Academic\TeachersController@approve')->name('approvels.index');
     Route::get('/academic/teachers/{teacher}', 'Academic\TeachersController@show')->name('academic.teachers.show');
+    Route::get('/academic/teachers/{status}/{approveId}', 'Academic\TeachersController@approveOrReject')->name('academic.teachers.approval');
 
     
 
@@ -111,4 +117,8 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::post("/control-panel/permissions/{permission}", 'ControlPanel\PermissionsController@update')->name('control-panel.permissions.update');
 
     Route::post("/control-panel/permissions/{permission}/delete", 'ControlPanel\PermissionsController@index')->name('control-panel.permissions.delete');
+
+    //Admin panel
+    Route::get("/admin/dashboard", 'ControlPanel\AdminController@index')->name('admin.index');
+
 });

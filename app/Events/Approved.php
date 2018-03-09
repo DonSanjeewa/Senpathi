@@ -14,9 +14,9 @@ class Approved
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $approvedClass;
-    public $approvedId;
+    public $approvalId;
     public $approvedBy;
+    public $nextApproval;
 
     /**
      * Create a new event instance.
@@ -25,10 +25,9 @@ class Approved
      * @param $approvedId
      * @param $approvedBy
      */
-    public function __construct($approvedClass, $approvedId, $approvedBy)
+    public function __construct($approvalId, $approvedBy)
     {
-        $this->approvedClass = $approvedClass;
-        $this->approvedId = $approvedId;
+        $this->approvalId = $approvalId;
         $this->approvedBy = $approvedBy;
     }
 
