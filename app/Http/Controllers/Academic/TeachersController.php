@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Academic;
 
 use App\Events\ApprovalRequired;
+use App\Events\Approved;
+use App\Events\Rejected;
 use App\Subject;
 use App\Teacher;
 use App\Role;
@@ -11,8 +13,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use App\Events\Approved;
-use App\Events\Rejected;
 
 class TeachersController extends Controller
 {
@@ -87,8 +87,12 @@ class TeachersController extends Controller
 
 
         //To get all the deputy principle IDs
-        $deputiPriciples = Role::getDeputyPrincipalIds();        //To get the current user ID
-        $user = auth()->user()->id;
+
+        $deputiPriciples = Role::getDeputyPrincipalIds();
+
+        //To add a record to approvel table
+        event(new ApprovalRequired(Teacher::class, $teacher->id, $deputiPriciples));
+        // $this->validator($request);
 
         if ($request->has("employer")) {
             foreach ($request->input("employer") as $expKey => $expVal) {
@@ -97,6 +101,28 @@ class TeachersController extends Controller
                     "employer" => $request->input("employer")[$expKey],
                     "subject" => $request->input("subject")[$expKey],
                     "years" => $request->input("years")[$expKey]
+                ]);
+            }
+        }
+
+        if ($request->has("professional-qualification")) {
+
+            foreach ($request->input("professional-qualification") as $qualification) {
+                DB::table("teacher_qualifications")->insert([
+                    "teacher_id" => $teacher->id,
+                    "qualification" => $qualification,
+                    "type" => "professional"
+                ]);
+            }
+        }
+
+        if ($request->has("educational-qualification")) {
+
+            foreach ($request->input("educational-qualification") as $qualification) {
+                DB::table("teacher_qualifications")->insert([
+                    "teacher_id" => $teacher->id,
+                    "qualification" => $qualification,
+                    "type" => "educational"
                 ]);
             }
         }
@@ -191,21 +217,17 @@ class TeachersController extends Controller
             }
         }
 
-       // return $assignedApprovals;
-
-
         return view('approvals.index' , compact('assignedApprovals'));
     }
-
 
     public function approve(Approval $approval){
         event(new Approved($approval->id , auth()->user()->id));
         return back();
     }
 
+
     public function reject(Approval $approval){
         event(new Rejected($approval->id , auth()->user()->id));
         return back();
     }
-
 }

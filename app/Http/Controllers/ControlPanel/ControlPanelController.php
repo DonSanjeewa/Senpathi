@@ -12,12 +12,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-class AdminController extends Controller
+class ControlPanelController extends Controller
 {
     public function index()
     {
 
-        return view('admin.index');
+        return view('control-panel.index');
     }
 
 }
