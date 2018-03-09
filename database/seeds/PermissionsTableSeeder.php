@@ -332,9 +332,27 @@ class PermissionsTableSeeder extends Seeder
 
         
         DB::table("permissions")->insert([
-            "name" => "Teachers Approvel",
+            "name" => "Approval",
             "slug" => "approvals_index",
             "route_name" => "approvals.index",
+            "description" => "",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("permissions")->insert([
+            "name" => "Approval Approve",
+            "slug" => "approvals_approve",
+            "route_name" => "approvals.approve",
+            "description" => "",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("permissions")->insert([
+            "name" => "Approval Reject",
+            "slug" => "approvals_reject",
+            "route_name" => "approvals.reject",
             "description" => "",
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
