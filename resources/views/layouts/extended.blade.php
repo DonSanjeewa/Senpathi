@@ -4,4 +4,10 @@
     @include("layouts.partials.header")
 @endsection
 
-@yield("content")
+@section("base-content")
+<main class="base-content">
+    <div class="main-wrapper">
+        @yield("content")
+    </div>
+</main>
+@endsection

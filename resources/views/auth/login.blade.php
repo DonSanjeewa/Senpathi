@@ -1,69 +1,83 @@
 @extends('layouts.base')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+@section('base-content')
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
+<div class="row login-form-container">
+    <div class="col-md-12 mb-12">
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+        <section class="py-3">
+            <!--Section heading-->
+            <!-- //TODO school logo? -->
+            <h2 class="font-bold text-center h3 py-3"></h2>
+            <!--Section description-->
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+            <div class="row">
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                <!--Grid column-->
+                {{--//TODO responsiveness--}}
+                <div class="col-lg-6 mb-4 offset-3">
+
+                    <!--Form with header-->
+                    <div class="card">
+
+                        <div class="card-body">
+                            <!--Header-->
+                            <div class="form-header gold accent-1">
+                                <h3>
+                                    <i class="fa fa-lock"></i> Login </h3>
                             </div>
+                            <br>
+
+                            <div class="logo-wrapper waves-light">
+                                <a href="#"><img src="{{ asset('img/dslogo2.png') }}"
+                                                 class="img-fluid flex-center logo-main"></a>
+                            </div>
+                            <form method="post" action="{{ route("login.login") }}">
+                            <!--Body-->
+                            {{ csrf_field() }}
+
+                            <div class="md-form{{ $errors->has('username') ? ' has-error' : '' }}">
+                                <i class="fa fa-user prefix grey-text"></i>
+                                <input type="text" id="form-name" class="form-control" name="username"  value="{{ old('username') }}" required>
+                                <label for="form-name">Username</label>
+                            </div>
+
+                            <div class="md-form{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <i class="fa fa-lock prefix grey-text"></i>
+                                <input type="password" id="form-password" name="password" class="form-control" required>
+                                <label for="form-password">Password</label>
+
+                            </div>
+
+                            <div class="md-form" style="margin-top: -25px">
+                                <input type="checkbox" id="form-remember-me" name="remember" class="form-control" {{ old('remember') ? 'checked' : '' }}>
+                                <label for="form-remember-me" style="padding-left: 50px">Remember Me</label>
+                            </div>
+
+
+                                {{--//TODO Remove the following and spereate into a partial--}}
+
+                            @include("common.partials.form-errors")
+
+
+                            <div class="text-center">
+                                <button class="btn btn-light-blue" type="submit">Login</button>
+                            </div>
+
+                            </form>
+
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                    </div>
+                    <!--Form with header-->
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
                 </div>
+
             </div>
-        </div>
+
+        </section>
+
     </div>
 </div>
+
 @endsection

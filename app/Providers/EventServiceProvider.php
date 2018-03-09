@@ -13,8 +13,14 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
+        'App\Events\ApprovalRequired' => [
+            'App\Listeners\SendForApproval',
+        ],
+        'App\Events\Approved' => [
+            'App\Listeners\Approve',
+        ],
+        'App\Events\Rejected' => [
+            'App\Listeners\Reject',
         ],
     ];
 

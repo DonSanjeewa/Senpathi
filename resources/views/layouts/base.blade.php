@@ -8,21 +8,27 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name') }}</title>
+    <title>{{ config('app.name' , 'School Management System') }}</title>
 
     @include("layouts.includes.styles")
 
+    @yield("custom-styles")
+
 </head>
-<body class="fixed-sn light-blue-skin">
+<body class="fixed-sn navy-blue-skin">
+
+
 
     @yield("pre-content")
-
-    @yield("content")
+    <div class="container-fluid">
+        @yield("base-content")
+    </div>
 
     @yield("post-content")
 
     @include("layouts.includes.scripts")
 
+    @yield("custom-scripts")
     <script>
         $(".button-collapse").sideNav();
     </script>

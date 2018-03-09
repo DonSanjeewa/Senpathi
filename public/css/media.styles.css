@@ -1,0 +1,31 @@
+/*base-content area*/
+@media only screen and (min-width: 1367px) {
+    .base-content {
+        padding-left: 145px !important;
+        margin-right: 0px !important;
+    }
+}
+
+@media only screen and (max-width: 1366px) {
+    .base-content {
+
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+    }
+
+    .data-table-custom tbody tr td:last-child {
+        min-width: 100px;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .permission-item {
+        width: 100% !important;
+        display: list-item !important;
+        list-style: none;
+        float: unset !important;
+    }
+}
+
+/*!base-content area*/

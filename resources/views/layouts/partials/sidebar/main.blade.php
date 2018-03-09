@@ -3,7 +3,8 @@
         <!-- Logo -->
         <li>
             <div class="logo-wrapper waves-light">
-                <a href="#"><img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" class="img-fluid flex-center"></a>
+                <a href="#"><img src="{{ asset('img/dslogo.png') }}"
+                                 class="img-fluid flex-center align-content-end "></a>
             </div>
         </li>
         <!--/. Logo -->
@@ -17,66 +18,101 @@
             </ul>
         </li>
         <!--/Social-->
-        <!--Search Form-->
-        <li>
-            <form class="search-form" role="search">
-                <div class="form-group waves-light">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-            </form>
-        </li>
-        <!--/.Search Form-->
+
         <!-- Side navigation links -->
         <li>
             <ul class="collapsible collapsible-accordion">
-                <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-chevron-right"></i> Submit blog<i class="fa fa-angle-down rotate-icon"></i></a>
+                <li><a class="collapsible-header waves-effect arrow-r">
+                        <i class="fa fa-user fa-lg" aria-hidden="true"></i> Academic Staff
+                        <i class="fa fa-angle-down rotate-icon"></i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="#" class="waves-effect">Submit listing</a>
+                            <li><a href="{{route('academic.teachers.index')}}" class="waves-effect"><i class="fa fa-user-o"></i>Teachers List</a>
                             </li>
-                            <li><a href="#" class="waves-effect">Registration form</a>
+<!--                            <li><a href="#" class="waves-effect"><i class="fa fa-pencil"></i>Customized Teacher List</a>-->
+<!--                            </li>-->
+                            <li><a href="{{route('academic.salary-requests.index')}}" class="waves-effect"><i class="fa fa-address-book-o"></i>View Salary Sheet
+                                    Requests</a>
+                            </li>
+                            <li><a href="{{route('academic.teachers.create')}}" class="waves-effect"><i class="fa fa-user-plus"></i>Create Teacher</a>
+                            </li>
+
+                            <li><a href="{{route('approvals.index')}}" class="waves-effect"><i class="fa fa-check"></i>Approvals</a>
+                            </li> 
+
+                            <li><a href="{{route('reports.teachers-full-report')}}" class="waves-effect"><i class="fa fa-suitcase"></i>Staff Full Report</a>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-hand-pointer-o"></i> Instruction<i class="fa fa-angle-down rotate-icon"></i></a>
+                <li><a class="collapsible-header waves-effect arrow-r">
+                        <i class="fa fa-external-link-square fa-lg" aria-hidden="true"></i> Leaves
+                        <i class="fa fa-angle-down rotate-icon"></i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="#" class="waves-effect">For bloggers</a>
+                            <li><a href="{{route('leaves.pending')}}" class="waves-effect"><i class="fa fa-hourglass-start"></i>Pending Leaves</a>
                             </li>
-                            <li><a href="#" class="waves-effect">For authors</a>
+                            <li><a href="{{route('leaves.apply')}}" class="waves-effect"><i class="fa fa-check-circle"></i>Apply Leave</a>
+                            </li>
+                            <li><a href="{{route('leaves.all')}}" class="waves-effect"><i class="fa fa-briefcase"></i>All Leaves</a>
+                            </li>
+                            <li><a href="#" class="waves-effect"><i class="fa fa-line-chart"></i>Leaves Report</a>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-eye"></i> About<i class="fa fa-angle-down rotate-icon"></i></a>
+                <li><a class="collapsible-header waves-effect arrow-r">
+                        <i class="fa fa-eye fa-lg" aria-hidden="true"></i> Attendance
+                        <i class="fa fa-angle-down rotate-icon"></i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="#" class="waves-effect">Introduction</a>
+                            <li><a href="#" class="waves-effect"><i class="fa fa-male"></i>Teacher Attendance</a>
                             </li>
-                            <li><a href="#" class="waves-effect">Monthly meetings</a>
+                            <li><a href="#" class="waves-effect"><i class="fa fa-graduation-cap"></i>Student Attendance</a>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-envelope-o"></i> Contact me<i class="fa fa-angle-down rotate-icon"></i></a>
+                <li><a class="collapsible-header waves-effect arrow-r">
+                        <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i> Timetable Management
+                        <i class="fa fa-angle-down rotate-icon"></i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="#" class="waves-effect">FAQ</a>
+                            <li><a href="{{route('academic.timetables.index')}}" class="waves-effect"><i class="fa fa-table"></i>All Timetables</a>
                             </li>
-                            <li><a href="#" class="waves-effect">Write a message</a>
+                            <li><a href="{{route('academic.timetables.create')}}" class="waves-effect"><i class="fa fa-plus-square"></i>Create Timetable</a>
                             </li>
-                            <li><a href="#" class="waves-effect">FAQ</a>
+                        </ul>
+                    </div>
+                </li>
+                <li><a class="collapsible-header waves-effect arrow-r">
+                        <i class="fa fa-graduation-cap fa-lg" aria-hidden="true" style="margin-left: -3px;"></i> Student
+                        Management
+                        <i class="fa fa-angle-down rotate-icon"></i></a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="#" class="waves-effect"><i class="fa fa-list"></i>Student List</a>
                             </li>
-                            <li><a href="#" class="waves-effect">Write a message</a>
+                            <li><a href="#" class="waves-effect"><i class="fa fa-plus-square"></i>Create Student</a>
                             </li>
-                            <li><a href="#" class="waves-effect">FAQ</a>
+                            <li><a href="#" class="waves-effect"><i class="fa fa-line-chart"></i>Student Report</a>
                             </li>
-                            <li><a href="#" class="waves-effect">Write a message</a>
+
+                        </ul>
+                    </div>
+                </li>
+                <li><a class="collapsible-header waves-effect arrow-r">
+                        <i class="fa fa-calendar-o fa-lg" aria-hidden="true"></i> Event Management
+                        <i class="fa fa-angle-down rotate-icon"></i></a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="{{route('events.index')}}" class="waves-effect"><i class="fa fa-calendar-o"></i>View All events</a>
                             </li>
-                            <li><a href="#" class="waves-effect">FAQ</a>
+                            <li><a href="{{route('events.create')}}" class="waves-effect"><i class="fa fa-plus-square"></i>Add Event Type</a>
                             </li>
-                            <li><a href="#" class="waves-effect">Write a message</a>
+                            <li><a href="#" class="waves-effect"><i class="fa fa-check-square"></i>Check events</a>
+                            </li>
+                            <li><a href="#" class="waves-effect"><i class="fa fa-calendar"></i>Event Calendar</a>
                             </li>
                         </ul>
                     </div>
