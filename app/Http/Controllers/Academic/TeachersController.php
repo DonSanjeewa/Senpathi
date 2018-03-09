@@ -87,13 +87,11 @@ class TeachersController extends Controller
 
 
         //To get all the deputy principle IDs
+
         $deputiPriciples = Role::getDeputyPrincipalIds();
 
-        //To get the current user ID
-        $user = auth()->user()->id;
-
         //To add a record to approvel table
-        event(new ApprovalRequired(Teacher::class, $user, $deputiPriciples));
+        event(new ApprovalRequired(Teacher::class, $teacher->id, $deputiPriciples));
         // $this->validator($request);
 
         if ($request->has("employer")) {
@@ -128,6 +126,33 @@ class TeachersController extends Controller
                 ]);
             }
         }
+
+        if ($request->has("professional-qualification")) {
+
+            foreach ($request->input("professional-qualification") as $qualification) {
+                DB::table("teacher_qualifications")->insert([
+                    "teacher_id" => $teacher->id,
+                    "qualification" => $qualification,
+                    "type" => "professional"
+                ]);
+            }
+        }
+
+        if ($request->has("educational-qualification")) {
+
+            foreach ($request->input("educational-qualification") as $qualification) {
+                DB::table("teacher_qualifications")->insert([
+                    "teacher_id" => $teacher->id,
+                    "qualification" => $qualification,
+                    "type" => "educational"
+                ]);
+            }
+        }
+
+       
+        //To add a record to approvel table
+        event(new ApprovalRequired(Teacher::class, $user, $deputiPriciples));
+        // $this->validator($request); 
 
         return redirect()->route("academic.teachers.index");
 
@@ -192,16 +217,14 @@ class TeachersController extends Controller
             }
         }
 
-        return $assignedApprovals;
-
         return view('approvals.index' , compact('assignedApprovals'));
     }
 
     public function approve(Approval $approval){
-
         event(new Approved($approval->id , auth()->user()->id));
         return back();
     }
+
 
     public function reject(Approval $approval){
         event(new Rejected($approval->id , auth()->user()->id));

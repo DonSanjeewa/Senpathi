@@ -15,7 +15,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link"><i class="fa fa-th-large" aria-hidden="true"></i> <span
+            <a class="nav-link" href="{{ route("control-panel.index") }}"><i class="fa fa-th-large" aria-hidden="true"></i> <span
                         class="clearfix d-none d-sm-inline-block">Control Panel</span></a>
         </li>
 
