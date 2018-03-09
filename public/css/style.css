@@ -242,4 +242,21 @@ div.dt-button-collection {
     -o-column-gap: 8px;
     column-gap: 8px;
 }
+
+.col-example {
+    padding: 1rem;
+    background-color: #FCB812 !important;
+    border: 2px solid #fff;
+    color: #fff;
+    text-align: center;
+    height: 18vh !important;
+}
+
+.container, .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: unset !important; 
+    width: 100%;
+}
 /*!timetable form*/

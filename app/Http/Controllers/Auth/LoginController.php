@@ -46,8 +46,13 @@ class LoginController extends Controller
 
     public function attemptLogin(Request $request)
     {
-        if (Auth::attempt(['username' => $request->input("username"), 'password' => $request->input("password"), 'active' => 1])) {
+//        if (Auth::attempt(['username' => $request->input("username"), 'password' => $request->input("password"), 'active' => 1])) {
+//            return redirect()->intended();
+//        }
+
+        if (Auth::attempt(['username' => $request->input("username"), 'password' => $request->input("password")])) {
             return redirect()->intended();
         }
+
     }
 }
