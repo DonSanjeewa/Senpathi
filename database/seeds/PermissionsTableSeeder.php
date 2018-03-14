@@ -77,7 +77,6 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
 
-
         DB::table("permissions")->insert([
             "name" => "All Teachers",
             "slug" => "all_teachers",
@@ -317,6 +316,43 @@ class PermissionsTableSeeder extends Seeder
             "name" => "Delete Permissions",
             "slug" => "delete_permissions",
             "route_name" => "control-panel.permissions.delete",
+            "description" => "",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("permissions")->insert([
+            "name" => "Teacher Full Report",
+            "slug" => "teacher_full_report",
+            "route_name" => "reports.teachers-full-report",
+            "description" => "",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        
+        DB::table("permissions")->insert([
+            "name" => "Approval",
+            "slug" => "approvals_index",
+            "route_name" => "approvals.index",
+            "description" => "",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("permissions")->insert([
+            "name" => "Approval Approve",
+            "slug" => "approvals_approve",
+            "route_name" => "approvals.approve",
+            "description" => "",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("permissions")->insert([
+            "name" => "Approval Reject",
+            "slug" => "approvals_reject",
+            "route_name" => "approvals.reject",
             "description" => "",
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\ControlPanel;
 
+use App\Role;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -18,11 +20,33 @@ class UsersController extends Controller
 
 
     public function create(){
-        return view("control-panel.users.create");
+
+        $roles = Role::all();
+
+        return view("control-panel.users.create" , compact("roles"));
     }
 
     public function store(Request $request){
-        dd($request->all());
+
+        $this->validator($request);
+
+        $user = User::create([
+            "fname" => $request->input("fname"),
+            "lname" => $request->input("lname"),
+            "username" => $request->input("username"),
+            "password" => bcrypt($request->input("email")),
+            "registered_at" => Carbon::now(),
+            "active" => true
+        ]);
+
+        DB::table("user_role")->insert([
+            "user_id" => $user->id,
+            "role_id" => $request->input("role"),
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        return redirect()->route("control-panel.users.index");
     }
 
 
@@ -31,14 +55,14 @@ class UsersController extends Controller
     }
 
 
-    private function validator($data){
+    private function validator(Request $request){
 
-        return Validator::make($data , [
+        $request->validate([
             "fname"=> "required|string|max:255",
             "lname"=> "required|string|max:255",
             "username"=> "required|string|max:255",
-            "email"=> "nullable|email|unique:users,email",
-            "password" => "required|string|min:6|"
+            "password" => "required|string|min:6|confirmed",
+            "role" => "required",
         ]);
 
     }

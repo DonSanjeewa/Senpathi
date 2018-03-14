@@ -1,8 +1,9 @@
 <div class="md-form{{ $errors->has('year') ? ' has-error' : '' }}">
     <i class="fa fa-calendar prefix grey-text"></i>
     <select class="mdb-select" id="year" name="year">
-        <option>2017</option>
-        <option>2018</option>
+        @foreach($years as $year)
+            <option value="{{$year->id}}">{{$year->year}}</option>
+        @endforeach
     </select>
     <label for="year">Year</label>
 </div>
@@ -49,7 +50,7 @@
             var class_selector = $('#class');
             disableSelect(class_selector);
             $('#grade').on('change', function () {
-                enableSelect(class_selector)
+                enableSelect(class_selector);
                 var data = {!! $data !!};
                 class_selector.empty();
                 data[this.value].forEach(function (value) {
@@ -57,6 +58,7 @@
                 });
                 updateSelect(class_selector);
             });
+            $('#grade').trigger('change');
         });
     </script>
 @endsection

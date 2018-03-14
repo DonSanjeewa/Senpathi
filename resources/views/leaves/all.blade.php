@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <h5 class="card-header blue white-text">Leaves</h5>
+                <h5 class="card-header gold white-text">Leaves</h5>
                 <div class="card-body">
                     <table id="all-events" class="table table-bordered data-table-custom" cellspacing="0" width="100%">
                         <thead>
@@ -13,7 +13,6 @@
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Amount of Days</th>
-                            <th>Status</th>
                            
                         </tr>
                         </thead>
@@ -24,7 +23,6 @@
                                 <td>{{$leave->from}}</td>
                                 <td>{{$leave->to}}</td>
                                 <td>{{$leave->days}}</td>
-                                <td>{{$leave->status}}</td>
                                 
                    
                             </tr>

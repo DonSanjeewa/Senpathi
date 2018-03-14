@@ -18,4 +18,14 @@
     }
 }
 
+
+@media only screen and (max-width: 600px) {
+    .permission-item {
+        width: 100% !important;
+        display: list-item !important;
+        list-style: none;
+        float: unset !important;
+    }
+}
+
 /*!base-content area*/

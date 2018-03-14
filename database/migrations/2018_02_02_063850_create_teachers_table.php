@@ -15,39 +15,43 @@ class CreateTeachersTable extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->string('signature_no');
-            $table->string('serial_no');
-            $table->string('personal_file_no');
-            $table->string('full_name');
-            $table->string('name_with_initials');
-            $table->string('gender');
-            $table->integer('section');
-            $table->string('nic_no');
-            $table->string('permanent_addr');
-            $table->string('wnop_no');
-            $table->integer('service');
-            $table->integer('grade');
-            $table->integer('main_subject_id');
-            $table->string('medium');
-            $table->string('contact_mobile');
-            $table->string('contact_home');
-            $table->dateTime('dob');
-            $table->string('remarks');
-            $table->string('civil_status');
-            $table->string('photo_file_name');
-            $table->integer("religion_id");
-            $table->string('photo_content_type');
-            $table->string('photo_data');
-            $table->string('nationality_id');
-            $table->string('designation_id');
-            $table->string('educational_qualific');
-            $table->string('professional_qualific');
-            $table->string('promotions');
-            $table->dateTime('increment_date');
-            $table->dateTime('duty_assume_date');
-            $table->dateTime('pension_date');
-            $table->dateTime('joined_date');
+            $table->unsignedInteger('user_id')->nullable();
+
+            $table->string("name_initials")->nullable();
+            $table->string("full_name")->nullable();
+            $table->string("nic")->nullable();
+            $table->date("dob")->nullable();
+            $table->text("address")->nullabe();
+            $table->string('email')->nullable();
+            $table->string("gender")->nullable();
+            $table->string("contact_mobile")->nullable();
+            $table->string("contact_home")->nullable();
+
+            $table->string("civil_status")->nullable();
+            $table->string("nationality_id")->nullable();
+            $table->string("religion_id")->nullable();
+
+            $table->string("widow_and_orphan_no")->nullable();
+            $table->string("salary_compute_no")->nullable();
+            $table->string("signature_no")->nullable();
+            $table->string("gov_reg_no")->nullable();
+            $table->string("personal_file_no")->nullable();
+
+            $table->string("designation_id")->nullable();
+            $table->string("section_id")->nullable();
+            $table->string("medium")->nullable();
+            $table->date("joined_at")->nullable();
+
+            $table->string("service_grade_id")->nullable();
+            $table->string("nature_of_appointment")->nullable();
+            $table->json("current_role")->nullable();
+            $table->string("current_type")->nullable();
+            $table->string("salary")->nullable();
+
+            $table->date("first_appointment_at")->nullable();
+
+            $table->string("approval")->default("pending");
+
             $table->timestamps();
         });
     }

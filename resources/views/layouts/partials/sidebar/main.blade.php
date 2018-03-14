@@ -4,8 +4,8 @@
         <!-- Logo -->
         <li>
             <div class="logo-wrapper waves-light">
-                <a href="#"><img src="https://mdbootstrap.com/img/logo/mdb-transparent.png"
-                                 class="img-fluid flex-center"></a>
+                <a href="#"><img src="{{ asset('img/dslogo.png') }}"
+                                 class="img-fluid flex-center align-content-end "></a>
             </div>
         </li>
         <!--/. Logo -->
@@ -30,16 +30,18 @@
                         <ul>
                             <li><a href="{{route('academic.teachers.index')}}" class="waves-effect"><i class="fa fa-user-o"></i>Teachers List</a>
                             </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-pencil"></i>Customized Teacher List</a>
-                            </li>
+<!--                            <li><a href="#" class="waves-effect"><i class="fa fa-pencil"></i>Customized Teacher List</a>-->
+<!--                            </li>-->
                             <li><a href="{{route('academic.salary-requests.index')}}" class="waves-effect"><i class="fa fa-address-book-o"></i>View Salary Sheet
                                     Requests</a>
                             </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-user-plus"></i>Create Teacher</a>
+                            <li><a href="{{route('academic.teachers.create')}}" class="waves-effect"><i class="fa fa-user-plus"></i>Create Teacher</a>
                             </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-check"></i>Approve Teacher</a>
-                            </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-suitcase"></i>Staff Full Report</a>
+
+                            <li><a href="{{route('approvals.index')}}" class="waves-effect"><i class="fa fa-check"></i>Approvals</a>
+                            </li> 
+
+                            <li><a href="{{route('reports.teachers-full-report')}}" class="waves-effect"><i class="fa fa-suitcase"></i>Staff Full Report</a>
                             </li>
                         </ul>
                     </div>
@@ -77,9 +79,9 @@
                         <i class="fa fa-angle-down rotate-icon"></i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="{{route('timetables.index')}}" class="waves-effect"><i class="fa fa-table"></i>All Timetables</a>
+                            <li><a href="{{route('academic.timetables.index')}}" class="waves-effect"><i class="fa fa-table"></i>All Timetables</a>
                             </li>
-                            <li><a href="{{route('timetables.create')}}" class="waves-effect"><i class="fa fa-plus-square"></i>Create Timetable</a>
+                            <li><a href="{{route('academic.timetables.create')}}" class="waves-effect"><i class="fa fa-plus-square"></i>Create Timetable</a>
                             </li>
                         </ul>
                     </div>

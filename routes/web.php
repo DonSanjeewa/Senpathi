@@ -11,18 +11,18 @@
 |
 */
 
-Route::redirect('/' , '/home' )->name('welcome');
+Route::redirect('/', '/home')->name('welcome');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login')->name('login.login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/unauthorized' , function (){
-    return "hit";
+Route::get('/unauthorized', function () {
+    return "unauthorized";
 })->name("unauthorized");
 
 //TODO super-user middleware
-Route::middleware(["auth" , "acl"])->group(function () {
+Route::middleware(["auth", "acl"])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     //Event routes
@@ -35,26 +35,44 @@ Route::middleware(["auth" , "acl"])->group(function () {
 
 
     //Teachers routes
-    Route::get('/teachers', 'Academic\Teachers\TeachersController@index')->name('academic.teachers.index');
-    Route::get('/teachers/{teacher}', 'Academic\Teachers\TeachersController@show')->name('academic.teachers.show');
+    Route::get('/academic/teachers', 'Academic\TeachersController@index')->name('academic.teachers.index');
+    Route::post('/academic/teachers', 'Academic\TeachersController@store')->name('academic.teachers.store');
+
+    Route::get('/academic/approvals', 'Academic\TeachersController@approvals')->name('approvals.index');
+
+    Route::get('/academic/approvals/{approval}/approve' , 'Academic\TeachersController@approve')->name('approvals.approve');
+    Route::get('/academic/approvals/{approval}/reject' , 'Academic\TeachersController@reject')->name('approvals.reject');
+
+    Route::get('/academic/teachers/create', 'Academic\TeachersController@create')->name('academic.teachers.create');
+    Route::get('/academic/teachers/{teacher}', 'Academic\TeachersController@show')->name('academic.teachers.show');
+    Route::get('/academic/teachers/{status}/{approveId}', 'Academic\TeachersController@approveOrReject')->name('academic.teachers.approval');
 
 
     //Timetable routes
-    Route::get('/timetables', 'TimetableController@index')->name('timetables.index');
-    Route::get('/timetables/create', 'TimetableController@create')->name('timetables.create');
+    Route::get('/timetables', 'Academic\TimetableController@index')->name('academic.timetables.index');
+    Route::get('/timetables/{year}/{class}/edit/{period}', 'Academic\TimetableController@edit')->name('academic.timetables.edit');
+    Route::get('/timetables/{year}/{class}/delete/{period}', 'Academic\TimetableController@remove')->name('academic.timetables.remove');
+    Route::get('/timetables/{year}/{class}', 'Academic\TimetableController@show')->name('academic.timetables.show');
+    Route::get('/timetables/create', 'Academic\TimetableController@create')->name('academic.timetables.create');
 
-    Route::post('/timetables', 'TimetableController@store')->name('timetables.store');
+
+    Route::post('/timetables', 'Academic\TimetableController@store')->name('academic.timetables.store');
+    Route::post('/timetables/update', 'Academic\TimetableController@update')->name('academic.timetables.update');
 
 
     //Salary requests
-    Route::get('/salary-requests', 'Academic\Teachers\SalaryRequestController@index')->name('academic.salary-requests.index');
-    Route::get('/salary-requests/{request}', 'Academic\Teachers\SalaryRequestController@show')->name('academic.salary-requests.show');
+    Route::get('/salary-requests', 'Academic\SalaryRequestController@index')->name('academic.salary-requests.index');
+    Route::get('/salary-requests/{request}', 'Academic\SalaryRequestController@show')->name('academic.salary-requests.show');
 
 
     //Salary Report
     Route::get('/generate-salary-report/{request}', 'Report\ReportController@salaryRequestPdfView')->name('report.salary-requests');
     //Teacher details Report
     Route::get('/generate-teacher-report/{teacher}', 'Report\ReportController@teacherDetailsPdfView')->name('report.teacher-details');
+
+    Route::get('/teachers-full-report', 'Report\ReportController@teacherFullReport')->name('reports.teachers-full-report');
+    
+
 
     //Leave routes
     Route::get('/leaves', 'LeaveController@index')->name('leaves.index');
@@ -65,9 +83,15 @@ Route::middleware(["auth" , "acl"])->group(function () {
     Route::get('/leaves/approve/{userId}', 'LeaveController@approve');
     Route::get('/leaves/report', 'LeaveController@report')->name('leaves.report');
     Route::get('/leaves/cancel/{leaveID}', 'LeaveController@cancel');
+
+
+
     //TODO super-user middleware
 
     //Control Panel > Users Routes
+
+    Route::get("/control-panel", 'ControlPanel\ControlPanelController@index')->name('control-panel.index');
+
     Route::get("/control-panel/users", 'ControlPanel\UsersController@index')->name('control-panel.users.index');
     Route::post("/control-panel/users", 'ControlPanel\UsersController@store')->name('control-panel.users.store');
 
@@ -100,4 +124,8 @@ Route::middleware(["auth" , "acl"])->group(function () {
     Route::post("/control-panel/permissions/{permission}", 'ControlPanel\PermissionsController@update')->name('control-panel.permissions.update');
 
     Route::post("/control-panel/permissions/{permission}/delete", 'ControlPanel\PermissionsController@index')->name('control-panel.permissions.delete');
+
+    //Admin panel
+
+
 });

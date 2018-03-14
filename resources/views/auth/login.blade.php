@@ -8,7 +8,7 @@
         <section class="py-3">
             <!--Section heading-->
             <!-- //TODO school logo? -->
-            <h2 class="font-bold text-center h1 py-5"></h2>
+            <h2 class="font-bold text-center h3 py-3"></h2>
             <!--Section description-->
 
             <div class="row">
@@ -22,12 +22,16 @@
 
                         <div class="card-body">
                             <!--Header-->
-                            <div class="form-header blue accent-1">
+                            <div class="form-header gold accent-1">
                                 <h3>
                                     <i class="fa fa-lock"></i> Login </h3>
                             </div>
                             <br>
 
+                            <div class="logo-wrapper waves-light">
+                                <a href="#"><img src="{{ asset('img/dslogo2.png') }}"
+                                                 class="img-fluid flex-center logo-main"></a>
+                            </div>
                             <form method="post" action="{{ route("login.login") }}">
                             <!--Body-->
                             {{ csrf_field() }}

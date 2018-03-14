@@ -9,12 +9,12 @@
 <body>
 
 <div class="row">
-    <?php $image_path = '\img\dslogo.jpg'; ?>
+    <?php $image_path = '\img\dslogo2.png'; ?>
     <div style="text-align: center">
         <img class="text-center" src="{{ public_path() . $image_path }}" width="128px" height="128px">
     </div>
     <h2 class="text-center">D. S. Senanayake College</h2>
-    <span class="text-center"><h4>Teacher Report - {{$teacher->name_with_initials}}</h4></span>
+    <span class="text-center"><h4>Teacher Report - {{$teacher->name_initials}}</h4></span>
 </div>
 <div style="margin-left: 1em">
     <h2><b>Basic Details</b></h2><hr>
@@ -28,7 +28,7 @@
         <tbody>
         <tr>
             <td>NIC</td>
-            <td>{{$teacher->nic_no}}</td>
+            <td>{{$teacher->nic}}</td>
         </tr>
         <tr>
             <td>Full Name</td>
@@ -36,7 +36,7 @@
         </tr>
         <tr>
             <td>Name with Initials</td>
-            <td>{{$teacher->name_with_initials}}</td>
+            <td>{{$teacher->name_initials}}</td>
         </tr>
         <tr>
             <td>Birthday</td>
@@ -64,7 +64,7 @@
         </tr>
         <tr>
             <td>Address</td>
-            <td>{{$teacher->permanent_addr}}</td>
+            <td>{{$teacher->address}}</td>
         </tr>
         <tr>
             <td>Contact Mobile No</td>
@@ -90,15 +90,11 @@
         {{--</tr>--}}
         <tr>
             <td>Signature No</td>
-            <td>{{$teacher->signature_no}}</td>
-        </tr>
-        <tr>
-            <td>Serial No</td>
-            <td>{{$teacher->serial_no}}</td>
+            <td>{{$teacher->signature_id}}</td>
         </tr>
         <tr>
             <td>Date Joined School</td>
-            <td>{{$teacher->joined_date}}</td>
+            <td>{{$teacher->joined_at}}</td>
         </tr>
         <tr>
             <td>Medium</td>

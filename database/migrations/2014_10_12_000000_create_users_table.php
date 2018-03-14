@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('fname');
             $table->string('lname');
             $table->string("username")->unique();
-            $table->string('email')->nullable();
             $table->string('password');
             $table->boolean("active")->default(true);
             $table->dateTime("registered_at");
