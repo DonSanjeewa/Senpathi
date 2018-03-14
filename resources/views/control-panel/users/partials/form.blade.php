@@ -48,7 +48,7 @@
     <div class="col-md-3">
         <div class="mdb-lightbox">
             <figure>
-                <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(145).jpg"
+                <img src=""
                      class="img-fluid">
             </figure>
         </div>
