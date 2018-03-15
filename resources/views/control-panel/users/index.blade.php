@@ -4,8 +4,12 @@
 
     <div class="row">
         <div class="col-md-12">
+        <a href="{{ route("control-panel.users.create") }}"><button type="button"  style="margin-left: 93%;" class="btn btn-success btn-sm">Create</button></a>
             <div class="card">
-                <h5 class="card-header gold white-text">Users</h5>
+            
+                <h5 class="card-header gold white-text">Users
+                </h5>
+                
                 <div class="card-body">
                     <table id="users" class="table table-bordered data-table-custom" cellspacing="0" width="100%">
                         <thead>

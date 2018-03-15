@@ -6,18 +6,23 @@
             <div class="container">
 
                 <div class="row">
-                    <div class="col-3 col-example">
+                    <a class="col-3 col-example" href="{{ route("control-panel.users.index") }}">
+
                         <h5 style="font-weight:700">Users</h5>
-                    <i style="verticle-align:middle" class="fa fa-user fa-3x"></i>
-                    </div>
-                    <div class="col-3 col-example">
+                        <i style="verticle-align:middle" class="fa fa-user fa-3x"></i>
+
+                    </a>
+
+                    <a class="col-3 col-example" href="{{ route("control-panel.roles.index") }}">
                     <h5 style="font-weight:700">Roles</h5>
                     <i style="verticle-align:middle" class="fa fa-lock fa-3x"></i>
-                    </div>
-                    <div class="col-3 col-example">
+                    </a>
+
+                    <a class="col-3 col-example" href="{{ route("control-panel.permissions.index") }}">
                     <h5 style="font-weight:700">Permissions</h5>
                     <i style="verticle-align:middle" class="fa fa-tasks fa-3x"></i>
-                    </div>
+                    </a>
+
                 </div>
 
                 <div class="row">

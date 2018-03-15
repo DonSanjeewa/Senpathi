@@ -856,14 +856,14 @@
                             <div class="col-md-4">
 
                                 <div class="md-form ">
-                                    <i class="fa fa-phone prefix grey-text"></i>
+                                    <i class="fa fa-file prefix grey-text"></i>
                                     <input type="text" id="employer[${expCounter}]" class="form-control" name="employer[${expCounter}]">
                                     <label for="employer[${expCounter}]">School</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="md-form">
-                                    <i class="fa fa-phone prefix grey-text"></i>
+                                    <i class="fa fa-file prefix grey-text"></i>
                                     <input type="text" id="subject[${expCounter}]" class="form-control" name="subject[${expCounter}]">
                                     <label for="subject[${expCounter}]">Subject</label>
                                 </div>
@@ -871,7 +871,7 @@
 
                             <div class="col-md-3">
                                 <div class="md-form">
-                                    <i class="fa fa-phone prefix grey-text"></i>
+                                    <i class="fa fa-file prefix grey-text"></i>
                                     <input type="text" id="years[${expCounter}]" class="form-control" name="years[${expCounter}]">
                                     <label for="years[${expCounter}]">No of Years</label>
                                 </div>

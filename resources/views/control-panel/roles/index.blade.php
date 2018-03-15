@@ -4,6 +4,7 @@
 
     <div class="row">
         <div class="col-md-12">
+        <a href="{{ route("control-panel.roles.create") }}"><button type="button"  style="margin-left: 93%;" class="btn btn-success btn-sm">Create</button></a>
             <div class="card">
                 <h5 class="card-header gold white-text">Roles</h5>
                 <div class="card-body">
