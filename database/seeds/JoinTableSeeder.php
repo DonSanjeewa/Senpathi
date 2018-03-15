@@ -23,6 +23,7 @@ class JoinTableSeeder extends Seeder
             "updated_at" => Carbon::now()
         ]);
 
+        // role permissions table seeders
         DB::table("role_permission")->insert([
             "role_id" => 1,
             "permission_id" => 1,
@@ -30,5 +31,48 @@ class JoinTableSeeder extends Seeder
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
         ]);
+
+        
+        DB::table("role_permission")->insert([
+            "role_id" => 2,
+            "permission_id" => 1,
+            "is_able" => true,
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("role_permission")->insert([
+            "role_id" => 3,
+            "permission_id" => 1,
+            "is_able" => true,
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("role_permission")->insert([
+            "role_id" => 4,
+            "permission_id" => 1,
+            "is_able" => true,
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("role_permission")->insert([
+            "role_id" => 5,
+            "permission_id" => 1,
+            "is_able" => true,
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("role_permission")->insert([
+            "role_id" => 6,
+            "permission_id" => 1,
+            "is_able" => true,
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+              
     }
 }
