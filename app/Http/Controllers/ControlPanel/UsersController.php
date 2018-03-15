@@ -34,7 +34,7 @@ class UsersController extends Controller
             "fname" => $request->input("fname"),
             "lname" => $request->input("lname"),
             "username" => $request->input("username"),
-            "password" => bcrypt($request->input("email")),
+            "password" => bcrypt($request->input("password")),
             "registered_at" => Carbon::now(),
             "active" => true
         ]);

@@ -118,7 +118,4 @@ Route::middleware(["auth", "acl"])->group(function () {
 
     Route::post("/control-panel/permissions/{permission}/delete", 'ControlPanel\PermissionsController@index')->name('control-panel.permissions.delete');
 
-    //Admin panel
-
-
 });
