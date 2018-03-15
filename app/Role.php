@@ -20,7 +20,7 @@ class Role extends Model
     public static function getDeputyPrincipalIds()
     {
         $roleId = DB::table('roles')->where('slug', 'vice_principal')->pluck('id');
-        $deputyPrincipalIds = DB::table('user_role')->where('role_id', $roleId)->pluck('user_id');;
+        $deputyPrincipalIds = DB::table('user_role')->where('role_id', $roleId)->pluck('user_id');
         return $deputyPrincipalIds;
 
     }

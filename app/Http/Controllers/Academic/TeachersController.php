@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Academic;
 
 use App\Events\ApprovalRequired;
-use App\Events\Approved;
-use App\Events\Rejected;
 use App\Subject;
 use App\Teacher;
 use App\Role;
@@ -13,6 +11,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Events\Approved;
+use App\Events\Rejected;
 
 class TeachersController extends Controller
 {
@@ -90,10 +90,6 @@ class TeachersController extends Controller
 
         $deputiPriciples = Role::getDeputyPrincipalIds();
 
-        //To add a record to approvel table
-        event(new ApprovalRequired(Teacher::class, $teacher->id, $deputiPriciples));
-        // $this->validator($request);
-
         if ($request->has("employer")) {
             foreach ($request->input("employer") as $expKey => $expVal) {
                 DB::table("teacher_experiences")->insert([
@@ -149,6 +145,10 @@ class TeachersController extends Controller
             }
         }
 
+       
+        //To add a record to approvel table
+        event(new ApprovalRequired(Teacher::class, $teacher->id, $deputiPriciples));
+        // $this->validator($request); 
         return redirect()->route("academic.teachers.index");
 
     }
@@ -215,6 +215,7 @@ class TeachersController extends Controller
         return view('approvals.index' , compact('assignedApprovals'));
     }
 
+
     public function approve(Approval $approval){
         event(new Approved($approval->id , auth()->user()->id));
         return back();
@@ -225,4 +226,5 @@ class TeachersController extends Controller
         event(new Rejected($approval->id , auth()->user()->id));
         return back();
     }
+
 }
