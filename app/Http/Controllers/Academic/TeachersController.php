@@ -169,7 +169,6 @@ class TeachersController extends Controller
         //To add a record to approvel table
         event(new ApprovalRequired(Teacher::class, $teacher->id, $deputiPriciples));
         // $this->validator($request); 
-
         return redirect()->route("academic.teachers.index");
 
     }

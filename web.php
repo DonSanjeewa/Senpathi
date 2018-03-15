@@ -18,7 +18,7 @@ Route::post('/login', 'Auth\LoginController@login')->name('login.login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/unauthorized', function () {
-    return "unauthorized";
+    return "hit";
 })->name("unauthorized");
 
 //TODO super-user middleware
@@ -38,14 +38,11 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::get('/academic/teachers', 'Academic\TeachersController@index')->name('academic.teachers.index');
     Route::post('/academic/teachers', 'Academic\TeachersController@store')->name('academic.teachers.store');
 
-    Route::get('/academic/approvals', 'Academic\TeachersController@approvals')->name('approvals.index');
-
-    Route::get('/academic/approvals/{approval}/approve' , 'Academic\TeachersController@approve')->name('approvals.approve');
-    Route::get('/academic/approvals/{approval}/reject' , 'Academic\TeachersController@reject')->name('approvals.reject');
-
     Route::get('/academic/teachers/create', 'Academic\TeachersController@create')->name('academic.teachers.create');
+    Route::get('/academic/teachers/approve', 'Academic\TeachersController@approve')->name('approvels.index');
     Route::get('/academic/teachers/{teacher}', 'Academic\TeachersController@show')->name('academic.teachers.show');
-    Route::get('/academic/teachers/{status}/{approveId}', 'Academic\TeachersController@approveOrReject')->name('academic.teachers.approval');
+
+    
 
 
     //Timetable routes
@@ -70,9 +67,10 @@ Route::middleware(["auth", "acl"])->group(function () {
     //Teacher details Report
     Route::get('/generate-teacher-report/{teacher}', 'Report\ReportController@teacherDetailsPdfView')->name('report.teacher-details');
 
+    //leave routes
+    
     Route::get('/teachers-full-report', 'Report\ReportController@teacherFullReport')->name('reports.teachers-full-report');
     
-
 
     //Leave routes
     Route::get('/leaves', 'LeaveController@index')->name('leaves.index');
@@ -83,15 +81,9 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::get('/leaves/approve/{userId}', 'LeaveController@approve');
     Route::get('/leaves/report', 'LeaveController@report')->name('leaves.report');
     Route::get('/leaves/cancel/{leaveID}', 'LeaveController@cancel');
-
-
-
     //TODO super-user middleware
 
     //Control Panel > Users Routes
-
-    Route::get("/control-panel", 'ControlPanel\ControlPanelController@index')->name('control-panel.index');
-
     Route::get("/control-panel/users", 'ControlPanel\UsersController@index')->name('control-panel.users.index');
     Route::post("/control-panel/users", 'ControlPanel\UsersController@store')->name('control-panel.users.store');
 
@@ -124,5 +116,4 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::post("/control-panel/permissions/{permission}", 'ControlPanel\PermissionsController@update')->name('control-panel.permissions.update');
 
     Route::post("/control-panel/permissions/{permission}/delete", 'ControlPanel\PermissionsController@index')->name('control-panel.permissions.delete');
-
 });

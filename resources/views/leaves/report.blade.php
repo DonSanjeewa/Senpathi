@@ -1,4 +1,4 @@
-@extends('layouts.extended')
+ @extends('layouts.extended')
 
 @section('content')
     <div class="row">
@@ -13,6 +13,7 @@
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Amount of Days</th>
+                            <th>Status</th>
                            
                         </tr>
                         </thead>
@@ -23,7 +24,7 @@
                                 <td>{{$leave->from}}</td>
                                 <td>{{$leave->to}}</td>
                                 <td>{{$leave->days}}</td>
-                                
+                            	<td>{{$leave->status}}</td>    
                    
                             </tr>
                         @endforeach
