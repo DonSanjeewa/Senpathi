@@ -1,3 +1,4 @@
+ $userID = Auth::user()->id;
 <div id="slide-out" class="side-nav sn-bg-4 fixed mdb-sidenav">
     <ul class="custom-scrollbar list-unstyled" style="max-height:100vh;">
         <!-- Logo -->
@@ -56,7 +57,7 @@
                             </li>
                             <li><a href="{{route('leaves.all')}}" class="waves-effect"><i class="fa fa-briefcase"></i>All Leaves</a>
                             </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-line-chart"></i>Leaves Report</a>
+                            <li><a href="{{route('leaves.report')}}" class="waves-effect"><i class="fa fa-line-chart"></i>Leaves Report</a>
                             </li>
                         </ul>
                     </div>
