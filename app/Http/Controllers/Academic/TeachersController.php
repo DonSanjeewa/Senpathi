@@ -7,6 +7,7 @@ use App\Subject;
 use App\Teacher;
 use App\Role;
 use App\Approval;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -32,6 +33,7 @@ class TeachersController extends Controller
         $subjects = Subject::all();
         $serviceGrades = DB::table("service_grades")->get();
         $academicRoles = DB::table("academic_roles")->get();
+        $roles = DB::table("roles")->get();
 
         return view('academic.teachers.create', compact(
             "nationalities",
@@ -40,7 +42,8 @@ class TeachersController extends Controller
             "sections",
             "subjects",
             "serviceGrades",
-            "academicRoles"
+            "academicRoles",
+            "roles"
         ));
     }
 
@@ -145,7 +148,24 @@ class TeachersController extends Controller
             }
         }
 
-       
+        $user = User::create([
+            "fname" => $request->input("fname"),
+            "lname" => $request->input("lname"),
+            "username" => $request->input("username"),
+            "password" => bcrypt($request->input("password")),
+            "registered_at" => Carbon::now(),
+            "active" => true
+        ]);
+
+        DB::table("user_role")->insert([
+            "user_id" => $user->id,
+            "role_id" => $request->input("role"),
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+
+
         //To add a record to approvel table
         event(new ApprovalRequired(Teacher::class, $teacher->id, $deputiPriciples));
         // $this->validator($request); 
@@ -182,7 +202,12 @@ class TeachersController extends Controller
             "joined_at" => "required",
 
             "salary" => "required|string|max:255",
-            "first_appointment" => "required"
+            "first_appointment" => "required",
+
+            "fname" => "required|string|max:255",
+            "lname" => "required|string|max:255",
+            "username" => "required|string|max:255",
+            "password" => "required|string|max:255",
         ]);
     }
 

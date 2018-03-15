@@ -385,7 +385,6 @@
                                     @endif
                                 @endforeach
                             </select>
-                            </select>
                             <label for="section">Section</label>
                         </div>
 
@@ -796,12 +795,106 @@
                             </button>
                         </div>
 
+                        <div style="float: right">
+                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseEight"
+                                    data-target-prev="#collapseSeven">
+                                Next
+                            </button>
+                        </div>
+
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
+
+    <div class="card">
+
+        <!-- Card header -->
+        <div class="card-header" role="tab" id="headingEight">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseEight"
+               aria-expanded="false" aria-controls="collapseFive">
+                <h5 class="mb-0">
+                    Access Credentials <i class="fa fa-angle-down rotate-icon"></i>
+                </h5>
+            </a>
+        </div>
+
+        <!-- Card body -->
+        <div id="collapseEight" class="collapse" role="tabpanel" aria-labelledby="headingEight">
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="md-form{{ $errors->has('fname') ? ' has-error' : '' }}">
+                            <i class="fa fa-pencil prefix grey-text"></i>
+                            <input type="text" id="fname" class="form-control" name="fname"
+                                   value="{{ old("fname") }}">
+                            <label for="fname">First Name</label>
+                        </div>
+
+                        <div class="md-form{{ $errors->has('lname') ? ' has-error' : '' }}">
+                            <i class="fa fa-pencil prefix grey-text"></i>
+                            <input type="text" id="lname" class="form-control" name="lname"
+                                   value="{{ old("lname") }}">
+                            <label for="lname">Last Name</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="md-form{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <i class="fa fa-pencil prefix grey-text"></i>
+                            <input type="text" id="username" class="form-control" name="username"
+                                   value="{{ old("username") }}">
+                            <label for="salary">Username</label>
+                        </div>
+
+                        <div class="md-form{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <i class="fa fa-pencil prefix grey-text"></i>
+                            <input type="password" id="password" class="form-control" name="password"
+                                   value="{{ old("password") }}">
+                            <label for="salary">Password</label>
+                        </div>
+
+                        <div class="md-form">
+                            <i class="fa fa-pencil prefix grey-text"></i>
+                            <select class="mdb-select{{ $errors->has('role') ? ' has-error' : '' }}" name="role" id="role">
+                                <option value="" disabled selected>Role</option>
+                                @foreach($roles as $role)
+                                    @if($role->slug === "teacher")
+                                        <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
+                                    @else
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            <label for="role">Role</label>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div style="float: left">
+                            <button class="btn btn-info toggle" type="button" data-target-next="#collapseSeven"
+                                    data-target-prev="#collapseEight">
+                                Previous
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
     <!-- Accordion card -->
 </div>
