@@ -24,7 +24,24 @@
                                 <td>{{$leave->fname}}{{$leave->lname}}</td>
                                 <td>{{$leave->from}}</td>
                                 <td>{{$leave->to}}</td>
-                                <td>{{$leave->leave_id}}</td>   
+                                <td> 
+                                    @if($leave->leave_id == '1')
+                                        Casual
+                                    @endif 
+
+                                    @if($leave->leave_id == '2')
+                                        Medical
+                                    @endif 
+
+                                    @if($leave->leave_id == '3')
+                                        Maternity
+                                    @endif 
+
+                                    @if($leave->leave_id == '4')
+                                        Other
+                                    @endif 
+
+                                </td>   
                                 <td>{{$leave->days}}</td>
                             	<td>{{$leave->status}}</td>    
                    
