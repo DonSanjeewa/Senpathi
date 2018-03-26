@@ -12,6 +12,7 @@
                             <th>Name</th>
                             <th>Start Date</th>
                             <th>End Date</th>
+                            <th>Type</th>
                             <th>Amount of Days</th>
                             <th>Status</th>
                            
@@ -23,6 +24,7 @@
                                 <td>{{$leave->fname}}{{$leave->lname}}</td>
                                 <td>{{$leave->from}}</td>
                                 <td>{{$leave->to}}</td>
+                                <td>{{$leave->leave_id}}</td>   
                                 <td>{{$leave->days}}</td>
                             	<td>{{$leave->status}}</td>    
                    
