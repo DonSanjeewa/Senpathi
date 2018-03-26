@@ -25,6 +25,8 @@ class LeaveController extends Controller
                         ->where('teacher_id',$userID)
                         ->groupBy ('leave_id')
                         ->get();
+    //dd($leaveAmount);
+
                         
         return view('leaves.apply')->with('leaveAmount',$leaveAmount);
 
@@ -32,6 +34,8 @@ class LeaveController extends Controller
 
     public function Pending()
     {
+
+       
 
 
         $userName = Auth::user()->username;
@@ -101,6 +105,7 @@ class LeaveController extends Controller
         $leaves = DB::table('leaves')
                          ->join('users','leaves.teacher_id', '=' ,'users.id')
                          ->get();
+                     //    dd($leaves)
         return view('leaves.report')->with('leaves', $leaves);
 
     }
