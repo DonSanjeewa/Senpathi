@@ -6,41 +6,39 @@
         <div class="card">
             <h5 class="card-header gold white-text">Teachers</h5>
             <div class="card-body">
-                <table id="all-teachers" class="table table-bordered " cellspacing="0" width="100%" title="Teacher">
-                    <thead>
+                <table id="all-teachers" class="table table-striped " cellspacing="0" width="100%">
+                    <thead style="background-color:#d2d6d9">
                     <tr>
-                        <th>NIC</th>
-                        <th>Name</th>
-                        <th>Gender</th>
-                        <th>Medium</th>
-                        <th>Contact</th>
-                        <th>DOB</th>
-                        <th>Email</th>
-                        <th>Civil Status</th>
-                        <th>Medium</th>
-                        <th >Current Role</th>
-                        <th >Salary</th>
-                        <th >First Appointment</th>
-                        <th >Nature of Appointment</th>
-                        <th >Actions</th>
+                        <th><b>NIC</b></th>
+                        <th><b>Name</b></th>
+                        <th><b>Gender</b></th>
+                        <th><b>Medium</b></th>
+                        <th><b>Contact</b></th>
+                        <th><b>DOB</b></th>
+                        <th><b>Email</b></th>
+                        <th><b>Civil Status</b></th>
+                        <th><b>Medium</b></th>
+                        <th ><b>Salary</b></th>
+                        <th ><b>First Appointment</b></th>
+                        <th ><b>Nature of Appointment</b></th>
+                        <th ><b>Actions</b></th>
                     </tr>
                     </thead>
-                    <tfoot>
+                    <tfoot style="background-color:#d2d6d9">
                     <tr>
-                        <th>NIC</th>
-                        <th>Name</th>
-                        <th>Gender</th>
-                        <th>Medium</th>
-                        <th>Contact</th>
-                        <th>DOB</th>
-                        <th >Email</th>
-                        <th >Civil Status</th>
-                        <th >Medium</th>
-                        <th >Current Role</th>
-                        <th >Salary</th>
-                        <th >First Appointment</th>
-                        <th >Nature of Appointment</th>
-                        <th >Actions</th>
+                        <th><b>NIC</b></th>
+                        <th><b>Name</b></th>
+                        <th><b>Gender</b></th>
+                        <th><b>Medium</b></th>
+                        <th><b>Contact</b></th>
+                        <th><b>DOB</b></th>
+                        <th ><b>Email</b></th>
+                        <th ><b>Civil Status</b></th>
+                        <th ><b>Medium</b></th>
+                        <th ><b>Salary</b></th>
+                        <th ><b>First Appointment</b></th>
+                        <th><b>Nature of Appointment</b></th>
+                        <th ><b>Actions</b></th>
                     </tr>
                     </tfoot>
                     <tbody>
@@ -61,21 +59,22 @@
                         <td class="test">{{$teacher->email}}</td>
                         <td class="test">{{$teacher->civil_status}}</td>
                         <td class="test">{{$teacher->medium}}</td>
-                        <td class="test">{{$teacher->current_role}}</td>
                         <td class="test">{{$teacher->salary}}</td>
                         <td class="test">{{$teacher->first_appointment_at}}</td>
                         <td class="test">{{$teacher->nature_of_appointment}}</td>
                         {{--TODO add action mapping for buttons--}}
                         <td>
-                            <a href="{{route('academic.teachers.show', ['teacher' => $teacher->id])}}" class="btn btn-primary btn-custom btn-sm">
+                            <a href="{{route('academic.teachers.show', ['teacher' => $teacher->id])}}" class="btn btn-primary btn-custom btn-sm" title="View Teacher Details">
                                 <i class="fa fa-list-alt" aria-hidden="true"></i>
                             </a>
-                            <a class="btn btn-warning btn-custom btn-sm">
+                            <!-- <a class="btn btn-warning btn-custom btn-sm">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                            </a>
-                            <a class="btn btn-danger btn-custom btn-sm">
+                            </a> -->
+                            @if($roleName == 'Super Admin')
+                            <a href="{{route('academic.teachers.delete', ['teacher' => $teacher->id])}}" class="btn btn-danger btn-custom btn-sm" title="Delete Teacher">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
@@ -96,7 +95,7 @@
 
             "columnDefs": [
            
-            { "visible": false,  "targets": [ 6,7,8,9,10,11,12 ] }
+            { "visible": false,  "targets": [ 6,7,8,9,10,11 ] }
         ],
             "lengthChange": false,
             dom: 'Bfrtip',

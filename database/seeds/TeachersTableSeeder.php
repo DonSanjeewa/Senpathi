@@ -43,6 +43,7 @@ class TeachersTableSeeder extends Seeder
             "current_type" => "Test",
             "salary" => 28000,
             "first_appointment_at" => Carbon::now(),
+            "deleted" => false,
         ]);
 
         DB::table("teachers")->insert([
@@ -73,6 +74,7 @@ class TeachersTableSeeder extends Seeder
             "current_type" => "Test",
             "salary" => 25000,
             "first_appointment_at" => Carbon::now(),
+            "deleted" => false,
         ]);
 
         DB::table("teachers")->insert([
@@ -103,6 +105,7 @@ class TeachersTableSeeder extends Seeder
             "current_type" => "Test",
             "salary" => 30000,
             "first_appointment_at" => Carbon::now(),
+            "deleted" => false,
         ]);
 
 

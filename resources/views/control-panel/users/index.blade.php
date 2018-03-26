@@ -11,17 +11,17 @@
                 </h5>
                 
                 <div class="card-body">
-                    <table id="users" class="table table-bordered data-table-custom" cellspacing="0" width="100%">
-                        <thead>
+                    <table id="users" class="table table-striped data-table-custom" cellspacing="0" width="100%">
+                        <thead style="background-color:#d2d6d9">
                         <tr>
-                            <th>Id</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Registered</th>
-                            <th>Picture</th>
-                            <th>Active</th>
+                            <th><b>Id</b></th>
+                            <th><b>First Name</b></th>
+                            <th><b>Last Name</b></th>
+                            <th><b>Username</b></th>
+                            <th><b>Email</b></th>
+                            <th><b>Registered</b></th>
+                            <th><b>Picture</b></th>
+                            <th><b>Active</b></th>
                             <th></th>
                         </tr>
                         </thead>
@@ -46,20 +46,20 @@
                                 <td>
                                     <a class="btn btn-info btn-custom"
                                        href="{{ route("control-panel.users.edit", ["user"=> $user->id]) }}"
-                                       data-balloon="Edit" data-balloon-pos="up">
+                                       data-balloon="Edit" data-balloon-pos="up" title="Edit user">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </a>
 
                                     @if($user->active)
                                         <a class="btn btn-warning btn-custom"
-                                           href="{{ route("control-panel.users.edit", ["user"=> $user->id]) }}"
-                                           data-balloon="Disable" data-balloon-pos="up">
+                                           href="{{ route("control-panel.users.deactive", ["user"=> $user->id]) }}"
+                                           data-balloon="Disable" data-balloon-pos="up" title="Deactivate User">
                                             <i class="fa fa-lock" aria-hidden="true"></i>
                                         </a>
                                     @else
                                         <a class="btn btn-warning btn-custom"
-                                           href="{{ route("control-panel.users.edit", ["user"=> $user->id]) }}"
-                                           data-balloon="Enable" data-balloon-pos="up">
+                                           href="{{ route("control-panel.users.active", ["user"=> $user->id]) }}"
+                                           data-balloon="Enable" data-balloon-pos="up" title="Activate User">
                                             <i class="fa fa-unlock" aria-hidden="true"></i>
                                         </a>
                                     @endif
@@ -67,7 +67,7 @@
 
                                     <a class="btn btn-danger btn-custom"
                                        href="{{ route("control-panel.users.delete", ["user"=> $user->id]) }}"
-                                       data-balloon="Delete" data-balloon-pos="up">
+                                       data-balloon="Delete" data-balloon-pos="up" title="Delete User">
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </a>
                                 </td>

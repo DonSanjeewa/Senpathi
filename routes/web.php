@@ -45,8 +45,9 @@ Route::middleware(["auth", "acl"])->group(function () {
 
     Route::get('/academic/teachers/create', 'Academic\TeachersController@create')->name('academic.teachers.create');
     Route::get('/academic/teachers/{teacher}', 'Academic\TeachersController@show')->name('academic.teachers.show');
-    Route::get('/academic/teachers/{status}/{approveId}', 'Academic\TeachersController@approveOrReject')->name('academic.teachers.approval');
-
+   // Route::get('/academic/teachers/{status}/{approveId}', 'Academic\TeachersController@approveOrReject')->name('academic.teachers.approval');
+    Route::get('/academic/teachers/delete/{teacherId}', 'Academic\TeachersController@delete')->name('academic.teachers.delete');
+    
 
     //Timetable routes
     Route::get('/timetables', 'Academic\TimetableController@index')->name('academic.timetables.index');
@@ -73,6 +74,8 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::get('/teachers-full-report', 'Report\ReportController@teacherFullReport')->name('reports.teachers-full-report');
     
 
+   // Route::post('image-upload',['as'=>'image.upload.post','uses'=>'UsersController@imageUploadPost']);
+    Route::post('/image-upload', 'ControlPanel\UsersController@imageUploadPost')->name('image.upload.post');
 
     //Leave routes
     Route::get('/leaves', 'LeaveController@index')->name('leaves.index');
@@ -102,6 +105,8 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::post("/control-panel/users/{user}", 'ControlPanel\UsersController@update')->name('control-panel.users.update');
 
     Route::post("/control-panel/users/{user}/delete", 'ControlPanel\UsersController@index')->name('control-panel.users.delete');
+    Route::get("/control-panel/users/{user}/active", 'ControlPanel\UsersController@active')->name('control-panel.users.active');
+    Route::get("/control-panel/users/{user}/deactive", 'ControlPanel\UsersController@deactive')->name('control-panel.users.deactive');
 
     //Control Panel > Roles Routes
     Route::get("/control-panel/roles", 'ControlPanel\RolesController@index')->name('control-panel.roles.index');

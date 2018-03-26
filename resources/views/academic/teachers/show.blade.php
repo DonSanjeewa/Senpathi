@@ -1,7 +1,7 @@
 @extends('layouts.extended')
 
 @section('content')
-@if(!empty($teacher))
+@if(!empty($teacher[0]))
 <div class="tab-content pt-5">
 
 
@@ -16,12 +16,12 @@
                 <!--Section: Basic Info-->
 
                 <section class="card card-cascade card-avatar mb-4 ">
-
-                    @if($teacher->gender == 'm')
-                        <img alt="" src="https://image.flaticon.com/icons/svg/180/180644.svg" srcset=""
+                <?php $image_path = '/images/'.$teacher[0]->picture; ?>
+                    @if($teacher[0]->gender == 'm')
+                        <img alt="" src="{{ public_path() . $image_path }}" srcset=""
                              class="avatar avatar-160 photo" height="160" width="160">
-                    @else
-                        <img alt="" src="https://image.flaticon.com/icons/svg/180/180675.svg" srcset=""
+                    @else if
+                        <img alt="" src="{{ public_path() . $image_path }}" srcset=""
                              class="avatar avatar-160 photo" height="160" width="160">
                     @endif
 
@@ -29,7 +29,7 @@
                     <div class="card-body">
                         <!--Title-->
                         <h4 class="card-title">
-                            <strong>{{$teacher->name_with_initials}}</strong>
+                            <strong>{{$teacher[0]->name_initials}}</strong>
                         </h4>
                         <h5>
                             <a rel="nofollow" href="?utm_source=mdbootstrap.com" target="_blank"></a>
@@ -43,7 +43,7 @@
                             <i class="fa fa-pencil ml-2"></i>
                         </a>
 
-                        <a class="btn btn-mdb btn-md waves-effect waves-light" href="{{route('report.teacher-details',$teacher->id)}}" role="button">Generate Report
+                        <a class="btn btn-mdb btn-md waves-effect waves-light" href="{{route('report.teacher-details',$teacher[0]->id)}}" role="button">Generate Report
                             <i class="fa fa-file-pdf-o ml-2"></i>
                         </a>
                     </div>
@@ -67,33 +67,33 @@
                                 <thead><b>General</b></thead>
                                 <tr>
                                     <th>NIC NO</th>
-                                    <td>{{$teacher->nic}}</td>
+                                    <td>{{$teacher[0]->nic}}</td>
                                     <th>Name With Initials</th>
-                                    <td>{{$teacher->name_initials}}</td>
+                                    <td>{{$teacher[0]->name_initials}}</td>
                                 </tr>
                                 <tr>
                                     <th>Full Name</th>
-                                    <td>{{$teacher->full_name}}</td>
+                                    <td>{{$teacher[0]->full_name}}</td>
                                     <th>Date of Birth</th>
-                                    <td>{{$teacher->dob}}</td>
+                                    <td>{{$teacher[0]->dob}}</td>
                                 </tr>
                                 <tr>
                                     <th>Gender</th>
-                                    @if($teacher->gender == 'm')
+                                    @if($teacher[0]->gender == 'm')
                                     <td>Male</td>
-                                    @elseif($teacher->gender == 'f')
+                                    @elseif($teacher[0]->gender == 'f')
                                     <td>Female</td>
                                     @else
                                     <td>None</td>
                                     @endif
                                     <th>Contact No</th>
-                                    <td>{{$teacher->contact_mobile}}</td>
+                                    <td>{{$teacher[0]->contact_mobile}}</td>
                                 </tr>
                                 <tr>
                                     <th>Civil Status</th>
-                                    <td>{{$teacher->civil_status}}</td>
+                                    <td>{{$teacher[0]->civil_status}}</td>
                                     <th>Address</th>
-                                    <td>{{$teacher->address}}</td>
+                                    <td>{{$teacher[0]->address}}</td>
                                 </tr>
                             </table>
 

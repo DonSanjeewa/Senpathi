@@ -9,7 +9,7 @@
 <body>
 
 <div class="row">
-    <?php $image_path = '\img\dslogo2.png'; ?>
+    <?php $image_path = '/img/dslogo2.png'; ?>
     <div style="text-align: center">
         <img class="text-center" src="{{ public_path() . $image_path }}" width="128px" height="128px">
     </div>

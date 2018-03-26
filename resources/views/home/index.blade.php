@@ -8,7 +8,7 @@
                 <h5 class="card-header gold white-text"><i class="fa fa-warning ml-2"></i> <b>NEED YOUR ATTENTION</b></h5>
                 <div class="card-body">
                     <div id="big_stats" class="cf">
-                        <div class="stat"> <i class="fa fa-bed"></i> <span class="value">4</span>
+                        <div class="stat"> <i class="fa fa-bed"></i> <span class="value">{{ $leaveCount }}</span>
                             <br>Leaves
                         </div>
                         <!-- .stat -->

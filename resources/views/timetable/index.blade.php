@@ -6,14 +6,14 @@
             <div class="card">
                 <h5 class="card-header gold white-text">Timetables</h5>
                 <div class="card-body">
-                    <table id="all-timetables" class="table table-bordered data-table-custom" cellspacing="0"
+                    <table id="all-timetables" class="table table-striped data-table-custom" cellspacing="0"
                            width="100%">
-                        <thead>
+                        <thead style="background-color:#d2d6d9">
                         <tr>
-                            <th>Year</th>
-                            <th>Grade</th>
-                            <th>Class</th>
-                            <th>Actions</th>
+                            <th><b>Year</b></th>
+                            <th><b>Grade</b></th>
+                            <th><b>Class</b></th>
+                            <th><b>Actions</b></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -26,7 +26,7 @@
                                     <a href="{{route('academic.timetables.show', [
                                         'year' => $timetable->academic->id,
                                         'class' => $timetable->classRoom->id
-                                    ])}}" class="btn btn-warning btn-custom">
+                                    ])}}" class="btn btn-warning btn-custom" title="View Time Table">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </a>
                                 </td>

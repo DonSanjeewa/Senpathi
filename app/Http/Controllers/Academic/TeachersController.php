@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Academic;
 use App\Events\ApprovalRequired;
 use App\Subject;
 use App\Teacher;
+use Auth;
 use App\Role;
 use App\Approval;
 use App\User;
@@ -19,8 +20,24 @@ class TeachersController extends Controller
 {
     public function index()
     {
-        $teachers = Teacher::all();
-        return view('academic.teachers.index')->with('teachers', $teachers);
+        //To check wether the logged user is the super admin
+        $userId= Auth::id();
+        if ($userId){
+        $roleId=DB::table('user_role')->where('user_id',$userId)->get();
+        }
+
+        if ($roleId){
+        $roleName=(DB::table('roles')->where('id',$roleId[0]->role_id)->get())[0]->name;
+        }
+
+        if($roleName){
+            $teachers = Teacher::where('deleted', 0)->get();
+            return view('academic.teachers.index')->with('teachers', $teachers)
+                                                  ->with('roleName', $roleName);
+        } else {
+            $teachers = Teacher::where('deleted', 0)->get();
+            return view('academic.teachers.index')->with('teachers', $teachers);
+        }
 
     }
 
@@ -85,7 +102,8 @@ class TeachersController extends Controller
             'current_role' => json_encode($request->input("current_role")),
             'current_type' => $request->input("current_type"),
             'salary' => $request->input("salary"),
-            'first_appointment_at' => $this->parseDateString($request->input("first_appointment_at"))
+            'first_appointment_at' => $this->parseDateString($request->input("first_appointment_at")),
+            'deleted' => false
         ]);
 
 
@@ -176,7 +194,15 @@ class TeachersController extends Controller
 
     public function show(Teacher $teacher)
     {
-        return view('academic.teachers.show', compact("teacher"));
+        //return $teacher;
+
+        $allRecords=DB::table('users')->select('users.picture','teachers.*')
+                                        ->leftJoin('teachers', 'teachers.user_id', '=', 'users.id')
+                                        ->where('teachers.id',$teacher->id)->get();
+
+                                   
+
+         return view('academic.teachers.show')->with('teacher', $allRecords);
     }
 
     private function validator(Request $request)
@@ -250,6 +276,31 @@ class TeachersController extends Controller
     public function reject(Approval $approval){
         event(new Rejected($approval->id , auth()->user()->id));
         return back();
+    }
+
+    public function delete(Teacher $teacherId){
+
+        Teacher::where('id', $teacherId->id )
+                 ->update(['deleted' => 1]);
+
+                 $userId= Auth::id();
+                 if ($userId){
+                 $roleId=DB::table('user_role')->where('user_id',$userId)->get();
+                 }
+         
+                 if ($roleId){
+                 $roleName=(DB::table('roles')->where('id',$roleId[0]->role_id)->get())[0]->name;
+                 }
+         
+                 if($roleName){
+                     $teachers = Teacher::where('deleted', 0)->get();
+                     return view('academic.teachers.index')->with('teachers', $teachers)
+                                                           ->with('roleName', $roleName);
+                 } else {
+                     $teachers = Teacher::where('deleted', 0)->get();
+                     return view('academic.teachers.index')->with('teachers', $teachers);
+                 }
+
     }
 
 }

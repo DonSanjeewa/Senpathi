@@ -6,21 +6,21 @@
         <h4>Salary Requests</h4>
     </div>
 <div class="card-body">
-    <table id="all-requests" class="table table-bordered data-table-custom" cellspacing="0" width="100%">
-        <thead>
+    <table id="all-requests" class="table table-striped data-table-custom" cellspacing="0" width="100%">
+        <thead style="background-color:#d2d6d9">
         <tr>
-            <th>Requester</th>
-            <th>Next Approval</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th><b>Requester</b></th>
+            <th><b>Next Approval</b></th>
+            <th><b>Status</b></th>
+            <th><b>Actions</b></th>
         </tr>
         </thead>
-        <tfoot>
+        <tfoot style="background-color:#d2d6d9">
         <tr>
-            <th>Requester</th>
-            <th>Next Approval</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th><b>Requester</b></th>
+            <th><b>Next Approval</b></th>
+            <th><b>Status</b></th>
+            <th><b>Actions</b></th>
         </tr>
         </tfoot>
         <tbody>
@@ -39,7 +39,7 @@
             @endif
             {{--TODO add action mapping for buttons--}}
             <td>
-                <a href="{{route('academic.salary-requests.show', ['request' => $request->salary_request_id])}}" class="btn btn-primary btn-custom">
+                <a href="{{route('academic.salary-requests.show', ['request' => $request->salary_request_id])}}" class="btn btn-primary btn-custom" title="View Salary Requests">
                     <i class="fa fa-eye" aria-hidden="true"></i>
                 </a>
             </td>
