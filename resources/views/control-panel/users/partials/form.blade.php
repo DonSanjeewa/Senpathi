@@ -58,9 +58,11 @@
     <div class="col-md-3">
         <div class="file-upload{{ $errors->has('picture') ? ' has-error' : '' }}">
             <label for="upload">Upload image</label>
-            <input type="file" id="picture" name="picture">
+            <input type="file" id="image" name="image">
         </div>
     </div>
+
+    
 
     @include("common.partials.form-errors")
 

@@ -28,6 +28,18 @@ class UsersController extends Controller
 
     public function store(Request $request){
 
+        request()->validate([
+            
+                        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            
+                    ]);
+            
+            
+            
+        $imageName = time().'.'.request()->image->getClientOriginalExtension();
+        request()->image->move(public_path('images'), $imageName);
+                   
+
         $this->validator($request);
 
         $user = User::create([
@@ -36,7 +48,8 @@ class UsersController extends Controller
             "username" => $request->input("username"),
             "password" => bcrypt($request->input("password")),
             "registered_at" => Carbon::now(),
-            "active" => true
+            "active" => true,
+            "picture" => $imageName
         ]);
 
         DB::table("user_role")->insert([
@@ -51,7 +64,7 @@ class UsersController extends Controller
 
 
     public function edit(Request $request , User $user){
-        dd($user);
+        dd($request);
     }
 
 
@@ -66,4 +79,52 @@ class UsersController extends Controller
         ]);
 
     }
+
+    public function active(User $user){
+
+        User::where('id', $user->id )
+                ->update(['active' => 1]);
+        
+        $users = User::all();
+        return view("control-panel.users.index" , compact("users"));
+
+    }
+
+    public function deactive(User $user){
+
+        User::where('id', $user->id )
+                ->update(['active' => 0]);
+
+        $users = User::all();
+        return view("control-panel.users.index" , compact("users"));
+    }
+
+    public function imageUploadPost()
+    
+        {
+
+            return "jfhdf";
+    
+            // request()->validate([
+    
+            //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    
+            // ]);
+    
+    
+    
+            // $imageName = time().'.'.request()->image->getClientOriginalExtension();
+    
+            // request()->image->move(public_path('images'), $imageName);
+    
+    
+    
+            // return back()
+    
+            //     ->with('success','You have successfully upload image.')
+    
+            //     ->with('image',$imageName);
+    
+        }
+        
 }

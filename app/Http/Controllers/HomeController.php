@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
+use DB;
 use App\Event;
 use App\Teacher;
+use App\Leave;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -26,12 +28,18 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $userId = Auth::id(); 
         $upCommingEvents = $this->getUpcommingEvents();
         $teachersCount=Teacher::get()->count();
         $eventsCount=Event::get()->count();
+        $leaveCount=DB::table('leaves')
+                        ->where('teacher_id', '=', $userId)
+                        ->get()->count();
+
         return view('home.index')->with('eventsCount',$eventsCount)
                                        ->with('upCommingEvents',$upCommingEvents)
-                                       ->with('teachersCount',$teachersCount);
+                                       ->with('teachersCount',$teachersCount)
+                                       ->with('leaveCount', $leaveCount);
     }
 
     public function getUpcommingEvents(){

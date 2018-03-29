@@ -51,7 +51,7 @@ class CreateTeachersTable extends Migration
             $table->date("first_appointment_at")->nullable();
 
             $table->string("approval")->default("pending");
-
+            $table->boolean("deleted")->default(false);
             $table->timestamps();
         });
     }
