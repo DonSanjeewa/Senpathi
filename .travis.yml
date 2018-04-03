@@ -3,7 +3,7 @@ sudo: required
 
 addons:
   sonarcloud:
-    organization: "your_organization_key"
+    organization: "donsanjeewa-github"
     token:
       secure: "your_token_encrypted_with_travis_encrypt_tool"
 jdk:
