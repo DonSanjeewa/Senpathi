@@ -28,7 +28,7 @@ php:
   # aliased to a recent hhvm version
   - hhvm
 script:
-  - sonar-scanner
+  - sonar-scanner -D sonar.login=$SONAR_TOKEN
 cache:
   directories:
     - '$HOME/.sonar/cache'
