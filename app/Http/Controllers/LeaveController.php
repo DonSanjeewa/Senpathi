@@ -56,6 +56,7 @@ class LeaveController extends Controller
                         )
                          ->get();
 
+                        
         return view('leaves.Pending')->with('leaves',$pending_leaves);
     }
 

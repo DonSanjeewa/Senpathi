@@ -93,6 +93,9 @@ Route::middleware(["auth", "acl"])->group(function () {
 
     //Control Panel > Users Routes
 
+    Route::get("/control-panel/underconstruction", 'ControlPanel\RolesController@underconstruction')->name('control-panel.underconstruction');
+    
+
     Route::get("/control-panel", 'ControlPanel\ControlPanelController@index')->name('control-panel.index');
 
     Route::get("/control-panel/users", 'ControlPanel\UsersController@index')->name('control-panel.users.index');

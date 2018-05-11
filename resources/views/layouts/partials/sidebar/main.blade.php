@@ -12,10 +12,10 @@
         <!--Social-->
         <li>
             <ul class="social">
-                <li><a href="#" class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
-                <li><a href="#" class="icons-sm pin-ic"><i class="fa fa-pinterest"> </i></a></li>
-                <li><a href="#" class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
-                <li><a href="#" class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
+                <li><a href="https://www.facebook.com/OBADSSC/" class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
+                <li><a href="https://www.youtube.com/channel/UC6oSyNbktAqKIh5bt0wGz_A" class="icons-sm pin-ic"><i class="fa fa-youtube"> </i></a></li>
+                <li><a href="#" class="icons-sm gplus-ic"><i class="fa fa-instagram"> </i></a></li>
+                <li><a href="https://twitter.com/obadssc" class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
             </ul>
         </li>
         <!--/Social-->
@@ -62,18 +62,7 @@
                         </ul>
                     </div>
                 </li>
-                <li><a class="collapsible-header waves-effect arrow-r">
-                        <i class="fa fa-eye fa-lg" aria-hidden="true"></i> Attendance
-                        <i class="fa fa-angle-down rotate-icon"></i></a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-male"></i>Teacher Attendance</a>
-                            </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-graduation-cap"></i>Student Attendance</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+               
                 <li><a class="collapsible-header waves-effect arrow-r">
                         <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i> Timetable Management
                         <i class="fa fa-angle-down rotate-icon"></i></a>
@@ -86,22 +75,7 @@
                         </ul>
                     </div>
                 </li>
-                <li><a class="collapsible-header waves-effect arrow-r">
-                        <i class="fa fa-graduation-cap fa-lg" aria-hidden="true" style="margin-left: -3px;"></i> Student
-                        Management
-                        <i class="fa fa-angle-down rotate-icon"></i></a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-list"></i>Student List</a>
-                            </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-plus-square"></i>Create Student</a>
-                            </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-line-chart"></i>Student Report</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </li>
+               
                 <li><a class="collapsible-header waves-effect arrow-r">
                         <i class="fa fa-calendar-o fa-lg" aria-hidden="true"></i> Event Management
                         <i class="fa fa-angle-down rotate-icon"></i></a>
@@ -111,13 +85,42 @@
                             </li>
                             <li><a href="{{route('events.create')}}" class="waves-effect"><i class="fa fa-plus-square"></i>Add Event Type</a>
                             </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-check-square"></i>Check events</a>
+                            <li><a href="{{route('control-panel.underconstruction')}}" class="waves-effect"><i class="fa fa-check-square"></i>Check events</a>
                             </li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-calendar"></i>Event Calendar</a>
+                            <li><a href="{{route('control-panel.underconstruction')}}" class="waves-effect"><i class="fa fa-calendar"></i>Event Calendar</a>
                             </li>
                         </ul>
                     </div>
                 </li>
+                <li><a class="collapsible-header waves-effect arrow-r">
+                        <i class="fa fa-eye fa-lg" aria-hidden="true"></i> Attendance
+                        <i class="fa fa-angle-down rotate-icon"></i></a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="{{route('control-panel.underconstruction')}}" class="waves-effect"><i class="fa fa-male"></i>Teacher Attendance</a>
+                            </li>
+                            <li><a href="{{route('control-panel.underconstruction')}}" class="waves-effect"><i class="fa fa-graduation-cap"></i>Student Attendance</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a class="collapsible-header waves-effect arrow-r">
+                        <i class="fa fa-graduation-cap fa-lg" aria-hidden="true" style="margin-left: -3px;"></i> Student
+                        Management
+                        <i class="fa fa-angle-down rotate-icon"></i></a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="{{route('control-panel.underconstruction')}}" class="waves-effect"><i class="fa fa-list"></i>Student List</a>
+                            </li>
+                            <li><a href="{{route('control-panel.underconstruction')}}" class="waves-effect"><i class="fa fa-plus-square"></i>Create Student</a>
+                            </li>
+                            <li><a href="{{route('control-panel.underconstruction')}}" class="waves-effect"><i class="fa fa-line-chart"></i>Student Report</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+                
             </ul>
         </li>
         <!--/. Side navigation links -->

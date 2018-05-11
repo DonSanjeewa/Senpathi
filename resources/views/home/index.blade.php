@@ -24,14 +24,40 @@
                         </div>
                         <!-- .stat -->
 
-                        <div class="stat"> <i class="fa fa-envelope"></i> <span class="value">1</span>
+                        <!-- <div class="stat"> <i class="fa fa-envelope"></i> <span class="value">1</span>
                             <br>Messages
-                        </div>
+                        </div> -->
                         <!-- .stat -->
                     </div>
                 </div>
             </div>
         </div>
+
+        @if($role == 'Teacher')   
+        <div class="col-md-6">
+        <h5 class="card-header gold white-text"><i class="fa fa-warning ml-2"></i> <b>LEAVE PROFILE</b></h5>
+            <div class="card-body">
+                <div id="big_stats" class="cf">
+                    <div class="stat"> <i class="fa fa-calendar"></i> <span class="value">{{ $casualLeaves }}/20</span>
+                        <br>Casual Leaves
+                    </div>
+                    <!-- .stat -->
+
+                    <div class="stat"> <i class="fa fa-bed"></i>
+                        <span class="value">{{ $medicalLeaves }}/21</span>
+                        <br>Medical Leaves
+                    </div>
+                    <!-- .stat -->
+
+                    <div class="stat"> <i class="fa fa-calendar"></i> <span class="value">{{ $maternityLeaves }}/84</span>
+                        <br>Maternity Leaves
+                    </div>
+                    <!-- .stat -->
+                </div>
+            </div>
+        </div>
+
+        @else
         <div class="col-md-6">
             <div class="card">
                 <h5 class="card-header gold white-text"><i class="fa fa-newspaper-o ml-2"></i> <b>RECENT NEWS</b>
@@ -42,6 +68,8 @@
                 </div>
             </div>
         </div>
+        @endif
+        
     </div>
 </div>
 <br>
@@ -51,6 +79,8 @@
             <div class="card">
                 <h5 class="card-header gold white-text"><i class="fa fa-calendar ml-2"></i> <b>UPCOMING EVENTS</b>
                 </h5>
+
+                @if(count($upCommingEvents) > 0 )
                 <div class="content-scroller">
                     @foreach($upCommingEvents as $upCommingEvent)
                     <div class="card-body">
@@ -74,6 +104,16 @@
                     @endforeach
                 </div>
 
+                @else
+                <div>      
+                        <div class="card">       
+                            <div class="card-body">
+                                <h4 class="card-title"></h4>
+                                <p class="card-text">No Any Event to show</p>
+                            </div>
+                        </div>
+                </div>
+                @endif
             </div>
         </div>
 
