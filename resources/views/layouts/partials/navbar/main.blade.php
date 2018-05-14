@@ -9,13 +9,18 @@
     </div>
     <ul class="nav navbar-nav nav-flex-icons ml-auto">
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link"><i class="fa fa-comments-o"></i> <span
                         class="clearfix d-none d-sm-inline-block">Support</span></a>
+        </li> -->
+
+        <li class="nav-item">
+            <a style="background-color: #595151;border-radius: 5px;" class="nav-link" href="{{ route("home") }}"><i class="fa fa-home " aria-hidden="true"></i> <span
+                        class="clearfix d-none d-sm-inline-block">Home</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route("control-panel.index") }}"><i class="fa fa-th-large" aria-hidden="true"></i> <span
+            <a  class="nav-link" href="{{ route("control-panel.index") }}"><i class="fa fa-th-large" aria-hidden="true"></i> <span
                         class="clearfix d-none d-sm-inline-block">Control Panel</span></a>
         </li>
 

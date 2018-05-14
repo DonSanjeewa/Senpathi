@@ -20,4 +20,5 @@ class ControlPanelController extends Controller
         return view('control-panel.index');
     }
 
+    
 }
