@@ -132,13 +132,13 @@
                             <div class="card">
                                 <h5 class="card-header gold white-text"> <b>Admin</b></h5>
                                 <div class="card-body">
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    <p class="card-text">Content Under construction</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    <div class="row">
+                    
+                    <!-- <div class="row">
                         <div class="col-md-2">
                             <div class="col-sm-2">
                                 <div class="thumbnail">
@@ -153,7 +153,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
