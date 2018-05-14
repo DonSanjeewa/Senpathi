@@ -7,6 +7,14 @@ addons:
       
 language: php
 
+before_script:
+    - cp .env.travis .env
+    - mysql -e 'create database sms;'
+    - composer self-update
+    - composer install --no-interaction
+    - php artisan key:generate
+    - php artisan migrate --seed
+    
 # list any PHP version you want to test against
 php:
   # using major version aliases
