@@ -12,7 +12,6 @@ before_script:
     - cp .env.travis .env
     - composer self-update
     - composer install --prefer-source --no-interaction --dev
-    - php artisan key:generate
     
 # list any PHP version you want to test against
 php:
