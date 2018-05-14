@@ -10,10 +10,6 @@ language: php
 before_script:
     - mysql -e 'CREATE DATABASE sms;'
     - cp .env.travis .env
-    - composer self-update
-    - composer install --no-interaction
-    - php artisan key:generate
-    - php artisan migrate --seed
     
 # list any PHP version you want to test against
 php:
