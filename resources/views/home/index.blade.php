@@ -6,30 +6,40 @@
         <div class="col-md-6">
             <div class="card">
                 <h5 class="card-header gold white-text"><i class="fa fa-warning ml-2"></i> <b>NEED YOUR ATTENTION</b></h5>
+
+                @if($role == 'Teacher')
+                <div class="card-body">
+                    <div id="big_stats" class="cf">
+                        <div class="stat"> <i class="fa fa-calendar"></i>
+                            <span class="value">0</span>
+                            <br>Events to Be Approved
+                        </div>
+                        <div class="stat"> <i class="fa fa-users"></i> <span class="value">0</span>
+                            <br>Students To Be Approved
+                        </div>
+                    </div>
+                </div>
+                @else
                 <div class="card-body">
                     <div id="big_stats" class="cf">
                         <div class="stat"> <i class="fa fa-bed"></i> <span class="value">{{ $leaveCount }}</span>
-                            <br>Leaves
+                            <br>Leaves to be approved
                         </div>
-                        <!-- .stat -->
+
 
                         <div class="stat"> <i class="fa fa-calendar"></i>
                             <span class="value">{{ $eventsCount}}</span>
-                            <br>Events
+                            <br>Events to be approved
                         </div>
-                        <!-- .stat -->
+
 
                         <div class="stat"> <i class="fa fa-users"></i> <span class="value">{{ $teachersCount}}</span>
-                            <br>Teachers
+                            <br>Teachers to be approved
                         </div>
-                        <!-- .stat -->
 
-                        <!-- <div class="stat"> <i class="fa fa-envelope"></i> <span class="value">1</span>
-                            <br>Messages
-                        </div> -->
-                        <!-- .stat -->
                     </div>
                 </div>
+                @endif
             </div>
         </div>
 

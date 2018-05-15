@@ -38,7 +38,7 @@ class HomeController extends Controller
         $role= $roleObj[0]->name;
 
         $upCommingEvents = $this->getUpcommingEvents();
-        $teachersCount=Teacher::get()->count();
+        $teachersCount=Teacher::where('approval', '=', 'pending')->get()->count();
         $eventsCount=Event::where('deleted', false)->get()->count();
         $casualLeaves=DB::table('leaves')
                     ->where('teacher_id', '=', $userId)
@@ -56,7 +56,7 @@ class HomeController extends Controller
                     ->get()->count();
         
         $leaveCount=DB::table('leaves')
-                        ->where('teacher_id', '=', $userId)
+                        ->where('status', '=', 'pending')
                         ->get()->count();
 
         return view('home.index', compact('eventsCount','upCommingEvents','teachersCount','leaveCount','casualLeaves','medicalLeaves','maternityLeaves','role'));

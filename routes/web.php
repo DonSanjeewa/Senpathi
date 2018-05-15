@@ -47,7 +47,10 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::get('/academic/teachers/{teacher}', 'Academic\TeachersController@show')->name('academic.teachers.show');
    // Route::get('/academic/teachers/{status}/{approveId}', 'Academic\TeachersController@approveOrReject')->name('academic.teachers.approval');
     Route::get('/academic/teachers/delete/{teacherId}', 'Academic\TeachersController@delete')->name('academic.teachers.delete');
-    
+
+
+    //Students Routes
+    Route::get('/academic/students/create', 'Academic\StudentsController@create')->name('academic.teachers.create');
 
     //Timetable routes
     Route::get('/timetables', 'Academic\TimetableController@index')->name('academic.timetables.index');
