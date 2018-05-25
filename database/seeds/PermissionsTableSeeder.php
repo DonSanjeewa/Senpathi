@@ -357,5 +357,33 @@ class PermissionsTableSeeder extends Seeder
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
         ]);
+
+        DB::table("permissions")->insert([
+            "name" => "Teacher Delete",
+            "slug" => "teacher_delete",
+            "route_name" => "academic.teachers.delete",
+            "description" => "",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("permissions")->insert([
+            "name" => "User Active",
+            "slug" => "user_active",
+            "route_name" => "control-panel.users.active",
+            "description" => "",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        DB::table("permissions")->insert([
+            "name" => "User Deactive",
+            "slug" => "user_deactive",
+            "route_name" => "control-panel.users.deactive",
+            "description" => "",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
     }
 }

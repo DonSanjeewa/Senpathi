@@ -6,15 +6,15 @@
             <div class="card">
                 <h5 class="card-header gold white-text">Events</h5>
                 <div class="card-body">
-                    <table id="all-events" class="table table-bordered data-table-custom" cellspacing="0" width="100%">
-                        <thead>
+                    <table id="all-events" class="table table-striped data-table-custom" cellspacing="0" width="100%">
+                        <thead style="background-color:#d2d6d9">
                         <tr>
-                            <th>Name</th>
-                            <th>Location</th>
-                            <th>Description</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>Actions</th>
+                            <th><b>Name</b></th>
+                            <th><b>Location</b></th>
+                            <th><b>Description</b></th>
+                            <th><b>Start Date</b></th>
+                            <th><b>End Date</b></th>
+                            <th><b>Actions</b></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -26,10 +26,10 @@
                                 <td>{{$event->starts_at}}</td>
                                 <td>{{$event->ends_at}}</td>
                                 <td>
-                                    <a href="{{route('events.show', ['event' => $event->id])}}" class="btn btn-primary btn-custom">
+                                    <a href="{{route('events.show', ['event' => $event->id])}}" class="btn btn-primary btn-custom" title="View Event">
                                         <i class="fa fa-list-alt" aria-hidden="true"></i>
                                     </a>
-                                    <a href="{{route('events.delete', ['event' => $event->id])}}" class="btn btn-danger btn-custom">
+                                    <a href="{{route('events.delete', ['event' => $event->id])}}" class="btn btn-danger btn-custom" title="Delete Event">
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </a>
                                 </td>

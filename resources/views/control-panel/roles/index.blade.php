@@ -4,16 +4,17 @@
 
     <div class="row">
         <div class="col-md-12">
+        <a href="{{ route("control-panel.roles.create") }}"><button type="button"  style="margin-left: 93%;" class="btn btn-success btn-sm">Create</button></a>
             <div class="card">
                 <h5 class="card-header gold white-text">Roles</h5>
                 <div class="card-body">
-                    <table id="permissions" class="table table-bordered data-table-custom" cellspacing="0" width="100%">
-                        <thead>
+                    <table id="permissions" class="table table-striped data-table-custom" cellspacing="0" width="100%">
+                        <thead style="background-color:#d2d6d9">
                         <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Slug</th>
-                            <th>Description</th>
+                            <th><b>Id</b></th>
+                            <th><b>Name</b></th>
+                            <th><b>Slug</b></th>
+                            <th><b>Description</b></th>
                             <th></th>
                         </tr>
                         </thead>

@@ -8,31 +8,72 @@
         <div class="card-header gold white-text">
             Leave Details
         </div>
+
+           <?php  $casLeave=0;
+            $medLeave=0;
+            $matLeave=0;
+            $otherLeave=0;  ?>
+
+
+            @foreach ($leaveAmount as $leaveData)
+
+                @if($leaveData->leave_id == 1)
+                 @if($leaveData->sum != null)
+                    <?php  $casLeave = $leaveData->sum  ?>
+                  @endif
+                @endif    
+
+                   @if($leaveData->leave_id == 2)
+                 @if($leaveData->sum != null)
+                    <?php  $medLeave = $leaveData->sum  ?>
+                  @endif
+                @endif    
+
+                   @if($leaveData->leave_id == 3)
+                 @if($leaveData->sum != null)
+                    <?php  $matLeave = $leaveData->sum  ?>
+                  @endif
+                @endif    
+
+                   @if($leaveData->leave_id == 4)
+                 @if($leaveData->sum != null)
+                    <?php  $otherLeave = $leaveData->sum  ?>
+                  @endif
+                @endif    
+
+               
+
+            @endforeach
+
+
         <div class="row">
             <div class="col-md-3">
                 <!--Panel-->
-
                 <div class="card card-body">
                     <h4 class="card-title">Casual Leave</h4>
-                    <p class="card-text">Total : 20</p>     
+                    <p class="card-text">Total : 20</p>  
+                    <p class="card-text">Taken : <?php echo $casLeave  ?> </p>   
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="card card-body">
                     <h4 class="card-title">Medical Leave</h4>
                     <p class="card-text">Total : 21</p>     
+                    <p class="card-text">Taken : <?php echo $medLeave  ?> </p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="card card-body">
                     <h4 class="card-title">Maternity Leave</h4>
                     <p class="card-text">Total : 84</p>     
+                    <p class="card-text">Taken : <?php echo $matLeave  ?> </p>
                 </div>
             </div>
             <div class="col-md-3">
                  <div class="card card-body">
                     <h4 class="card-title">Other Leave</h4>
-                    <p class="card-text">Depend upon Request </p>     
+                    <p class="card-text">Depend upon Request </p> 
+                    <p class="card-text">Taken : <?php echo $otherLeave  ?> </p>    
                 </div>
             </div>
         </div>
@@ -74,23 +115,26 @@
                     <div class="md-form">
                      
                      <!--Radio group-->
+
+
+
                         <div class="form-group">
-                            <input name="leave_id" type="radio" value='1' class="with-gap" id="radio106">
+                            <input name="leave_id" type="radio" value='1' class="with-gap" id="radio106" @if($casLeave >20){ disabled="true"  } @endif  >
                             <label for="radio106">Casual</label>
                         </div>
 
                         <div class="form-group">
-                            <input name="leave_id" type="radio" value='2' class="with-gap" id="radio107" checked>
+                            <input name="leave_id" type="radio" value='2' class="with-gap" id="radio107" @if($medLeave >21){ disabled="true" } @endif  >
                             <label for="radio107">Medical</label>
                         </div>
 
                         <div class="form-group">
-                            <input name="leave_id" type="radio" value='3' class="with-gap" id="radio108">
-                            <label for="radio108">Other</label>
+                            <input name="leave_id" type="radio" value='3' class="with-gap" id="radio108" checked >
+                            <label for="radio108" >Other</label>
                         </div>
                         <div class="form-group">
                             <input name="leave_id" type="radio" value='4' class="with-gap" id="radio109">
-                            <label for="radio109">Maternity</label>
+                            <label for="radio109" @if($matLeave >21){ disabled="true" } @endif>Maternity</label>
                         </div>
                         <!--Radio group-->  
                      </div>

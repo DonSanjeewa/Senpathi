@@ -20,9 +20,10 @@ class RolesController extends Controller
 
     public function create(){
 
-        $permissions = Permission::all();
 
-        return view("control-panel.roles.create" ,  compact("permissions"));
+         $permissions = Permission::all();
+
+         return view("control-panel.roles.create" ,  compact("permissions"));
     }
 
     public function store(Request $request)
@@ -58,6 +59,12 @@ class RolesController extends Controller
             'description' => 'nullable|string',
         ]);
 
+    }
+
+    public function underconstruction(){
+
+
+        return view('home.underconstruction');
     }
 
 }
