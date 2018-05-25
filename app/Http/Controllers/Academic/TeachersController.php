@@ -9,6 +9,8 @@ use App\Subject;
 use App\Teacher;
 use App\Role;
 use App\Approval;
+use Auth;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,8 +20,24 @@ class TeachersController extends Controller
 {
     public function index()
     {
-        $teachers = Teacher::all();
-        return view('academic.teachers.index')->with('teachers', $teachers);
+        //To check wether the logged user is the super admin
+        $userId= Auth::id();
+        if ($userId){
+        $roleId=DB::table('user_role')->where('user_id',$userId)->get();
+        }
+
+        if ($roleId){
+        $roleName=(DB::table('roles')->where('id',$roleId[0]->role_id)->get())[0]->name;
+        }
+
+        if($roleName){
+            $teachers = Teacher::where('deleted', 0)->get();
+            return view('academic.teachers.index')->with('teachers', $teachers)
+                                                  ->with('roleName', $roleName);
+        } else {
+            $teachers = Teacher::where('deleted', 0)->get();
+            return view('academic.teachers.index')->with('teachers', $teachers);
+        }
 
     }
 
@@ -32,6 +50,7 @@ class TeachersController extends Controller
         $subjects = Subject::all();
         $serviceGrades = DB::table("service_grades")->get();
         $academicRoles = DB::table("academic_roles")->get();
+        $roles = DB::table("roles")->get();
 
         return view('academic.teachers.create', compact(
             "nationalities",
@@ -40,7 +59,8 @@ class TeachersController extends Controller
             "sections",
             "subjects",
             "serviceGrades",
-            "academicRoles"
+            "academicRoles",
+            "roles"
         ));
     }
 
@@ -82,19 +102,14 @@ class TeachersController extends Controller
             'current_role' => json_encode($request->input("current_role")),
             'current_type' => $request->input("current_type"),
             'salary' => $request->input("salary"),
-            'first_appointment_at' => $this->parseDateString($request->input("first_appointment_at"))
+            'first_appointment_at' => $this->parseDateString($request->input("first_appointment_at")),
+            'deleted' => false
         ]);
 
 
         //To get all the deputy principle IDs
+
         $deputiPriciples = Role::getDeputyPrincipalIds();
-
-        //To get the current user ID
-        $user = auth()->user()->id;
-
-        //To add a record to approvel table
-        event(new ApprovalRequired(Teacher::class, $user, $deputiPriciples));
-        // $this->validator($request);
 
         if ($request->has("employer")) {
             foreach ($request->input("employer") as $expKey => $expVal) {
@@ -129,6 +144,49 @@ class TeachersController extends Controller
             }
         }
 
+        if ($request->has("professional-qualification")) {
+
+            foreach ($request->input("professional-qualification") as $qualification) {
+                DB::table("teacher_qualifications")->insert([
+                    "teacher_id" => $teacher->id,
+                    "qualification" => $qualification,
+                    "type" => "professional"
+                ]);
+            }
+        }
+
+        if ($request->has("educational-qualification")) {
+
+            foreach ($request->input("educational-qualification") as $qualification) {
+                DB::table("teacher_qualifications")->insert([
+                    "teacher_id" => $teacher->id,
+                    "qualification" => $qualification,
+                    "type" => "educational"
+                ]);
+            }
+        }
+
+        $user = User::create([
+            "fname" => $request->input("fname"),
+            "lname" => $request->input("lname"),
+            "username" => $request->input("username"),
+            "password" => bcrypt($request->input("password")),
+            "registered_at" => Carbon::now(),
+            "active" => true
+        ]);
+
+        DB::table("user_role")->insert([
+            "user_id" => $user->id,
+            "role_id" => $request->input("role"),
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+
+
+        //To add a record to approvel table
+        event(new ApprovalRequired(Teacher::class, $teacher->id, $deputiPriciples));
+        // $this->validator($request); 
         return redirect()->route("academic.teachers.index");
 
     }
@@ -136,7 +194,15 @@ class TeachersController extends Controller
 
     public function show(Teacher $teacher)
     {
-        return view('academic.teachers.show', compact("teacher"));
+        //return $teacher;
+
+        $allRecords=DB::table('users')->select('users.picture','teachers.*')
+                                        ->leftJoin('teachers', 'teachers.user_id', '=', 'users.id')
+                                        ->where('teachers.id',$teacher->id)->get();
+
+                                   
+
+         return view('academic.teachers.show')->with('teacher', $allRecords);
     }
 
     private function validator(Request $request)
@@ -161,7 +227,12 @@ class TeachersController extends Controller
             "joined_at" => "required",
 
             "salary" => "required|string|max:255",
-            "first_appointment" => "required"
+            "first_appointment" => "required",
+
+            "fname" => "required|string|max:255",
+            "lname" => "required|string|max:255",
+            "username" => "required|string|max:255",
+            "password" => "required|string|max:255",
         ]);
     }
 
@@ -192,10 +263,9 @@ class TeachersController extends Controller
             }
         }
 
-        return $assignedApprovals;
-
         return view('approvals.index' , compact('assignedApprovals'));
     }
+
 
     public function approve(Approval $approval){
         event(new Approved($approval->id , auth()->user()->id));
@@ -206,4 +276,30 @@ class TeachersController extends Controller
         event(new Rejected($approval->id , auth()->user()->id));
         return back();
     }
+
+    public function delete(Teacher $teacherId){
+
+        Teacher::where('id', $teacherId->id )
+                 ->update(['deleted' => 1]);
+
+                 $userId= Auth::id();
+                 if ($userId){
+                 $roleId=DB::table('user_role')->where('user_id',$userId)->get();
+                 }
+         
+                 if ($roleId){
+                 $roleName=(DB::table('roles')->where('id',$roleId[0]->role_id)->get())[0]->name;
+                 }
+         
+                 if($roleName){
+                     $teachers = Teacher::where('deleted', 0)->get();
+                     return view('academic.teachers.index')->with('teachers', $teachers)
+                                                           ->with('roleName', $roleName);
+                 } else {
+                     $teachers = Teacher::where('deleted', 0)->get();
+                     return view('academic.teachers.index')->with('teachers', $teachers);
+                 }
+
+    }
+
 }
