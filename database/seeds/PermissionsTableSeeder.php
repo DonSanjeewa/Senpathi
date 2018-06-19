@@ -385,5 +385,14 @@ class PermissionsTableSeeder extends Seeder
             "updated_at" => Carbon::now()
         ]);
 
+        DB::table("permissions")->insert([
+            "name" => "Student Create",
+            "slug" => "student_create",
+            "route_name" => "academic.students.create",
+            "description" => "",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
     }
 }

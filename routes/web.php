@@ -49,6 +49,9 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::get('/academic/teachers/delete/{teacherId}', 'Academic\TeachersController@delete')->name('academic.teachers.delete');
     
 
+    // Students Routes
+    Route::get('/academic/students/create', 'Academic\StudentsController@create')->name('academic.students.create');
+
     //Timetable routes
     Route::get('/timetables', 'Academic\TimetableController@index')->name('academic.timetables.index');
     Route::get('/timetables/{year}/{class}/edit/{period}', 'Academic\TimetableController@edit')->name('academic.timetables.edit');
