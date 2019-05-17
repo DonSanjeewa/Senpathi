@@ -18,32 +18,43 @@ Route::post('/login', 'Auth\LoginController@login')->name('login.login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/unauthorized', function () {
-    return "hit";
+    return "unauthorized";
 })->name("unauthorized");
 
 //TODO super-user middleware
 Route::middleware(["auth", "acl"])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
-    
+
     //Event routes
     Route::get('/events', 'EventController@index')->name('events.index');
     Route::get('/events/create', 'EventController@create')->name('events.create');
     Route::get('/events/{event}', 'EventController@show')->name('events.show');
+    Route::get('/events/{event}/edit', 'EventController@edit')->name('events.edit');
     //TODO might want to change this to post after adding the modal
     Route::get('/events/{event}/delete', 'EventController@delete')->name('events.delete');
     Route::post('/events', 'EventController@store')->name('events.store');
+    Route::post('/events/{event}', 'EventController@update')->name('events.update');
 
 
     //Teachers routes
     Route::get('/academic/teachers', 'Academic\TeachersController@index')->name('academic.teachers.index');
     Route::post('/academic/teachers', 'Academic\TeachersController@store')->name('academic.teachers.store');
-
     Route::get('/academic/teachers/create', 'Academic\TeachersController@create')->name('academic.teachers.create');
-    Route::get('/academic/teachers/approve', 'Academic\TeachersController@approve')->name('approvels.index');
     Route::get('/academic/teachers/{teacher}', 'Academic\TeachersController@show')->name('academic.teachers.show');
+    Route::get('/academic/teachers/{teacher}/edit', 'Academic\TeachersController@edit')->name('academic.teachers.edit');
+    Route::post('/academic/teachers/{teacher}', 'Academic\TeachersController@update')->name('academic.teachers.update');
+    Route::get('/academic/teachers/{teacherId}/delete', 'Academic\TeachersController@delete')->name('academic.teachers.delete');
 
-    
+    // Route::get('/academic/teachers/{status}/{approveId}', 'Academic\TeachersController@approveOrReject')->name('academic.teachers.approval');
 
+    Route::get('/academic/approvals', 'Academic\TeachersController@approvals')->name('approvals.index');
+
+    Route::get('/academic/approvals/{approval}/approve' , 'Academic\TeachersController@approve')->name('approvals.approve');
+    Route::get('/academic/approvals/{approval}/reject' , 'Academic\TeachersController@reject')->name('approvals.reject');
+
+
+    // Students Routes
+    Route::get('/academic/students/create', 'Academic\StudentsController@create')->name('academic.students.create');
 
     //Timetable routes
     Route::get('/timetables', 'Academic\TimetableController@index')->name('academic.timetables.index');
@@ -67,10 +78,11 @@ Route::middleware(["auth", "acl"])->group(function () {
     //Teacher details Report
     Route::get('/generate-teacher-report/{teacher}', 'Report\ReportController@teacherDetailsPdfView')->name('report.teacher-details');
 
-    //leave routes
-    
     Route::get('/teachers-full-report', 'Report\ReportController@teacherFullReport')->name('reports.teachers-full-report');
     
+
+   // Route::post('image-upload',['as'=>'image.upload.post','uses'=>'UsersController@imageUploadPost']);
+    Route::post('/image-upload', 'ControlPanel\UsersController@imageUploadPost')->name('image.upload.post');
 
     //Leave routes
     Route::get('/leaves', 'LeaveController@index')->name('leaves.index');
@@ -81,12 +93,17 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::get('/leaves/approve/{userId}', 'LeaveController@approve');
     Route::get('/leaves/report', 'LeaveController@report')->name('leaves.report');
     Route::get('/leaves/cancel/{leaveID}', 'LeaveController@cancel');
+
+
+
     //TODO super-user middleware
 
-    Route::get("/control-panel/underconstruction", 'ControlPanel\RolesController@underconstruction')->name('home.underconstruction');
-
     //Control Panel > Users Routes
+
+    Route::get("/control-panel/underconstruction", 'ControlPanel\RolesController@underconstruction')->name('control-panel.underconstruction');
     
+
+    Route::get("/control-panel", 'ControlPanel\ControlPanelController@index')->name('control-panel.index');
 
     Route::get("/control-panel/users", 'ControlPanel\UsersController@index')->name('control-panel.users.index');
     Route::post("/control-panel/users", 'ControlPanel\UsersController@store')->name('control-panel.users.store');
@@ -98,21 +115,22 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::post("/control-panel/users/{user}", 'ControlPanel\UsersController@update')->name('control-panel.users.update');
 
     Route::post("/control-panel/users/{user}/delete", 'ControlPanel\UsersController@index')->name('control-panel.users.delete');
+    Route::get("/control-panel/users/{user}/active", 'ControlPanel\UsersController@active')->name('control-panel.users.active');
+    Route::get("/control-panel/users/{user}/deactive", 'ControlPanel\UsersController@deactive')->name('control-panel.users.deactive');
 
     //Control Panel > Roles Routes
     Route::get("/control-panel/roles", 'ControlPanel\RolesController@index')->name('control-panel.roles.index');
-    Route::post("/control-panel/roles", 'ControlPanel\RolesController@store')->name('control-panel.roles.store');
+    Route::get("/control-panel/roles/{role}", 'ControlPanel\RolesController@show')->name('control-panel.roles.show');
 
     Route::get("/control-panel/roles/create", 'ControlPanel\RolesController@create')->name('control-panel.roles.create');
-    
+    Route::post("/control-panel/roles", 'ControlPanel\RolesController@store')->name('control-panel.roles.store');
+
     Route::get("/control-panel/roles/{role}/edit", 'ControlPanel\RolesController@edit')->name('control-panel.roles.edit');
     Route::post("/control-panel/roles/{role}", 'ControlPanel\RolesController@update')->name('control-panel.roles.update');
 
-    Route::post("/control-panel/roles/{role}/delete", 'ControlPanel\RolesController@index')->name('control-panel.roles.delete');
+    Route::get("/control-panel/roles/{role}/delete", 'ControlPanel\RolesController@delete')->name('control-panel.roles.delete');
 
     //Control Panel > Permissions Routes
-   
-
     Route::get("/control-panel/permissions", 'ControlPanel\PermissionsController@index')->name('control-panel.permissions.index');
     Route::post("/control-panel/permissions", 'ControlPanel\PermissionsController@store')->name('control-panel.permissions.store');
 
@@ -122,6 +140,4 @@ Route::middleware(["auth", "acl"])->group(function () {
     Route::post("/control-panel/permissions/{permission}", 'ControlPanel\PermissionsController@update')->name('control-panel.permissions.update');
 
     Route::post("/control-panel/permissions/{permission}/delete", 'ControlPanel\PermissionsController@index')->name('control-panel.permissions.delete');
-  
-   
 });
