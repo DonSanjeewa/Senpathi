@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-md-12">
-        <a href="{{ route("control-panel.roles.create") }}"><button type="button"  style="margin-left: 93%;" class="btn btn-success btn-sm">Create</button></a>
+            <a href="{{ route("control-panel.roles.create") }}"><button type="button"  style="margin-left: 93%;" class="btn btn-success btn-sm">Create</button></a>
             <div class="card">
                 <h5 class="card-header gold white-text">Roles</h5>
                 <div class="card-body">
@@ -27,13 +27,13 @@
                                 <td>{{$role->description}}</td>
                                 {{--TODO add action mapping for buttons--}}
                                 <td>
-                                    <a href="" class="btn btn-primary btn-custom">
+                                    <a href="{{route('control-panel.roles.show', ['role' => $role->id])}}" class="btn btn-primary btn-custom">
                                         <i class="fa fa-list-alt" aria-hidden="true"></i>
                                     </a>
-                                    <a class="btn btn-warning btn-custom">
+                                    <a href="{{route('control-panel.roles.edit', ['role' => $role->id])}}" class="btn btn-warning btn-custom">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </a>
-                                    <a class="btn btn-danger btn-custom">
+                                    <a href="{{route('control-panel.roles.delete', ['role' => $role->id])}}" class="btn btn-danger btn-custom">
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </a>
                                 </td>

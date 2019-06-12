@@ -45,6 +45,11 @@
                                 <td>{{$event->updated_at}}</td>
                             </tr>
                         </table>
+                        <div>
+                            <a class="btn btn-primary btn-md blue white-text" href="{{route('events.edit', ['event' => $event->id])}}" role="button">
+                                <i class="fa fa-pencil ml-2"></i>Edit Event
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

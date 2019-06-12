@@ -37,7 +37,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('events.create');
+        $hasData = false;
+        return view('events.create')->with('hasData', $hasData);
     }
 
 
@@ -77,6 +78,55 @@ class EventController extends Controller
         ]);
 
         return redirect()->route('events.index');
+    }
+
+    /**
+     * Show edit event interface.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Event $event)
+    {
+        $hasData = true;
+        return view('events.edit')->with('event', $event)->with('hasData', $hasData);
+    }
+
+    /**
+     * Update event details.
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request,$id)
+    {
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+            $request['starts_at'] = $this->formatDateTime($request->input('start_date'), $request->input('start_time'));
+            $request['ends_at'] = $this->formatDateTime($request->input('end_date'), $request->input('end_time'));
+        }
+
+        $request->validate([
+            'event_name' => 'required|max:100',
+            'event_location' => 'required|max:100',
+            'start_date' => 'required',
+            'start_time' => 'required',
+            'end_date' => 'required',
+            'end_time' => 'required',
+            'ends_at' => 'after:starts_at',
+            'event_description' => 'max:255',
+        ]);
+
+        Event::where('id', $id)->update([
+            'user_id' => $request->user()->id,
+            'name' => $request->input('event_name'),
+            'location' => $request->input('event_location'),
+            'starts_at' => $request->input('starts_at'),
+            'ends_at' => $request->input('ends_at'),
+            'description' => $request->input('event_description'),
+            'deleted' => false
+        ]);
+
+        return redirect()->route('events.show', ['event' => $id]);
     }
 
 

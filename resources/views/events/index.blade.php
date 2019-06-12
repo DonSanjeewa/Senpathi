@@ -29,6 +29,9 @@
                                     <a href="{{route('events.show', ['event' => $event->id])}}" class="btn btn-primary btn-custom" title="View Event">
                                         <i class="fa fa-list-alt" aria-hidden="true"></i>
                                     </a>
+                                    <a href="{{route('events.edit', ['event' => $event->id])}}" class="btn btn-info btn-custom" title="Edit Event">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </a>
                                     <a href="{{route('events.delete', ['event' => $event->id])}}" class="btn btn-danger btn-custom" title="Delete Event">
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </a>

@@ -13,7 +13,7 @@
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Amount of Days</th>
-                           
+
                         </tr>
                         </thead>
                         <tbody>
@@ -23,8 +23,8 @@
                                 <td>{{$leave->from}}</td>
                                 <td>{{$leave->to}}</td>
                                 <td>{{$leave->days}}</td>
-                                
-                   
+
+
                             </tr>
                         @endforeach
                         </tbody>

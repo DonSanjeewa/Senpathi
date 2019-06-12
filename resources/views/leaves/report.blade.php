@@ -1,4 +1,4 @@
- @extends('layouts.extended')
+@extends('layouts.extended')
 
 @section('content')
     <div class="row">
@@ -15,7 +15,7 @@
                             <th>Type</th>
                             <th>Amount of Days</th>
                             <th>Status</th>
-                           
+
                         </tr>
                         </thead>
                         <tbody>
@@ -24,27 +24,27 @@
                                 <td>{{$leave->fname}}{{$leave->lname}}</td>
                                 <td>{{$leave->from}}</td>
                                 <td>{{$leave->to}}</td>
-                                <td> 
+                                <td>
                                     @if($leave->leave_id == '1')
                                         Casual
-                                    @endif 
+                                    @endif
 
                                     @if($leave->leave_id == '2')
                                         Medical
-                                    @endif 
+                                    @endif
 
                                     @if($leave->leave_id == '3')
                                         Maternity
-                                    @endif 
+                                    @endif
 
                                     @if($leave->leave_id == '4')
                                         Other
-                                    @endif 
+                                    @endif
 
-                                </td>   
+                                </td>
                                 <td>{{$leave->days}}</td>
-                            	<td>{{$leave->status}}</td>    
-                   
+                                <td>{{$leave->status}}</td>
+
                             </tr>
                         @endforeach
                         </tbody>

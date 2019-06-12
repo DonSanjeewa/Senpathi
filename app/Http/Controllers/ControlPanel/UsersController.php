@@ -22,23 +22,22 @@ class UsersController extends Controller
     public function create(){
 
         $roles = Role::all();
+        $hasData = false;
 
-        return view("control-panel.users.create" , compact("roles"));
+        return view("control-panel.users.create" , compact("roles","hasData"));
     }
 
     public function store(Request $request){
 
         request()->validate([
-            
-                        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            
-                    ]);
-            
-            
-            
+
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        ]);
+
         $imageName = time().'.'.request()->image->getClientOriginalExtension();
-        request()->image->move(public_path('images'), $imageName);
-                   
+        request()->image->move(public_path('img/users'), $imageName);
+
 
         $this->validator($request);
 
@@ -63,9 +62,16 @@ class UsersController extends Controller
     }
 
 
-    public function edit(Request $request , User $user){
-        dd($user);
-        dd($request);
+    public function edit(User $user){
+
+        $roles = Role::all();
+        $userDetails=DB::table('users')->select('users.*','user_role.role_id')
+            ->leftJoin('user_role', 'user_role.user_id', '=', 'users.id')
+            ->where('users.id',$user->id)->get();
+        $records = $userDetails[0];
+        $hasData = true;
+
+        return view("control-panel.users.edit" , compact("roles","records","hasData"));
     }
 
 
@@ -84,8 +90,8 @@ class UsersController extends Controller
     public function active(User $user){
 
         User::where('id', $user->id )
-                ->update(['active' => 1]);
-        
+            ->update(['active' => 1]);
+
         $users = User::all();
         return view("control-panel.users.index" , compact("users"));
 
@@ -94,38 +100,38 @@ class UsersController extends Controller
     public function deactive(User $user){
 
         User::where('id', $user->id )
-                ->update(['active' => 0]);
+            ->update(['active' => 0]);
 
         $users = User::all();
         return view("control-panel.users.index" , compact("users"));
     }
 
     public function imageUploadPost()
-    
-        {
 
-            return "jfhdf";
-    
-            // request()->validate([
-    
-            //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    
-            // ]);
-    
-    
-    
-            // $imageName = time().'.'.request()->image->getClientOriginalExtension();
-    
-            // request()->image->move(public_path('images'), $imageName);
-    
-    
-    
-            // return back()
-    
-            //     ->with('success','You have successfully upload image.')
-    
-            //     ->with('image',$imageName);
-    
-        }
-        
+    {
+
+        return "jfhdf";
+
+        // request()->validate([
+
+        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        // ]);
+
+
+
+        // $imageName = time().'.'.request()->image->getClientOriginalExtension();
+
+        // request()->image->move(public_path('images'), $imageName);
+
+
+
+        // return back()
+
+        //     ->with('success','You have successfully upload image.')
+
+        //     ->with('image',$imageName);
+
+    }
+
 }
