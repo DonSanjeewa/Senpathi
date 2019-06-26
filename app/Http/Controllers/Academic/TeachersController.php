@@ -248,7 +248,7 @@ class TeachersController extends Controller
     {
         $user_info = Teacher::where('id',$id)->select('user_id')->first();
 
-        $this->validator($request);
+        $this->updateValidator($request);
 
         Teacher::where('id',$id)->update([
             'full_name' => $request->input("full_name"),
@@ -373,6 +373,36 @@ class TeachersController extends Controller
             "lname" => "required|string|max:255",
             "username" => "required|string|max:255",
             "password" => "required|string|max:255",
+        ]);
+    }
+
+    private function updateValidator(Request $request)
+    {
+        $request->validate([
+            "full_name" => "required|string|max:255",
+            "name_initials" => "required|string|max:255",
+            "nic" => ["required", "regex:/[0-9]{9}[x|X|v|V]$/i", "string", "max:10"],
+            "dob" => "required",
+            "address" => "required|string|max:255",
+            "contact_mobile" => "required|string|max:10",
+            "contact_home" => "required|string|max:10",
+            "gender" => "required",
+            "email" => "nullable|email|unique:teachers,email",
+
+            "widow_and_orphan_no" => "required|string|max:255",
+            "salary_compute_no" => "required|string|max:255",
+            "signature_no" => "required|string|max:255",
+            "gov_reg_no" => "required|string|max:255",
+            "personal_file_no" => "required|string|max:255",
+
+            "joined_at" => "required",
+
+            "salary" => "required|string|max:255",
+            "first_appointment" => "required",
+
+            "fname" => "required|string|max:255",
+            "lname" => "required|string|max:255",
+            "username" => "required|string|max:255",
         ]);
     }
 

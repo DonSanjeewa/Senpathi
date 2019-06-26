@@ -800,7 +800,7 @@
             expCounter++;
 
             $('.experience-placeholder').append(
-                    `<div class="row" id="experience-${expCounter}">
+                    '<div class="row" id="experience-${expCounter}">
                             <div class="col-md-4">
 
                                 <div class="md-form ">
@@ -831,7 +831,7 @@
 
 
 
-                </div>`
+                </div>'
             );
 
         });
@@ -843,7 +843,7 @@
             proffesionalExpCounter++;
 
             $('.professional-qualifications-placeholder').append(
-                    `<div class="row" id="professional-qualification-${proffesionalExpCounter}">
+                    '<div class="row" id="professional-qualification-${proffesionalExpCounter}">
                                 <div class="col-md-11">
 
                                     <div class="md-form">
@@ -860,7 +860,7 @@
                                 <i class="fa fa-window-close delete-item"  aria-hidden="true" data-target="#professional-qualification-${proffesionalExpCounter}"></i>
                             </div>
 
-                </div>`
+                </div>'
             );
 
         })
